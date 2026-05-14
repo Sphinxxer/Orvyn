@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  background: #0B0B0B;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(200, 169, 90, 0.36);
+  color: #ededed;
+}
+
+.surface-grid {
+  background-image:
+    linear-gradient(rgba(237, 237, 237, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(237, 237, 237, 0.055) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+}
+
+.gold-rule {
+  background: linear-gradient(90deg, transparent, rgba(200, 169, 90, 0.75), transparent);
+}
