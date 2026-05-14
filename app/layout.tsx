@@ -9,6 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://orvyn-trial2.vercel.app"),
   title: "Orvyn | Modern Brand Growth Agency",
   description:
     "Orvyn helps modern brands build sharper content, stronger websites, and growth systems that turn attention into trust.",
@@ -20,13 +21,22 @@ export const metadata: Metadata = {
     description:
       "Orvyn helps modern brands build sharper content, stronger websites, and growth systems that turn attention into trust.",
     siteName: "Orvyn",
-    type: "website"
+    type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Orvyn - Modern Brand Growth Agency"
+      }
+    ]
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Orvyn | Modern Brand Growth Agency",
     description:
-      "Orvyn helps modern brands build sharper content, stronger websites, and growth systems that turn attention into trust."
+      "Orvyn helps modern brands build sharper content, stronger websites, and growth systems that turn attention into trust.",
+    images: ["/og-image.png"]
   }
 };
 

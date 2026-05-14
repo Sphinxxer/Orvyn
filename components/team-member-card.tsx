@@ -16,7 +16,7 @@ export function TeamMemberCard({
   focusAreas
 }: TeamMemberCardProps) {
   return (
-    <article className="group border border-white/10 bg-coal/35 p-4 transition duration-200 hover:-translate-y-1 hover:border-gold/40 sm:p-5">
+    <article className="group border border-white/10 bg-coal/35 p-4 transition duration-200 hover:-translate-y-0.5 hover:border-gold/40 sm:p-5">
       <div className="relative aspect-[4/5] overflow-hidden border border-white/10 bg-ink">
         <Image
           src={imageSrc}
@@ -42,7 +42,7 @@ export function TeamMemberCard({
             {focusAreas.map((area) => (
               <span
                 key={area}
-                className="border border-white/10 bg-white/[0.015] px-3 py-1.5 text-xs font-medium text-muted transition group-hover:border-gold/25 group-hover:text-white"
+                className="border border-white/10 bg-white/[0.012] px-3 py-1.5 text-xs font-medium text-muted/90 transition group-hover:border-gold/25 group-hover:text-white"
               >
                 {area}
               </span>

@@ -52,7 +52,7 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between lg:mt-14">
-          <p>© {new Date().getFullYear()} Orvyn. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Orvyn. All rights reserved.</p>
           <p className="text-xs font-semibold uppercase tracking-[0.38em] text-gold-soft/80">
             ORVYN
           </p>

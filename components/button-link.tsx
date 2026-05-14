@@ -11,7 +11,7 @@ type ButtonLinkProps = {
 
 const variants = {
   primary:
-    "border-gold bg-gold text-ink shadow-[0_18px_48px_rgba(200,169,90,0.13)] hover:border-gold-soft hover:bg-gold-soft",
+    "border-gold bg-gold text-ink shadow-[0_18px_48px_rgba(200,169,90,0.13)] hover:border-gold-soft hover:bg-gold-soft hover:shadow-[0_20px_54px_rgba(200,169,90,0.16)]",
   secondary:
     "border-white/18 bg-white/[0.018] text-white/88 hover:border-gold/65 hover:bg-white/[0.04] hover:text-gold-soft",
   ghost:

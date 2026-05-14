@@ -370,7 +370,7 @@ export const teamMembers = [
     role: "Creative Direction",
     description: "Shapes brand visuals, content systems, and creative direction.",
     imageSrc: "/team-placeholder-01.jpg",
-    focusAreas: ["Brand Systems", "Content Direction", "Creative Strategy"]
+    focusAreas: ["Brand Systems", "Creative Direction", "Content Structure"]
   },
   {
     name: "Team Member 02",
@@ -378,14 +378,14 @@ export const teamMembers = [
     description:
       "Works on campaign structure, funnel thinking, and performance improvement.",
     imageSrc: "/team-placeholder-02.jpg",
-    focusAreas: ["Growth Strategy", "Funnel Thinking", "Performance Systems"]
+    focusAreas: ["Growth Strategy", "Campaign Systems", "Funnel Thinking"]
   },
   {
     name: "Team Member 03",
     role: "Design & Web",
     description: "Builds visual systems, websites, and digital experiences.",
     imageSrc: "/team-placeholder-03.jpg",
-    focusAreas: ["Visual Systems", "Website Experience", "Digital Design"]
+    focusAreas: ["Web Experience", "Visual Systems", "Digital Design"]
   }
 ];
 
