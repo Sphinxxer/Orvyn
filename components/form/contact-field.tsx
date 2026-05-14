@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 
 const fieldBase =
-  "mt-3 w-full border border-white/12 bg-white/[0.025] px-4 py-3.5 text-base leading-6 text-white outline-none transition placeholder:text-muted/45 focus:border-gold/80 focus:bg-ink focus:ring-1 focus:ring-gold/30";
+  "mt-3 min-h-[3.25rem] w-full border border-white/12 bg-white/[0.025] px-4 py-3.5 text-base leading-6 text-white outline-none transition placeholder:text-muted/45 focus:border-gold/80 focus:bg-ink focus:ring-1 focus:ring-gold/30";
 
 type TextFieldProps = {
   label: string;

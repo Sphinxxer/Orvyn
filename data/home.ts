@@ -9,33 +9,40 @@ export const navItems = [
 export const services = [
   {
     title: "Performance Marketing",
-    description: "Turn attention into measurable action."
+    description: "Turn attention into measurable action.",
+    icon: "performance"
   },
   {
     title: "Content Creation",
-    description: "Make your brand worth watching."
+    description: "Make your brand worth watching.",
+    icon: "content"
   },
   {
     title: "Brand Development",
-    description: "Clarify what makes you different."
+    description: "Clarify what makes you different.",
+    icon: "brand"
   },
   {
     title: "Website Development",
-    description: "Build the digital home that earns trust."
+    description: "Build the digital home that earns trust.",
+    icon: "website"
   },
   {
     title: "Social Media Management",
-    description: "Show up with consistency and intent."
+    description: "Show up with consistency and intent.",
+    icon: "social"
   },
   {
     title: "End-to-End Growth Systems",
-    description: "Connect the moving parts of growth."
+    description: "Connect the moving parts of growth.",
+    icon: "system"
   }
 ];
 
 export const serviceDetails = [
   {
     title: "Performance Marketing",
+    icon: "performance",
     positioning: "Turn attention into measurable action.",
     description:
       "Campaigns, creatives, and funnel improvements built to turn attention into measurable action.",
@@ -52,6 +59,7 @@ export const serviceDetails = [
   },
   {
     title: "Content Creation",
+    icon: "content",
     positioning: "Make your brand worth watching.",
     description:
       "Content planned and created to make your brand look sharper, clearer, and more memorable.",
@@ -68,6 +76,7 @@ export const serviceDetails = [
   },
   {
     title: "Brand Development",
+    icon: "brand",
     positioning: "Clarify what makes you different.",
     description:
       "Positioning, visual direction, and messaging systems that make your brand easier to understand, trust, and remember.",
@@ -83,6 +92,7 @@ export const serviceDetails = [
   },
   {
     title: "Website Development",
+    icon: "website",
     positioning: "Build the digital home that earns trust.",
     description:
       "Modern websites built to explain your offer clearly, build trust quickly, and convert visitors into inquiries.",
@@ -99,6 +109,7 @@ export const serviceDetails = [
   },
   {
     title: "Social Media Management",
+    icon: "social",
     positioning: "Show up with consistency and intent.",
     description:
       "Structured social media systems that keep your brand active, consistent, and aligned with business goals.",
@@ -115,6 +126,7 @@ export const serviceDetails = [
   },
   {
     title: "End-to-End Growth Systems",
+    icon: "system",
     positioning: "Connect the moving parts of growth.",
     description:
       "A complete approach for brands that need strategy, content, website, ads, and execution working together.",
@@ -210,7 +222,9 @@ export const caseStudyDetails = [
       "Content pillar planning",
       "Shoot direction"
     ],
-    label: "Client Direction"
+    label: "Client Direction",
+    deckHref: "/case-studies/grandeur-associates.pdf",
+    previewLabel: "Project deck"
   },
   {
     title: "Biomode",
@@ -224,7 +238,9 @@ export const caseStudyDetails = [
       "Parent-focused messaging",
       "Visual system refinement"
     ],
-    label: "Client Work"
+    label: "Client Work",
+    deckHref: "/case-studies/biomode.pdf",
+    previewLabel: "Client work"
   },
   {
     title: "Cameo Garments",
@@ -238,7 +254,9 @@ export const caseStudyDetails = [
       "Mobile-first improvement",
       "Portfolio-building direction"
     ],
-    label: "Website Concept"
+    label: "Website Concept",
+    deckHref: "/case-studies/cameo-garments.pdf",
+    previewLabel: "Website deck"
   },
   {
     title: "SRA Financial Planning",
@@ -252,7 +270,9 @@ export const caseStudyDetails = [
       "Social media identity",
       "Trust-led communication"
     ],
-    label: "Brand Direction"
+    label: "Brand Direction",
+    deckHref: "/case-studies/sra-financial-planning.pdf",
+    previewLabel: "Brand deck"
   }
 ];
 
@@ -349,20 +369,23 @@ export const teamMembers = [
     name: "Team Member 01",
     role: "Creative Direction",
     description: "Shapes brand visuals, content systems, and creative direction.",
-    linkedinHref: "#"
+    imageSrc: "/team-placeholder-01.jpg",
+    focusAreas: ["Brand Systems", "Content Direction", "Creative Strategy"]
   },
   {
     name: "Team Member 02",
     role: "Growth & Performance",
     description:
       "Works on campaign structure, funnel thinking, and performance improvement.",
-    linkedinHref: "#"
+    imageSrc: "/team-placeholder-02.jpg",
+    focusAreas: ["Growth Strategy", "Funnel Thinking", "Performance Systems"]
   },
   {
     name: "Team Member 03",
     role: "Design & Web",
     description: "Builds visual systems, websites, and digital experiences.",
-    linkedinHref: "#"
+    imageSrc: "/team-placeholder-03.jpg",
+    focusAreas: ["Visual Systems", "Website Experience", "Digital Design"]
   }
 ];
 

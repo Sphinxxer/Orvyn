@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { SelectField, TextAreaField, TextField } from "@/components/form/contact-field";
 import { SectionShell } from "@/components/section-shell";
 import { SiteFrame } from "@/components/site-frame";
@@ -54,14 +55,8 @@ export default function ContactPage() {
             className="border border-white/10 bg-coal p-5 shadow-[0_24px_80px_rgba(0,0,0,0.18)] sm:p-8 lg:p-10"
             aria-label="Project inquiry form"
           >
-            <div className="grid gap-5 md:grid-cols-2 md:gap-6">
+            <FormGroup title="Your details">
               <TextField label="Name" name="name" type="text" autoComplete="name" required />
-              <TextField
-                label="Business / Brand Name"
-                name="brand"
-                type="text"
-                autoComplete="organization"
-              />
               <TextField label="Email" name="email" type="email" autoComplete="email" required />
               <TextField
                 label="Phone / WhatsApp"
@@ -69,13 +64,24 @@ export default function ContactPage() {
                 type="tel"
                 autoComplete="tel"
               />
+            </FormGroup>
+
+            <FormGroup title="Brand context" className="mt-9">
+              <TextField
+                label="Business / Brand Name"
+                name="brand"
+                type="text"
+                autoComplete="organization"
+              />
               <TextField
                 label="Website or Instagram link"
                 name="link"
                 type="url"
                 placeholder="https://"
-                className="md:col-span-2"
               />
+            </FormGroup>
+
+            <FormGroup title="Project needs" className="mt-9">
               <SelectField
                 label="What do you need help with?"
                 name="need"
@@ -90,11 +96,11 @@ export default function ContactPage() {
                 placeholder="Select a range"
               />
               <TextAreaField label="Message" name="message" className="md:col-span-2" required />
-            </div>
+            </FormGroup>
 
             <button
               type="button"
-              className="mt-8 inline-flex min-h-12 w-full items-center justify-center border border-gold bg-gold px-6 py-3 text-sm font-semibold text-ink shadow-[0_18px_48px_rgba(200,169,90,0.13)] transition duration-200 hover:-translate-y-0.5 hover:border-gold-soft hover:bg-gold-soft focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink active:translate-y-0 sm:w-auto"
+              className="mt-10 inline-flex min-h-12 w-full items-center justify-center border border-gold bg-gold px-6 py-3 text-sm font-semibold text-ink shadow-[0_18px_48px_rgba(200,169,90,0.13)] transition duration-200 hover:-translate-y-0.5 hover:border-gold-soft hover:bg-gold-soft focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink active:translate-y-0 sm:w-auto"
             >
               Send Inquiry
             </button>
@@ -102,5 +108,24 @@ export default function ContactPage() {
         </div>
       </SectionShell>
     </SiteFrame>
+  );
+}
+
+function FormGroup({
+  title,
+  className = "",
+  children
+}: {
+  title: string;
+  className?: string;
+  children: ReactNode;
+}) {
+  return (
+    <fieldset className={`border-t border-white/10 pt-6 first:border-t-0 first:pt-0 ${className}`}>
+      <legend className="mb-5 text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
+        {title}
+      </legend>
+      <div className="grid gap-5 md:grid-cols-2 md:gap-6">{children}</div>
+    </fieldset>
   );
 }

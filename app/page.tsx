@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
+import { AboutPreview } from "@/components/about-preview";
 import { CaseStudiesPreview } from "@/components/case-studies-preview";
 import { FinalCta } from "@/components/final-cta";
 import { HeroSection } from "@/components/hero-section";
-import { MethodSection } from "@/components/method-section";
 import { ProblemSection } from "@/components/problem-section";
 import { ServicesSection } from "@/components/services-section";
 import { SiteFrame } from "@/components/site-frame";
@@ -20,7 +20,7 @@ export default function Home() {
       <ProblemSection />
       <CaseStudiesPreview />
       <ServicesSection />
-      <MethodSection />
+      <AboutPreview />
       <FinalCta />
     </SiteFrame>
   );

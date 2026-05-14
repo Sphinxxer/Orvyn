@@ -70,10 +70,10 @@ export default function ServicesPage() {
             </div>
           </aside>
           <div className="border-y border-white/10">
-            {serviceDetails.map((service, index) => (
+            {serviceDetails.map((service) => (
               <ServiceDetailCard
                 key={service.title}
-                index={index + 1}
+                icon={service.icon}
                 title={service.title}
                 positioning={service.positioning}
                 description={service.description}

@@ -1,36 +1,55 @@
+import Image from "next/image";
+
 type TeamMemberCardProps = {
   name: string;
   role: string;
   description: string;
-  linkedinHref: string;
+  imageSrc: string;
+  focusAreas: string[];
 };
 
 export function TeamMemberCard({
   name,
   role,
   description,
-  linkedinHref
+  imageSrc,
+  focusAreas
 }: TeamMemberCardProps) {
   return (
-    <article className="group border-t border-white/10 py-7 transition duration-200 hover:border-gold/45 md:py-8">
-      <div className="flex items-center gap-5">
-        <div className="grid size-14 shrink-0 place-items-center border border-white/10 text-sm font-semibold text-gold-soft sm:size-16">
-          {name.slice(-2)}
-        </div>
-        <div>
+    <article className="group border border-white/10 bg-coal/35 p-4 transition duration-200 hover:-translate-y-1 hover:border-gold/40 sm:p-5">
+      <div className="relative aspect-[4/5] overflow-hidden border border-white/10 bg-ink">
+        <Image
+          src={imageSrc}
+          alt={`${name} placeholder portrait`}
+          fill
+          sizes="(min-width: 768px) 33vw, 100vw"
+          className="object-cover opacity-80 transition duration-300 group-hover:scale-[1.01] group-hover:opacity-95"
+        />
+      </div>
+
+      <div className="pt-7">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
+          {role}
+        </p>
+        <h3 className="mt-4 text-2xl font-semibold text-white">{name}</h3>
+        <p className="mt-5 text-base leading-7 text-muted">{description}</p>
+
+        <div className="mt-8 border-t border-white/10 pt-6">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
-            {role}
+            Focus Areas
           </p>
-          <h3 className="mt-2 text-xl font-semibold text-white sm:text-2xl">{name}</h3>
+          <div className="mt-4 flex flex-wrap gap-2.5">
+            {focusAreas.map((area) => (
+              <span
+                key={area}
+                className="border border-white/10 bg-white/[0.015] px-3 py-1.5 text-xs font-medium text-muted transition group-hover:border-gold/25 group-hover:text-white"
+              >
+                {area}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
-      <p className="mt-4 text-base leading-7 text-muted">{description}</p>
-      <a
-        href={linkedinHref}
-        className="mt-6 inline-flex min-h-10 items-center border-b border-white/20 pb-1 text-sm font-semibold text-muted transition group-hover:border-gold/60 group-hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink"
-      >
-        LinkedIn
-      </a>
     </article>
   );
 }
