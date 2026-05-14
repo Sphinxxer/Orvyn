@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CapabilityIcon } from "@/components/capability-icon";
 import { CTASection } from "@/components/cta-section";
 import { ProcessStep } from "@/components/process-step";
 import { SectionShell } from "@/components/section-shell";
@@ -35,11 +36,9 @@ export default function ServicesPage() {
               Capability Index
             </p>
             <ol className="mt-5 space-y-3">
-              {serviceDetails.map((service, index) => (
+              {serviceDetails.map((service) => (
                 <li key={service.title} className="flex items-center gap-4 text-sm">
-                  <span className="w-8 text-gold-soft">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+                  <CapabilityIcon icon={service.icon} className="size-5 shrink-0" />
                   <span className="text-muted">{service.title}</span>
                 </li>
               ))}

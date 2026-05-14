@@ -14,7 +14,7 @@ export function ProblemSection() {
         </aside>
         <div className="max-w-4xl">
           <h2 className="text-balance text-4xl font-semibold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
-            Most brands don&apos;t need more marketing.
+            <span className="block">Most brands don&apos;t need more marketing.</span>
             <span className="mt-3 block text-gold-soft">
               They need a clearer reason to be noticed.
             </span>

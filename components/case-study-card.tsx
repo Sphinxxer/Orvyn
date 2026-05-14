@@ -18,7 +18,7 @@ export function CaseStudyCard({
   previewLabel
 }: CaseStudyCardProps) {
   return (
-    <article className="group border-t border-white/10 py-8 transition duration-200 first:border-t-0 hover:-translate-y-1 hover:border-gold/45 lg:py-10">
+    <article className="group border-t border-white/10 py-8 transition duration-200 first:border-t-0 hover:-translate-y-0.5 hover:border-gold/45 lg:py-10">
       <div className="grid gap-7 lg:grid-cols-[0.38fr_0.62fr] lg:gap-12">
         <div className="relative min-h-72 overflow-hidden border border-white/10 bg-coal p-5 transition duration-200 group-hover:border-gold/35">
           <div className="absolute inset-0 opacity-[0.035]" aria-hidden="true">
@@ -64,13 +64,14 @@ export function CaseStudyCard({
             </ul>
           </div>
 
-          <a
-            href={deckHref}
-            aria-label={`View case study for ${title}`}
-            className="mt-8 inline-flex w-fit border-b border-gold/45 pb-2 text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft transition group-hover:border-white/50 group-hover:text-white focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-4 focus:ring-offset-ink"
+          <span
+            data-pdf-path={deckHref}
+            aria-label={`PDF coming soon for ${title}`}
+            aria-disabled="true"
+            className="mt-8 inline-flex w-fit cursor-not-allowed select-none border border-white/12 bg-white/[0.015] px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-muted/85"
           >
-            View case study -&gt;
-          </a>
+            PDF coming soon
+          </span>
         </div>
       </div>
     </article>

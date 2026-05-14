@@ -8,10 +8,10 @@ export function HeroSection() {
       <div className="mx-auto grid min-h-[calc(100vh-7rem)] max-w-7xl content-center gap-10 lg:min-h-[calc(100vh-8rem)]">
         <div>
           <div className="max-w-6xl">
-            <p className="mb-6 text-xs font-semibold uppercase tracking-[0.28em] text-gold-soft sm:text-sm">
+            <p className="mb-7 text-xs font-semibold uppercase tracking-[0.28em] text-gold-soft sm:text-sm lg:mb-8">
               Home / Modern Brand Growth Agency
             </p>
-            <h1 className="text-balance text-[clamp(3.3rem,15vw,5rem)] font-black leading-[1.02] tracking-normal text-white lg:text-[clamp(5rem,8vw,9rem)] lg:leading-[0.98]">
+            <h1 className="text-balance text-[clamp(3.15rem,12.5vw,4.7rem)] font-black leading-[1.1] tracking-[-0.025em] text-white sm:leading-[1.08] lg:text-[clamp(5rem,7.5vw,8.25rem)] lg:leading-[1.03] xl:leading-[1.01]">
               <span className="block">Become</span>
               <span className="block">impossible</span>
               <span className="block">
