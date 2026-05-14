@@ -4,35 +4,40 @@ import { SectionShell } from "./section-shell";
 
 export function MethodSection() {
   return (
-    <SectionShell>
-      <div className="grid gap-10 lg:grid-cols-[0.36fr_1fr] lg:gap-14">
+    <SectionShell className="border-y border-white/10 bg-coal/45">
+      <div className="grid gap-10 lg:grid-cols-[0.38fr_1fr] lg:gap-16">
         <div className="border-t border-gold/55 pt-6">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
             The Orvyn Method
           </p>
-          <h2 className="mt-5 text-balance text-4xl font-bold leading-[1.02] text-white sm:text-5xl">
-            A clearer way to build brand growth.
+          <h2 className="mt-5 text-balance text-4xl font-black leading-[1] text-white sm:text-6xl">
+            How clarity becomes momentum.
           </h2>
-          <p className="mt-6 max-w-sm text-base leading-7 text-white/72">
-            Growth becomes easier when the foundation is clear. Orvyn looks at
-            what is blocking trust, attention, and conversion.
+          <p className="mt-6 max-w-md text-base leading-7 text-white/72">
+            This is not a generic process. It is the way Orvyn looks at growth:
+            fix what is unclear, sharpen what matters, build what is needed, then
+            scale what works.
           </p>
-          <ButtonLink href="/contact" className="mt-8">
+          <ButtonLink href="/contact" variant="secondary" className="mt-8">
             Start a Project
           </ButtonLink>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-px bg-white/10 md:grid-cols-2">
           {methodSteps.map((step) => (
             <article
               key={step.number}
-              className="group border border-white/10 bg-coal/45 p-6 transition duration-200 hover:border-gold/45 sm:p-8"
+              className="group bg-ink p-6 transition duration-200 hover:bg-coal sm:p-8"
             >
-              <span className="text-5xl font-black leading-none text-gold/45 transition group-hover:text-gold/70">
+              <span className="text-5xl font-black leading-none text-gold/55 transition group-hover:text-gold-soft">
                 {step.number}
               </span>
-              <h3 className="mt-8 text-3xl font-semibold text-white">{step.title}</h3>
-              <p className="mt-5 text-base leading-7 text-muted">{step.description}</p>
+              <h3 className="mt-8 text-3xl font-semibold text-white">
+                {step.title}
+              </h3>
+              <p className="mt-5 text-base leading-7 text-muted">
+                {step.description}
+              </p>
             </article>
           ))}
         </div>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CTASection } from "@/components/cta-section";
+import { MethodSection } from "@/components/method-section";
 import { PrincipleCard } from "@/components/principle-card";
 import { SectionShell } from "@/components/section-shell";
 import { SiteFrame } from "@/components/site-frame";
@@ -22,7 +23,7 @@ export default function AboutPage() {
           </p>
           <div className="mt-8 grid gap-10 lg:grid-cols-[0.72fr_1fr] lg:items-end">
             <h1 className="text-balance text-5xl font-black leading-[0.94] text-white sm:text-7xl lg:text-8xl lg:leading-[0.92]">
-              Fix first.
+              Fix first.{" "}
               <span className="block text-gold-soft">Then scale.</span>
             </h1>
             <div className="border-t border-white/10 pt-6 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
@@ -40,16 +41,13 @@ export default function AboutPage() {
 
       <SectionShell className="pt-0">
         <div className="border-y border-white/10">
-          {aboutSections.map((section, index) => (
+          {aboutSections.map((section) => (
             <article
               key={section.title}
-              className="grid gap-7 border-t border-white/10 py-8 first:border-t-0 lg:grid-cols-[0.32fr_1fr] lg:gap-8 lg:py-9"
+              className="grid gap-7 border-t border-white/10 py-10 first:border-t-0 lg:grid-cols-[0.34fr_1fr] lg:gap-14 lg:py-12"
             >
               <div>
-                <span className="text-sm font-semibold text-gold-soft">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <p className="mt-5 text-sm font-semibold uppercase tracking-[0.22em] text-muted">
+                <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold-soft">
                   {section.title}
                 </p>
               </div>
@@ -63,6 +61,8 @@ export default function AboutPage() {
           ))}
         </div>
       </SectionShell>
+
+      <MethodSection />
 
       <SectionShell className="border-y border-white/10 bg-white/[0.015]">
         <div className="grid gap-10 lg:grid-cols-[0.62fr_1fr] lg:gap-16">
@@ -100,7 +100,7 @@ export default function AboutPage() {
             bring strategy, design, content, and execution together.
           </p>
         </div>
-        <div className="mt-12 grid gap-8 md:grid-cols-3">
+        <div className="mt-14 grid gap-8 md:grid-cols-3 lg:gap-10">
           {teamMembers.map((member) => (
             <TeamMemberCard key={member.name} {...member} />
           ))}

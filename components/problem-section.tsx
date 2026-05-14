@@ -3,31 +3,27 @@ import { SectionShell } from "./section-shell";
 export function ProblemSection() {
   return (
     <SectionShell className="border-y border-white/10 bg-ink">
-      <div className="grid gap-10 lg:grid-cols-[0.34fr_1fr] lg:gap-20">
+      <div className="grid gap-10 lg:grid-cols-[0.34fr_1fr] lg:gap-16">
         <aside className="border-t border-gold/55 pt-6">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
             Belief
           </p>
-          <p className="mt-8 max-w-xs text-3xl font-semibold leading-tight text-white">
+          <p className="mt-7 max-w-xs text-2xl font-semibold leading-tight text-white sm:text-3xl">
             Fix first. Then scale.
           </p>
         </aside>
-        <div>
-          <h2 className="max-w-5xl text-balance text-4xl font-black leading-[1] text-white sm:text-6xl lg:text-7xl xl:text-8xl">
-            Most brands do not need more marketing.
+        <div className="max-w-4xl">
+          <h2 className="text-balance text-4xl font-semibold leading-[1.08] text-white sm:text-5xl lg:text-6xl">
+            Most brands don&apos;t need more marketing.
             <span className="mt-3 block text-gold-soft">
-              They need to become clearer, sharper, and harder to ignore.
+              They need a clearer reason to be noticed.
             </span>
           </h2>
-          <div className="mt-10 grid gap-7 border-t border-white/10 pt-8 text-base leading-7 text-white/72 sm:text-lg sm:leading-8 lg:mt-12 lg:grid-cols-[0.8fr_1fr]">
-            <p>
-              Posting more, running ads, or redesigning everything will not fix a
-              brand that lacks clarity.
-            </p>
-            <p className="text-white">
-              Orvyn helps fix the foundation first, so every next move works harder.
-            </p>
-          </div>
+          <p className="mt-8 max-w-2xl border-t border-white/10 pt-7 text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
+            More content, ads, or redesigns won&apos;t fix a brand that feels
+            unclear. Orvyn helps sharpen the foundation first - so every move
+            after works harder.
+          </p>
         </div>
       </div>
     </SectionShell>
