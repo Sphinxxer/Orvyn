@@ -23,8 +23,8 @@ export function HeroSection() {
           <div className="mt-10 grid gap-6 border-y border-white/10 py-6 lg:mt-12 lg:grid-cols-[minmax(0,0.58fr)_minmax(17rem,0.28fr)_auto] lg:items-stretch lg:gap-8 lg:py-7">
             <div className="max-w-2xl">
               <p className="text-base leading-7 text-white/76 sm:text-lg sm:leading-8 lg:text-xl">
-                Orvyn helps modern brands build sharper content, stronger websites, and growth
-                systems that turn attention into trust.
+                Orvyn helps brands sharpen their content, website, and marketing system so they
+                look clearer, earn trust faster, and grow with intent.
               </p>
               <p className="mt-5 max-w-lg text-sm leading-6 text-muted">
                 For brands built to grow with clarity, consistency, and intent.

@@ -2,53 +2,40 @@ import Image from "next/image";
 
 type TeamMemberCardProps = {
   name: string;
+  title: string;
   role: string;
   description: string;
   imageSrc: string;
-  focusAreas: string[];
+  alt: string;
 };
 
 export function TeamMemberCard({
   name,
+  title,
   role,
   description,
   imageSrc,
-  focusAreas
+  alt
 }: TeamMemberCardProps) {
   return (
     <article className="group border border-white/10 bg-coal/35 p-4 transition duration-200 hover:-translate-y-0.5 hover:border-gold/40 sm:p-5">
       <div className="relative aspect-[4/5] overflow-hidden border border-white/10 bg-ink">
         <Image
           src={imageSrc}
-          alt={`${name} placeholder portrait`}
+          alt={alt}
           fill
           sizes="(min-width: 768px) 33vw, 100vw"
-          className="object-cover opacity-80 transition duration-300 group-hover:scale-[1.01] group-hover:opacity-95"
+          className="object-cover opacity-90 transition duration-300 group-hover:scale-[1.01] group-hover:opacity-100"
         />
       </div>
 
       <div className="pt-7">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
+        <h3 className="text-2xl font-semibold leading-tight text-white">{name}</h3>
+        <p className="mt-2 text-sm font-medium text-muted">{title}</p>
+        <p className="mt-5 inline-flex border border-gold/25 bg-gold/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft">
           {role}
         </p>
-        <h3 className="mt-4 text-2xl font-semibold text-white">{name}</h3>
-        <p className="mt-5 text-base leading-7 text-muted">{description}</p>
-
-        <div className="mt-8 border-t border-white/10 pt-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
-            Focus Areas
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2.5">
-            {focusAreas.map((area) => (
-              <span
-                key={area}
-                className="border border-white/10 bg-white/[0.012] px-3 py-1.5 text-xs font-medium text-muted/90 transition group-hover:border-gold/25 group-hover:text-white"
-              >
-                {area}
-              </span>
-            ))}
-          </div>
-        </div>
+        <p className="mt-6 text-base leading-7 text-muted">{description}</p>
       </div>
     </article>
   );

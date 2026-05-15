@@ -28,11 +28,11 @@ export default function AboutPage() {
             </h1>
             <div className="border-t border-white/10 pt-6 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">
               <p className="text-2xl font-semibold leading-snug text-white sm:text-3xl">
-                Growth does not come from doing more random marketing.
+                Growth gets stronger when the brand gets clearer.
               </p>
               <p className="mt-6 text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-                Orvyn was built on a simple belief: brands grow by fixing what is
-                unclear, inconsistent, or weak, then scaling what actually works.
+                Orvyn was built on a simple belief: before a brand scales, it
+                needs to be clear enough to be trusted, remembered, and chosen.
               </p>
             </div>
           </div>
@@ -55,7 +55,13 @@ export default function AboutPage() {
                 <h2 className="text-2xl font-semibold leading-tight text-white sm:text-3xl">
                   {section.heading}
                 </h2>
-                <p className="mt-5 text-base leading-7 text-muted">{section.description}</p>
+                <div className="mt-5 space-y-5">
+                  {section.description.split("\n\n").map((paragraph) => (
+                    <p key={paragraph} className="text-base leading-7 text-muted">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
               </div>
             </article>
           ))}
@@ -96,8 +102,8 @@ export default function AboutPage() {
             The people behind the work.
           </h2>
           <p className="mt-6 text-base leading-7 text-muted">
-            Orvyn is built with a focused team of creative and growth partners who
-            bring strategy, design, content, and execution together.
+            Orvyn is built by a focused team bringing strategy, production,
+            design, and execution together.
           </p>
         </div>
         <div className="mt-14 grid gap-8 md:grid-cols-3 lg:gap-10">

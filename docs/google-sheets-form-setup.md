@@ -1,4 +1,4 @@
-﻿# Connect the Orvyn Contact Form to Google Sheets
+# Connect the Orvyn Contact Form to Google Sheets
 
 This guide connects the Orvyn website contact form to a Google Sheet using Google Apps Script.
 
@@ -64,6 +64,12 @@ const HEADERS = [
   "Message"
 ];
 
+function doGet() {
+  return ContentService
+    .createTextOutput("Orvyn contact form endpoint is active.")
+    .setMimeType(ContentService.MimeType.TEXT);
+}
+
 function doPost(e) {
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
@@ -71,43 +77,30 @@ function doPost(e) {
   try {
     const sheet = getOrCreateSheet();
     ensureHeaders(sheet);
-
-    const data = e.parameter;
+    const data = e.parameter || {};
 
     if (data.company_website) {
-      return ContentService
-        .createTextOutput(JSON.stringify({ result: "blocked" }))
-        .setMimeType(ContentService.MimeType.JSON);
+      return jsonResponse({ result: "blocked" });
     }
 
     sheet.appendRow([
-      data.submittedAt || new Date().toISOString(),
-      data.name || "",
-      data.email || "",
-      data.phone || "",
-      data.brand || "",
-      data.link || "",
-      data.need || "",
-      data.budget || "",
-      data.message || ""
+      text(data.submittedAt || new Date().toISOString()),
+      text(data.name),
+      text(data.email),
+      text(data.phone),
+      text(data.brand),
+      text(data.link),
+      text(data.need),
+      text(data.budget),
+      text(data.message)
     ]);
 
-    return ContentService
-      .createTextOutput(JSON.stringify({ result: "success" }))
-      .setMimeType(ContentService.MimeType.JSON);
+    return jsonResponse({ result: "success" });
   } catch (error) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ result: "error", message: error.message }))
-      .setMimeType(ContentService.MimeType.JSON);
+    return jsonResponse({ result: "error" });
   } finally {
     lock.releaseLock();
   }
-}
-
-function doGet() {
-  return ContentService
-    .createTextOutput("Orvyn contact form endpoint is active.")
-    .setMimeType(ContentService.MimeType.TEXT);
 }
 
 function getOrCreateSheet() {
@@ -123,6 +116,22 @@ function ensureHeaders(sheet) {
     sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
     sheet.setFrozenRows(1);
   }
+}
+
+function text(value) {
+  const cleanValue = String(value || "").trim();
+
+  if (/^[=+\-@]/.test(cleanValue)) {
+    return "'" + cleanValue;
+  }
+
+  return cleanValue;
+}
+
+function jsonResponse(payload) {
+  return ContentService
+    .createTextOutput(JSON.stringify(payload))
+    .setMimeType(ContentService.MimeType.JSON);
 }
 ```
 
@@ -152,11 +161,7 @@ Anyone
 
 8. Click **Deploy**.
 9. Approve the permissions when Google asks.
-10. Copy the **Web app URL**. It should look similar to:
-
-```txt
-https://script.google.com/macros/s/AKfycb.../exec
-```
+10. Copy the **Web app URL**.
 
 ## 6. Add the endpoint to `.env.local`
 
@@ -188,7 +193,7 @@ NEXT_PUBLIC_GOOGLE_SCRIPT_URL
 ```
 
 5. Paste your Google Apps Script Web App URL as the value.
-6. Save it.
+6. Save it for **Production** and **Preview**.
 7. Redeploy the website.
 
 ## 8. Test the form
@@ -205,19 +210,12 @@ npm run dev
 http://127.0.0.1:3001/contact
 ```
 
-3. Fill in the required fields:
-
-- Name
-- Email
-- Phone / WhatsApp
-- What do you need help with?
-- Message
-
+3. Fill in the required fields.
 4. Submit the form.
 5. You should see:
 
 ```txt
-Your inquiry has been received. Weâ€™ll get in touch soon.
+Your inquiry has been received. We’ll get back to you soon.
 ```
 
 6. Open your Google Sheet.

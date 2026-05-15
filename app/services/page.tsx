@@ -10,7 +10,7 @@ import { serviceDecisionSteps, serviceDetails } from "@/data/home";
 export const metadata: Metadata = {
   title: "Services | Orvyn",
   description:
-    "Explore Orvyn's services across performance marketing, content creation, brand development, websites, social media, and end-to-end growth systems."
+    "Explore Orvyn’s capabilities across performance marketing, content creation, brand development, websites, social media, and end-to-end growth systems."
 };
 
 export default function ServicesPage() {
@@ -23,11 +23,12 @@ export default function ServicesPage() {
               Services / Capabilities
             </p>
             <h1 className="mt-6 max-w-4xl text-balance text-4xl font-black leading-[0.98] text-white sm:text-6xl lg:text-7xl">
-              Services built to sharpen your brand system.
+              Capabilities built to sharpen how your brand grows.
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-              From performance and content to websites and brand direction, Orvyn
-              helps the parts of growth work together with clarity and intent.
+              Orvyn helps brands fix unclear messaging, weak content, outdated
+              websites, and disconnected marketing — then builds the systems
+              needed to grow with more intent.
             </p>
           </div>
 
@@ -91,12 +92,12 @@ export default function ServicesPage() {
               Decision Logic
             </p>
             <h2 className="mt-5 text-4xl font-bold leading-[1.04] text-white sm:text-5xl">
-              How we decide what your brand needs
+              What we fix first depends on what is holding growth back.
             </h2>
             <p className="mt-6 text-base leading-7 text-muted">
               Not every brand needs the same solution. Some need clearer
               positioning. Some need better content. Some need a stronger website.
-              Some need performance marketing only after the foundation is ready.
+              Some need ads only after the foundation is ready.
             </p>
           </div>
           <div className="border-y border-white/10">

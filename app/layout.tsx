@@ -9,17 +9,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://orvyn-trial2.vercel.app"),
+  metadataBase: new URL("https://orvyn.cc"),
   title: "Orvyn | Modern Brand Growth Agency",
   description:
-    "Orvyn helps modern brands build sharper content, stronger websites, and growth systems that turn attention into trust.",
+    "Orvyn helps brands sharpen their content, website, and marketing system so they look clearer, earn trust faster, and grow with intent.",
   icons: {
     icon: "/orvyn-icon.svg"
   },
   openGraph: {
     title: "Orvyn | Modern Brand Growth Agency",
     description:
-      "Orvyn helps modern brands build sharper content, stronger websites, and growth systems that turn attention into trust.",
+      "Orvyn helps brands sharpen their content, website, and marketing system so they look clearer, earn trust faster, and grow with intent.",
     siteName: "Orvyn",
     type: "website",
     images: [
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Orvyn - Modern Brand Growth Agency"
+        alt: "Orvyn — Modern Brand Growth Agency"
       }
     ]
   },
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Orvyn | Modern Brand Growth Agency",
     description:
-      "Orvyn helps modern brands build sharper content, stronger websites, and growth systems that turn attention into trust.",
+      "Orvyn helps brands sharpen their content, website, and marketing system so they look clearer, earn trust faster, and grow with intent.",
     images: ["/og-image.png"]
   }
 };

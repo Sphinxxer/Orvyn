@@ -14,8 +14,8 @@ export function FinalCta() {
               Ready to become impossible to ignore?
             </h2>
             <p className="mt-7 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-              Let&apos;s build a sharper digital presence for your brand - one that
-              looks better, communicates clearer, and grows with intent.
+              Let&apos;s build a sharper digital presence for your brand — one that
+              looks clearer, earns trust faster, and grows with intent.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-start">

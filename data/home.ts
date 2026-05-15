@@ -9,32 +9,32 @@ export const navItems = [
 export const services = [
   {
     title: "Performance Marketing",
-    description: "Turn attention into measurable action.",
+    description: "Meta ads and campaign systems built to turn attention into leads, inquiries, or sales.",
     icon: "performance"
   },
   {
     title: "Content Creation",
-    description: "Make your brand worth watching.",
+    description: "Planned reels, shoots, and visuals that make your brand look sharper and easier to trust.",
     icon: "content"
   },
   {
     title: "Brand Development",
-    description: "Clarify what makes you different.",
+    description: "Positioning, messaging, and visual direction that make your brand easier to understand and remember.",
     icon: "brand"
   },
   {
     title: "Website Development",
-    description: "Build the digital home that earns trust.",
+    description: "Modern websites built to explain your offer clearly and convert visitors into action.",
     icon: "website"
   },
   {
     title: "Social Media Management",
-    description: "Show up with consistency and intent.",
+    description: "Structured content planning and profile management that keeps your brand consistent online.",
     icon: "social"
   },
   {
     title: "End-to-End Growth Systems",
-    description: "Connect the moving parts of growth.",
+    description: "A joined-up approach for brands that need strategy, content, website, and marketing working together.",
     icon: "system"
   }
 ];
@@ -45,7 +45,7 @@ export const serviceDetails = [
     icon: "performance",
     positioning: "Turn attention into measurable action.",
     description:
-      "Campaigns, creatives, and funnel improvements built to turn attention into measurable action.",
+      "We structure ad campaigns, creatives, landing pages, and funnel improvements so paid marketing has a clearer path to leads, inquiries, or sales.",
     includes: [
       "Meta ads strategy",
       "Campaign structure",
@@ -60,9 +60,9 @@ export const serviceDetails = [
   {
     title: "Content Creation",
     icon: "content",
-    positioning: "Make your brand worth watching.",
+    positioning: "Create content that makes the brand easier to trust.",
     description:
-      "Content planned and created to make your brand look sharper, clearer, and more memorable.",
+      "We plan and direct reels, shoots, product visuals, and campaign creatives so your brand shows up with stronger quality and clearer intent.",
     includes: [
       "Reels direction",
       "Shoot planning",
@@ -77,9 +77,9 @@ export const serviceDetails = [
   {
     title: "Brand Development",
     icon: "brand",
-    positioning: "Clarify what makes you different.",
+    positioning: "Make the brand easier to understand, trust, and remember.",
     description:
-      "Positioning, visual direction, and messaging systems that make your brand easier to understand, trust, and remember.",
+      "We sharpen positioning, messaging, visual direction, and tone so your brand stops feeling scattered and starts feeling intentional.",
     includes: [
       "Brand positioning",
       "Visual direction",
@@ -95,7 +95,7 @@ export const serviceDetails = [
     icon: "website",
     positioning: "Build the digital home that earns trust.",
     description:
-      "Modern websites built to explain your offer clearly, build trust quickly, and convert visitors into inquiries.",
+      "We build websites and landing pages that explain your offer clearly, improve first impressions, and guide visitors toward action.",
     includes: [
       "Website strategy",
       "Landing pages",
@@ -110,9 +110,9 @@ export const serviceDetails = [
   {
     title: "Social Media Management",
     icon: "social",
-    positioning: "Show up with consistency and intent.",
+    positioning: "Show up consistently without looking random.",
     description:
-      "Structured social media systems that keep your brand active, consistent, and aligned with business goals.",
+      "We create a structured social presence through content planning, profile direction, captions, design, and monthly content systems.",
     includes: [
       "Content planning",
       "Post design",
@@ -127,9 +127,9 @@ export const serviceDetails = [
   {
     title: "End-to-End Growth Systems",
     icon: "system",
-    positioning: "Connect the moving parts of growth.",
+    positioning: "Bring the moving parts of growth into one direction.",
     description:
-      "A complete approach for brands that need strategy, content, website, ads, and execution working together.",
+      "For brands that need more than one service, we connect brand clarity, content, website, and marketing into one system that can improve over time.",
     includes: [
       "Brand audit",
       "Growth strategy",
@@ -147,7 +147,7 @@ export const serviceDecisionSteps = [
     number: "01",
     title: "Find the gap",
     description:
-      "We look at what is stopping people from understanding, trusting, or taking action."
+      "We look for what is stopping people from understanding, trusting, or taking action."
   },
   {
     number: "02",
@@ -158,7 +158,8 @@ export const serviceDecisionSteps = [
   {
     number: "03",
     title: "Improve with intent",
-    description: "We review, refine, and scale what starts working."
+    description:
+      "We review what works, refine what does not, and scale the parts that start creating momentum."
   }
 ];
 
@@ -167,25 +168,25 @@ export const methodSteps = [
     number: "01",
     title: "Diagnose",
     description:
-      "We first understand where the brand stands today. We look at your audience, offer, content, website, visuals, competitors, and current marketing gaps. This helps us find what is unclear, inconsistent, outdated, or not converting."
+      "We understand where the brand stands today: the audience, offer, content, website, visuals, competitors, and current growth gaps."
   },
   {
     number: "02",
     title: "Sharpen",
     description:
-      "We improve the parts that affect how people see and understand your brand. This can include your messaging, positioning, visual direction, content structure, website flow, offer clarity, and overall digital presence."
+      "We improve the parts that shape perception: messaging, positioning, visual direction, content structure, website flow, and offer clarity."
   },
   {
     number: "03",
     title: "Build",
     description:
-      "We create the assets and systems your brand needs to grow. This may include content plans, social media creatives, reels, landing pages, websites, ad creatives, campaign structures, and brand systems."
+      "We create the assets and systems needed to move the brand forward: content plans, social creatives, websites, landing pages, campaigns, and brand systems."
   },
   {
     number: "04",
     title: "Scale",
     description:
-      "Once the foundation is stronger, we focus on improving performance. We review what works, fix what does not, test new ideas, and help your brand grow with better clarity, consistency, and control."
+      "We review what works, fix what does not, test new ideas, and help the brand grow with better clarity and control."
   }
 ];
 
@@ -328,19 +329,19 @@ export const aboutSections = [
     title: "What we believe",
     heading: "Growth does not begin with more noise.",
     description:
-      "Most brands try to grow by doing more - more posts, more ads, more campaigns, more redesigns. But if the foundation is unclear, more activity only spreads the confusion faster. Orvyn exists to help brands step back, sharpen the foundation, and build digital systems that make growth easier to understand and easier to scale."
+      "Most brands try to grow by doing more — more posts, more ads, more campaigns, more redesigns. But when the foundation is unclear, more activity only spreads the confusion faster.\n\nOrvyn helps brands step back, sharpen what matters, and build systems that make growth easier to understand and easier to repeat."
   },
   {
     title: "Why clarity comes before growth",
     heading: "Unclear brands are harder to trust.",
     description:
-      "A brand is not just its logo, Instagram page, website, or ads. It is how all of those parts work together. When the message, visuals, content, website, and marketing are aligned, the brand becomes easier to trust. When they are disconnected, growth feels random. Our work is to bring those parts into one clearer direction."
+      "People trust what they can understand. When your message, visuals, website, content, and marketing all point in different directions, growth feels random.\n\nOrvyn brings those parts into one clearer system, so the brand becomes easier to read, easier to trust, and easier to choose."
   },
   {
     title: "How Orvyn thinks",
     heading: "Every brand has a system behind what people see.",
     description:
-      "Orvyn is for businesses that do not want to look like everyone else. It is for brands that care about perception, clarity, execution, and long-term growth. We help brands become easier to notice, easier to understand, and harder to ignore."
+      "A strong brand is not just a logo, a website, an Instagram page, or an ad campaign. It is how all of those pieces work together.\n\nOrvyn helps shape the system behind the surface — the clarity, structure, and direction that make a brand harder to ignore."
   }
 ];
 
@@ -348,44 +349,49 @@ export const principles = [
   {
     title: "Clarity before activity",
     description:
-      "We do not create more just to look busy. We first make sure the direction is clear."
+      "More output does not help if the direction is unclear. We fix the message before increasing the noise."
   },
   {
     title: "Perception matters",
-    description: "How a brand looks and communicates directly affects trust."
+    description: "How a brand looks, speaks, and shows up directly affects how much people trust it."
   },
   {
     title: "Systems over random execution",
-    description: "Content, websites, ads, and branding should work together."
+    description: "Content, websites, ads, and branding should support each other, not work separately."
   },
   {
     title: "Improve before scaling",
-    description: "Scaling works better when the foundation is already strong."
+    description: "Scaling works better when the foundation is already strong enough to carry growth."
   }
 ];
 
 export const teamMembers = [
   {
-    name: "Team Member 01",
+    name: "Bharath Kesav",
+    title: "Founder",
     role: "Creative Direction",
-    description: "Shapes brand visuals, content systems, and creative direction.",
-    imageSrc: "/team-placeholder-01.jpg",
-    focusAreas: ["Brand Systems", "Creative Direction", "Content Structure"]
-  },
-  {
-    name: "Team Member 02",
-    role: "Growth & Performance",
     description:
-      "Works on campaign structure, funnel thinking, and performance improvement.",
-    imageSrc: "/team-placeholder-02.jpg",
-    focusAreas: ["Growth Strategy", "Campaign Systems", "Funnel Thinking"]
+      "Shapes Orvyn’s brand strategy, creative direction, content systems, and overall growth approach.",
+    imageSrc: "/team/bharath-kesav.jpg",
+    alt: "Bharath Kesav — Founder of Orvyn"
   },
   {
-    name: "Team Member 03",
-    role: "Design & Web",
-    description: "Builds visual systems, websites, and digital experiences.",
-    imageSrc: "/team-placeholder-03.jpg",
-    focusAreas: ["Web Experience", "Visual Systems", "Digital Design"]
+    name: "Bhoopesh",
+    title: "Production Director",
+    role: "Video Production",
+    description:
+      "Leads shoot planning, video execution, and production workflows that help brands show up sharper online.",
+    imageSrc: "/team/bhoopesh.jpg",
+    alt: "Bhoopesh — Production Director at Orvyn"
+  },
+  {
+    name: "Kishore",
+    title: "Graphics Lead",
+    role: "Visual Design",
+    description:
+      "Leads social media creatives, visual systems, and brand-focused design execution across client projects.",
+    imageSrc: "/team/kishore.jpg",
+    alt: "Kishore — Graphics Lead at Orvyn"
   }
 ];
 
@@ -400,8 +406,8 @@ export const contactNeeds = [
 
 export const budgetRanges = [
   "Under Rs. 50,000",
-  "Rs. 50,000 - Rs. 1,00,000",
-  "Rs. 1,00,000 - Rs. 2,50,000",
+  "Rs. 50,000 – Rs. 1,00,000",
+  "Rs. 1,00,000 – Rs. 2,50,000",
   "Rs. 2,50,000+",
   "Not sure yet"
 ];

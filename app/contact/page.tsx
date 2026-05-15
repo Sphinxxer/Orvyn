@@ -23,8 +23,8 @@ export default function ContactPage() {
                 Tell us what you are trying to build.
               </h1>
               <p className="mt-5 max-w-md text-base leading-7 text-muted">
-                Share where your brand is now, what feels unclear, and what you
-                want to improve next.
+                Tell us where your brand is today, what feels unclear, and what
+                you want to build next.
               </p>
             </div>
 
@@ -35,8 +35,8 @@ export default function ContactPage() {
               <ol className="mt-5 space-y-4">
                 {[
                   "We review your inquiry",
-                  "We understand your current brand situation",
-                  "We suggest the right next step"
+                  "We understand where the brand stands",
+                  "We suggest the clearest next move"
                 ].map((item, index) => (
                   <li key={item} className="flex gap-3 text-sm leading-6 text-muted">
                     <span className="font-semibold text-gold-soft/90">
