@@ -4,8 +4,8 @@ import { ButtonLink } from "./button-link";
 import { Logo } from "./layout/Logo";
 
 const socialLinks = [
-  { label: "Instagram", href: "#", icon: "instagram" },
-  { label: "LinkedIn", href: "#", icon: "linkedin" },
+  { label: "Instagram", href: "https://www.instagram.com/orvyn.cc/", icon: "instagram" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/orvyncc/", icon: "linkedin" },
   { label: "X", href: "#", icon: "x" }
 ] as const;
 
@@ -31,7 +31,7 @@ export function SiteFooter() {
               Start a conversation
             </h2>
             <p className="mt-4 max-w-sm text-sm leading-6 text-muted">
-              Ready to sharpen how your brand looks, speaks, and grows?
+              Ready to make your brand clearer, sharper, and harder to ignore?
             </p>
             <ButtonLink href="/contact" className="mt-6 min-h-11 w-full px-5 py-2.5 sm:w-auto">
               Start a Project
@@ -42,6 +42,8 @@ export function SiteFooter() {
                   key={item.label}
                   href={item.href}
                   aria-label={item.label}
+                  target={item.href === "#" ? undefined : "_blank"}
+                  rel={item.href === "#" ? undefined : "noreferrer"}
                   className="grid size-8 place-items-center border border-white/10 bg-white/[0.01] text-muted transition hover:-translate-y-0.5 hover:border-gold/45 hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink"
                 >
                   <SocialIcon icon={item.icon} />
@@ -65,7 +67,7 @@ export function SiteFooter() {
 function SocialIcon({ icon }: { icon: (typeof socialLinks)[number]["icon"] }) {
   if (icon === "instagram") {
     return (
-      <svg className="size-4" viewBox="0 0 24 24" aria-hidden="true" fill="none">
+      <svg className="size-[1.15rem]" viewBox="0 0 24 24" aria-hidden="true" fill="none">
         <rect x="5" y="5" width="14" height="14" rx="4" stroke="currentColor" strokeWidth="1.7" />
         <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.7" />
         <circle cx="16.5" cy="7.5" r="1" fill="currentColor" />

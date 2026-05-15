@@ -10,7 +10,7 @@ import { SiteFrame } from "@/components/site-frame";
 export const metadata: Metadata = {
   title: "Orvyn | Modern Brand Growth Agency",
   description:
-    "Orvyn helps modern brands build sharper content, stronger websites, and growth systems that turn attention into trust."
+    "Orvyn helps brands sharpen their content, website, and marketing system so they look clearer, earn trust faster, and grow with intent."
 };
 
 export default function Home() {

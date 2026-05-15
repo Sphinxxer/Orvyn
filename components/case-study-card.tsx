@@ -35,7 +35,7 @@ export function CaseStudyCard({
               </p>
             </div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-              PDF-ready preview
+              Project deck available
             </p>
           </div>
         </div>
@@ -64,14 +64,15 @@ export function CaseStudyCard({
             </ul>
           </div>
 
-          <span
-            data-pdf-path={deckHref}
-            aria-label={`PDF coming soon for ${title}`}
-            aria-disabled="true"
-            className="mt-8 inline-flex w-fit cursor-not-allowed select-none border border-white/12 bg-white/[0.015] px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-muted/85"
+          <a
+            href={deckHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View project deck for ${title}`}
+            className="mt-8 inline-flex w-fit border border-gold/35 bg-gold/10 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft transition duration-200 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-ink focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink"
           >
-            PDF coming soon
-          </span>
+            View project deck →
+          </a>
         </div>
       </div>
     </article>

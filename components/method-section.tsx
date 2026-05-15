@@ -14,9 +14,8 @@ export function MethodSection() {
             How clarity becomes momentum.
           </h2>
           <p className="mt-6 max-w-md text-base leading-7 text-white/72">
-            This is not a generic process. It is the way Orvyn looks at growth:
-            fix what is unclear, sharpen what matters, build what is needed, then
-            scale what works.
+            This is how Orvyn looks at growth: find what is unclear, sharpen what
+            matters, build what is needed, then scale what works.
           </p>
           <ButtonLink href="/contact" variant="secondary" className="mt-8">
             Start a Project

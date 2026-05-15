@@ -17,11 +17,11 @@ export function AboutPreview() {
 
         <div className="max-w-3xl">
           <p className="text-2xl font-semibold leading-snug text-white sm:text-3xl">
-            Growth gets easier when the foundation is clear.
+            Growth gets easier when the brand is clear.
           </p>
           <p className="mt-6 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-            Our work starts by finding what needs to be fixed before scaling what
-            works. Clearer message, sharper presence, stronger system.
+            Growth gets easier when the brand is clear. Orvyn starts by finding
+            what needs to be fixed before scaling what works.
           </p>
           <ButtonLink href="/about" variant="secondary" className="mt-8">
             About Orvyn

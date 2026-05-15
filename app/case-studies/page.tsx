@@ -9,7 +9,7 @@ import { caseStudyDetails, caseStudyProcessSteps } from "@/data/home";
 export const metadata: Metadata = {
   title: "Case Studies | Orvyn",
   description:
-    "Selected work, brand directions, and digital systems built with clarity and intent."
+    "Explore brand directions, digital systems, and project work shaped to improve how businesses look, communicate, and grow."
 };
 
 export default function CaseStudiesPage() {
@@ -19,7 +19,7 @@ export default function CaseStudiesPage() {
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.82fr_0.48fr] lg:items-end">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.26em] text-gold-soft sm:text-sm">
-              Case Studies / Selected Work
+              Case Studies / Project Archive
             </p>
             <h1 className="mt-6 max-w-4xl text-balance text-4xl font-black leading-[0.98] text-white sm:text-6xl lg:text-7xl">
               Work built with clarity and intent.
@@ -27,8 +27,8 @@ export default function CaseStudiesPage() {
           </div>
           <div className="border-t border-gold pt-6">
             <p className="text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-              Selected projects, brand directions, and digital systems created to
-              improve how businesses look, communicate, and grow.
+              A growing archive of brand directions, digital systems, and project
+              work shaped to improve how businesses look, communicate, and grow.
             </p>
           </div>
         </div>
@@ -38,7 +38,8 @@ export default function CaseStudiesPage() {
         <div className="mb-10 max-w-4xl border-l border-gold/45 pl-6">
           <p className="max-w-3xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
             Some projects are active client work, while others are concept
-            directions or strategic builds. We do not add fake results or numbers.
+            directions or strategic builds. We keep the work honest — no fake
+            numbers, no inflated results.
           </p>
         </div>
 

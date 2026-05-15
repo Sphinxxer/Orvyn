@@ -20,8 +20,8 @@ export function CaseStudiesPreview() {
             Directions shaped with intent.
           </h2>
           <p className="mt-6 text-base leading-7 text-white/75">
-            A look at the brands, directions, and digital systems shaped to improve
-            how businesses look, communicate, and grow.
+            A growing look at brand directions, digital systems, and project work
+            shaped to improve how businesses look, communicate, and grow.
           </p>
           <ButtonLink href="/case-studies" variant="secondary" className="mt-8">
             View Case Studies

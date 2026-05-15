@@ -12,11 +12,11 @@ export function ServicesSection() {
             Capabilities
           </p>
           <h2 className="mt-5 text-balance text-4xl font-bold leading-[1.02] text-white sm:text-5xl">
-            The parts of growth that need to work together.
+            The growth parts we help sharpen.
           </h2>
           <p className="mt-6 max-w-sm text-base leading-7 text-white/72">
-            Short, sharp capability areas. The deeper breakdown lives on the
-            Services page.
+            From ads and content to websites and brand systems, Orvyn helps the
+            parts of your digital presence work together — not against each other.
           </p>
           <ButtonLink href="/services" variant="secondary" className="mt-8">
             Explore Capabilities

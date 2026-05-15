@@ -18,8 +18,6 @@ type FormStatus = {
   message: string;
 } | null;
 
-const requiredFields = ["name", "email", "phone", "need", "message"] as const;
-
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<FormStatus>(null);
@@ -94,7 +92,12 @@ export function ContactForm() {
       payload.set(field, String(formData.get(field) ?? "").trim());
     });
 
-    const hasMissingRequiredField = requiredFields.some((field) => !payload.get(field));
+    const hasMissingRequiredField =
+      !payload.get("name") ||
+      !payload.get("email") ||
+      !payload.get("phone") ||
+      !payload.get("need") ||
+      !payload.get("message");
 
     if (hasMissingRequiredField) {
       setStatus({

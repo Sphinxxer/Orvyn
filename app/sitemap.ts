@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const baseUrl = "https://orvyn-trial2.vercel.app";
+const baseUrl = "https://orvyn.cc";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = ["", "/services", "/about", "/case-studies", "/contact"];
