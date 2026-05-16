@@ -1,4 +1,4 @@
-export const navItems = [
+﻿export const navItems = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
@@ -168,25 +168,25 @@ export const methodSteps = [
     number: "01",
     title: "Diagnose",
     description:
-      "We understand where the brand stands today: the audience, offer, content, website, visuals, competitors, and current growth gaps."
+      "We find what is unclear across the audience, offer, content, website, visuals, and growth gaps."
   },
   {
     number: "02",
     title: "Sharpen",
     description:
-      "We improve the parts that shape perception: messaging, positioning, visual direction, content structure, website flow, and offer clarity."
+      "We tighten the parts that shape perception: messaging, positioning, visual direction, content, and offer clarity."
   },
   {
     number: "03",
     title: "Build",
     description:
-      "We create the assets and systems needed to move the brand forward: content plans, social creatives, websites, landing pages, campaigns, and brand systems."
+      "We create the assets and systems needed to move forward: content, websites, landing pages, campaigns, and brand systems."
   },
   {
     number: "04",
     title: "Scale",
     description:
-      "We review what works, fix what does not, test new ideas, and help the brand grow with better clarity and control."
+      "We review what works, fix what does not, and grow with better clarity and control."
   }
 ];
 
@@ -279,46 +279,6 @@ export const caseStudyProcessSteps = [
   }
 ];
 
-export const aboutSections = [
-  {
-    title: "What we believe",
-    heading: "Growth does not begin with more noise.",
-    description:
-      "Most brands try to grow by doing more — more posts, more ads, more campaigns, more redesigns. But when the foundation is unclear, more activity only spreads the confusion faster.\n\nOrvyn helps brands step back, sharpen what matters, and build systems that make growth easier to understand and easier to repeat."
-  },
-  {
-    title: "Why clarity comes before growth",
-    heading: "Unclear brands are harder to trust.",
-    description:
-      "People trust what they can understand. When your message, visuals, website, content, and marketing all point in different directions, growth feels random.\n\nOrvyn brings those parts into one clearer system, so the brand becomes easier to read, easier to trust, and easier to choose."
-  },
-  {
-    title: "How Orvyn thinks",
-    heading: "Every brand has a system behind what people see.",
-    description:
-      "A strong brand is not just a logo, a website, an Instagram page, or an ad campaign. It is how all of those pieces work together.\n\nOrvyn helps shape the system behind the surface — the clarity, structure, and direction that make a brand harder to ignore."
-  }
-];
-
-export const principles = [
-  {
-    title: "Clarity before activity",
-    description:
-      "More output does not help if the direction is unclear. We fix the message before increasing the noise."
-  },
-  {
-    title: "Perception matters",
-    description: "How a brand looks, speaks, and shows up directly affects how much people trust it."
-  },
-  {
-    title: "Systems over random execution",
-    description: "Content, websites, ads, and branding should support each other, not work separately."
-  },
-  {
-    title: "Improve before scaling",
-    description: "Scaling works better when the foundation is already strong enough to carry growth."
-  }
-];
 
 export const teamMembers = [
   {
@@ -326,7 +286,7 @@ export const teamMembers = [
     title: "Founder",
     role: "Creative Direction",
     description:
-      "Shapes Orvyn’s brand strategy, creative direction, content systems, and overall growth approach.",
+      "Works across brand direction, content structure, and project strategy to keep every Orvyn build clear and intentional.",
     imageSrc: "/team/bharath-kesav.jpg",
     alt: "Bharath Kesav — Founder of Orvyn"
   },
@@ -335,18 +295,18 @@ export const teamMembers = [
     title: "Production Director",
     role: "Video Production",
     description:
-      "Leads shoot planning, video execution, and production workflows that help brands show up sharper online.",
+      "Works across shoot planning, video execution, and production flow to help brands create sharper visual content.",
     imageSrc: "/team/bhoopesh.jpg",
     alt: "Bhoopesh — Production Director at Orvyn"
   },
   {
-    name: "Abhi",
+    name: "Kishore",
     title: "Graphics Lead",
     role: "Visual Design",
     description:
-      "Leads social media creatives, visual systems, and brand-focused design execution across client projects.",
-    imageSrc: "/team/Abhi.jpg",
-    alt: "Abhi — Graphics Lead at Orvyn"
+      "Works across social creatives, visual systems, and design execution to keep brand communication clear and consistent.",
+    imageSrc: "/team/kishore.jpg",
+    alt: "Kishore — Graphics Lead at Orvyn"
   }
 ];
 
