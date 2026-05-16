@@ -32,20 +32,21 @@ export default function ContactPage() {
               <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-gold-soft">
                 What happens next
               </h2>
-              <ol className="mt-5 space-y-4">
+              <div className="mt-5 space-y-4">
                 {[
                   "We review your inquiry",
                   "We understand where the brand stands",
                   "We suggest the clearest next move"
                 ].map((item, index) => (
-                  <li key={item} className="flex gap-3 text-sm leading-6 text-muted">
-                    <span className="font-semibold text-gold-soft/90">
+                  <div key={item} className="flex gap-3 text-sm leading-6 text-muted">
+                    <span className="min-w-8 font-semibold text-gold-soft/90">
                       {String(index + 1).padStart(2, "0")}
                     </span>
+                    <span className="text-gold-soft/65" aria-hidden="true">—</span>
                     <span>{item}</span>
-                  </li>
+                  </div>
                 ))}
-              </ol>
+              </div>
             </div>
           </aside>
 

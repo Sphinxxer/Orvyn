@@ -190,26 +190,6 @@ export const methodSteps = [
   }
 ];
 
-export const caseStudies = [
-  {
-    title: "Grandeur Associates",
-    description:
-      "Instagram portfolio direction for a premium architecture and construction brand."
-  },
-  {
-    title: "Biomode",
-    description: "Content and catalog direction for a premium kids innerwear brand."
-  },
-  {
-    title: "Cameo Garments",
-    description: "Website revamp concept for a Tirupur-based garment exporter."
-  },
-  {
-    title: "SRA Financial Planning",
-    description: "Brand identity direction for a financial planning and advisory firm."
-  }
-];
-
 export const caseStudyDetails = [
   {
     title: "Grandeur Associates",
@@ -224,8 +204,7 @@ export const caseStudyDetails = [
       "Shoot direction"
     ],
     label: "Client Direction",
-    deckHref: "/case-studies/grandeur-associates.pdf",
-    previewLabel: "Project deck"
+    deckHref: "/case-studies/grandeur-associates.pdf"
   },
   {
     title: "Biomode",
@@ -240,8 +219,7 @@ export const caseStudyDetails = [
       "Visual system refinement"
     ],
     label: "Client Work",
-    deckHref: "/case-studies/biomode.pdf",
-    previewLabel: "Client work"
+    deckHref: "/case-studies/biomode.pdf"
   },
   {
     title: "Cameo Garments",
@@ -256,8 +234,7 @@ export const caseStudyDetails = [
       "Portfolio-building direction"
     ],
     label: "Website Concept",
-    deckHref: "/case-studies/cameo-garments.pdf",
-    previewLabel: "Website deck"
+    deckHref: "/case-studies/cameo-garments.pdf"
   },
   {
     title: "SRA Financial Planning",
@@ -272,8 +249,7 @@ export const caseStudyDetails = [
       "Trust-led communication"
     ],
     label: "Brand Direction",
-    deckHref: "/case-studies/sra-financial-planning.pdf",
-    previewLabel: "Brand deck"
+    deckHref: "/case-studies/sra-financial-planning.pdf"
   }
 ];
 
@@ -300,27 +276,6 @@ export const caseStudyProcessSteps = [
     title: "Refine the outcome",
     description:
       "We improve the work based on clarity, usability, perception, and performance."
-  }
-];
-
-export const whyPoints = [
-  {
-    title: "Strategy before execution",
-    description:
-      "We do not create for the sake of activity. Every move needs a reason."
-  },
-  {
-    title: "Modern visual direction",
-    description: "We help brands look current, premium, and easier to trust."
-  },
-  {
-    title: "Clarity-led communication",
-    description:
-      "We simplify what your brand does, who it serves, and why people should care."
-  },
-  {
-    title: "Built to improve over time",
-    description: "We focus on systems that can be reviewed, refined, and scaled."
   }
 ];
 
@@ -385,13 +340,13 @@ export const teamMembers = [
     alt: "Bhoopesh — Production Director at Orvyn"
   },
   {
-    name: "Kishore",
+    name: "Abhi",
     title: "Graphics Lead",
     role: "Visual Design",
     description:
       "Leads social media creatives, visual systems, and brand-focused design execution across client projects.",
-    imageSrc: "/team/kishore.jpg",
-    alt: "Kishore — Graphics Lead at Orvyn"
+    imageSrc: "/team/Abhi.jpg",
+    alt: "Abhi — Graphics Lead at Orvyn"
   }
 ];
 

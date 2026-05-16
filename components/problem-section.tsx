@@ -16,13 +16,13 @@ export function ProblemSection() {
 
         <div className="relative max-w-4xl rounded-[2rem] bg-white/[0.025] px-6 py-8 sm:px-8 sm:py-10 lg:px-10">
           <h2 className="text-balance text-3xl font-semibold leading-[1.12] text-white sm:text-5xl lg:text-[3.75rem] lg:leading-[1.05]">
-            <span className="block">Most brands don&apos;t need more marketing.</span>
+            <span className="block">Most brands don’t need more marketing.</span>
             <span className="mt-2 block text-gold-soft">
               They need a clearer reason to be chosen.
             </span>
           </h2>
           <p className="mt-8 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-            More posts, ads, or redesigns won&apos;t fix a brand that feels
+            More posts, ads, or redesigns won’t fix a brand that feels
             unclear. Orvyn sharpens the foundation first — so every next move
             works harder.
           </p>
