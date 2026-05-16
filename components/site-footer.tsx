@@ -54,9 +54,13 @@ export function SiteFooter() {
 
         <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between lg:mt-14">
           <p>&copy; {new Date().getFullYear()} Orvyn. All rights reserved.</p>
-          <p className="text-xs font-semibold uppercase tracking-[0.38em] text-gold-soft/80">
+          <Link
+            href="/"
+            aria-label="Back to Orvyn home"
+            className="text-xs font-semibold uppercase tracking-[0.38em] text-gold-soft/80 transition hover:text-gold-soft focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink"
+          >
             ORVYN
-          </p>
+          </Link>
         </div>
       </div>
     </footer>

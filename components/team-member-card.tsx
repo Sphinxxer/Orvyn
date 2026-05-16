@@ -32,10 +32,10 @@ export function TeamMemberCard({
       <div className="pt-7">
         <h3 className="text-2xl font-semibold leading-tight text-white">{name}</h3>
         <p className="mt-2 text-sm font-medium text-muted">{title}</p>
-        <p className="mt-5 inline-flex rounded-full bg-gold/10 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-gold-soft">
+        <p className="mt-5 inline-flex rounded-full bg-gold/[0.08] px-3.5 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-gold-soft/90">
           {role}
         </p>
-        <p className="mt-6 text-base leading-7 text-muted">{description}</p>
+        <p className="mt-5 text-sm leading-6 text-muted">{description}</p>
       </div>
     </article>
   );
