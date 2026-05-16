@@ -29,7 +29,7 @@ export function ButtonLink({
     <Link
       href={href}
       onClick={onClick}
-      className={`inline-flex min-h-12 items-center justify-center border px-6 py-3 text-sm font-semibold leading-none tracking-[0.01em] transition duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink active:translate-y-0 ${variants[variant]} ${className}`}
+      className={`inline-flex min-h-12 items-center justify-center rounded-full border px-6 py-3 text-sm font-semibold leading-none tracking-[0.01em] transition duration-200 hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink active:translate-y-0 ${variants[variant]} ${className}`}
     >
       {children}
     </Link>

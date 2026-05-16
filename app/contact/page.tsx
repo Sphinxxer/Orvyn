@@ -28,7 +28,7 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="border-y border-white/10 py-7 lg:py-8">
+            <div className="rounded-[1.75rem] bg-coal/60 px-5 py-7 lg:px-6 lg:py-8">
               <h2 className="text-sm font-semibold uppercase tracking-[0.22em] text-gold-soft">
                 What happens next
               </h2>

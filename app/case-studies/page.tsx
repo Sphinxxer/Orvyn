@@ -43,14 +43,14 @@ export default function CaseStudiesPage() {
           </p>
         </div>
 
-        <div className="border-y border-white/10">
+        <div className="space-y-5">
           {caseStudyDetails.map((study) => (
             <CaseStudyCard key={study.title} {...study} />
           ))}
         </div>
       </SectionShell>
 
-      <SectionShell className="border-y border-white/10 bg-white/[0.015]">
+      <SectionShell className="bg-white/[0.012]">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
@@ -60,7 +60,7 @@ export default function CaseStudiesPage() {
               How we approach every project
             </h2>
           </div>
-          <div className="border-y border-white/10">
+          <div className="rounded-[2rem] bg-coal/55 px-5 sm:px-7">
             {caseStudyProcessSteps.map((step) => (
               <ProcessStep key={step.number} {...step} />
             ))}

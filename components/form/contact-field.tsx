@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react";
 
 export const fieldBase =
-  "mt-3 min-h-[3.35rem] w-full border border-white/12 bg-white/[0.025] px-4 py-3.5 text-base leading-6 text-white outline-none transition duration-200 placeholder:text-muted/45 hover:border-white/22 focus:border-gold/80 focus:bg-ink focus:ring-1 focus:ring-gold/30 focus-visible:ring-2 focus-visible:ring-gold/35";
+  "mt-3 min-h-[3.35rem] w-full rounded-2xl border border-white/12 bg-white/[0.025] px-4 py-3.5 text-base leading-6 text-white outline-none transition duration-200 placeholder:text-muted/45 hover:border-white/22 focus:border-gold/80 focus:bg-ink focus:ring-1 focus:ring-gold/30 focus-visible:ring-2 focus-visible:ring-gold/35";
 
 export const labelBase =
   "block text-xs font-semibold uppercase tracking-[0.16em] text-muted";
