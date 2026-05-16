@@ -168,25 +168,25 @@ export const methodSteps = [
     number: "01",
     title: "Diagnose",
     description:
-      "We find what is unclear across the audience, offer, content, website, visuals, and growth gaps."
+      "We understand where the brand stands today: the audience, offer, content, website, visuals, competitors, and current growth gaps."
   },
   {
     number: "02",
     title: "Sharpen",
     description:
-      "We tighten the parts that shape perception: messaging, positioning, visual direction, content, and offer clarity."
+      "We improve the parts that shape perception: messaging, positioning, visual direction, content structure, website flow, and offer clarity."
   },
   {
     number: "03",
     title: "Build",
     description:
-      "We create the assets and systems needed to move forward: content, websites, landing pages, campaigns, and brand systems."
+      "We create the assets and systems needed to move the brand forward: content plans, social creatives, websites, landing pages, campaigns, and brand systems."
   },
   {
     number: "04",
     title: "Scale",
     description:
-      "We review what works, fix what does not, and grow with better clarity and control."
+      "We review what works, fix what does not, test new ideas, and help the brand grow with better clarity and control."
   }
 ];
 
