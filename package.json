@@ -13,6 +13,9 @@
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
   },
+  "overrides": {
+    "postcss": "$postcss"
+  },
   "devDependencies": {
     "@types/node": "^25.7.0",
     "@types/react": "^19.2.14",

@@ -7,13 +7,17 @@ export function MethodSection() {
       <div className="grid gap-9 lg:grid-cols-[0.34fr_1fr] lg:gap-14">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
-            The Orvyn Method
+            Method
           </p>
           <h2 className="mt-4 text-balance text-3xl font-bold leading-[1.04] text-white sm:text-5xl">
             The Orvyn Method
           </h2>
-          <p className="mt-5 max-w-md text-base leading-7 text-white/72">
-            Find the gap. Sharpen the brand. Build the system. Scale what works.
+          <p className="mt-5 text-xl font-semibold leading-tight text-white">
+            How clarity becomes momentum.
+          </p>
+          <p className="mt-4 max-w-md text-base leading-7 text-white/72">
+            Find what is unclear. Sharpen what matters. Build what is needed.
+            Scale what works.
           </p>
         </div>
 
