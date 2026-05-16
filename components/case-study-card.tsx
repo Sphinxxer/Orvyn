@@ -5,7 +5,6 @@ type CaseStudyCardProps = {
   focusAreas: string[];
   label: string;
   deckHref: string;
-  previewLabel: string;
 };
 
 export function CaseStudyCard({
@@ -14,8 +13,7 @@ export function CaseStudyCard({
   description,
   focusAreas,
   label,
-  deckHref,
-  previewLabel
+  deckHref
 }: CaseStudyCardProps) {
   return (
     <article className="group rounded-[2rem] bg-coal/72 p-5 transition duration-300 hover:-translate-y-1 hover:bg-graphite/72 sm:p-6 lg:p-7">
@@ -26,15 +24,13 @@ export function CaseStudyCard({
           <div className="relative flex h-full min-h-60 flex-col justify-between pt-7">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
-                {previewLabel}
+                {label}
               </p>
               <p className="mt-4 max-w-52 text-3xl font-semibold leading-tight text-white">
                 {title}
               </p>
             </div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-              Project deck
-            </p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">{category}</p>
           </div>
         </div>
 

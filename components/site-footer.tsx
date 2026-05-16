@@ -5,8 +5,7 @@ import { Logo } from "./layout/Logo";
 
 const socialLinks = [
   { label: "Instagram", href: "https://www.instagram.com/orvyn.cc/", icon: "instagram" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/orvyncc/", icon: "linkedin" },
-  { label: "X", href: "#", icon: "x" }
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/orvyncc/", icon: "linkedin" }
 ] as const;
 
 export function SiteFooter() {
@@ -42,8 +41,8 @@ export function SiteFooter() {
                   key={item.label}
                   href={item.href}
                   aria-label={item.label}
-                  target={item.href === "#" ? undefined : "_blank"}
-                  rel={item.href === "#" ? undefined : "noreferrer"}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="grid size-8 place-items-center border border-white/10 bg-white/[0.01] text-muted transition hover:-translate-y-0.5 hover:border-gold/45 hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink"
                 >
                   <SocialIcon icon={item.icon} />
@@ -83,11 +82,7 @@ function SocialIcon({ icon }: { icon: (typeof socialLinks)[number]["icon"] }) {
     );
   }
 
-  return (
-    <svg className="size-4" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
-      <path d="M15.2 10.63 22.4 2h-1.7l-6.25 7.49L9.46 2H3.7l7.55 11.33L3.7 22h1.7l6.6-7.61L17.27 22h5.76l-7.83-11.37Zm-2.34 2.7-.77-1.13L6.02 3.33h2.62l4.91 7.19.76 1.13 6.39 9.04h-2.62l-5.22-7.36Z" />
-    </svg>
-  );
+  return null;
 }
 
 function FooterLinks({
