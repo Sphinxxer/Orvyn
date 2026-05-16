@@ -5,13 +5,14 @@ import { SectionShell } from "./section-shell";
 
 export function ServicesSection() {
   return (
-    <SectionShell id="services" className="bg-white/[0.015]">
-      <div className="grid gap-10 lg:grid-cols-[0.4fr_1fr] lg:gap-16">
-        <div className="border-t border-gold/55 pt-6">
+    <SectionShell id="services" className="bg-white/[0.012]">
+      <div className="grid gap-12 lg:grid-cols-[0.38fr_1fr] lg:gap-20">
+        <div className="lg:sticky lg:top-28 lg:self-start">
+          <div className="mb-6 h-px w-16 bg-gold/70" aria-hidden="true" />
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
             Capabilities
           </p>
-          <h2 className="mt-5 text-balance text-4xl font-bold leading-[1.02] text-white sm:text-5xl">
+          <h2 className="mt-5 text-balance text-4xl font-bold leading-[1.04] text-white sm:text-5xl">
             The growth parts we help sharpen.
           </h2>
           <p className="mt-6 max-w-sm text-base leading-7 text-white/72">
@@ -23,17 +24,21 @@ export function ServicesSection() {
           </ButtonLink>
         </div>
 
-        <div className="grid gap-px border-y border-white/10 bg-white/10 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="space-y-3">
           {services.map((service) => (
             <article
               key={service.title}
-              className="group min-h-56 bg-ink p-6 transition duration-200 hover:bg-coal sm:p-7 lg:min-h-64"
+              className="group grid gap-5 rounded-[1.5rem] bg-coal/70 px-5 py-5 transition duration-200 hover:-translate-y-0.5 hover:bg-graphite/80 sm:px-6 sm:py-6 md:grid-cols-[auto_0.42fr_1fr] md:items-center md:gap-7"
             >
-              <CapabilityIcon icon={service.icon} />
-              <h3 className="mt-10 text-2xl font-semibold leading-tight text-white transition group-hover:text-gold-soft">
+              <div className="flex size-12 items-center justify-center rounded-full bg-gold/10 text-gold-soft transition duration-200 group-hover:bg-gold group-hover:text-ink">
+                <CapabilityIcon icon={service.icon} className="size-5" />
+              </div>
+              <h3 className="text-xl font-semibold leading-tight text-white sm:text-2xl">
                 {service.title}
               </h3>
-              <p className="mt-4 max-w-sm text-base leading-7 text-muted">{service.description}</p>
+              <p className="max-w-xl text-base leading-7 text-muted">
+                {service.description}
+              </p>
             </article>
           ))}
         </div>

@@ -14,7 +14,7 @@ export const services = [
   },
   {
     title: "Content Creation",
-    description: "Planned reels, shoots, and visuals that make your brand look sharper and easier to trust.",
+    description: "Reels, shoots, and visuals planned to make your brand look sharper and easier to trust.",
     icon: "content"
   },
   {
@@ -29,12 +29,12 @@ export const services = [
   },
   {
     title: "Social Media Management",
-    description: "Structured content planning and profile management that keeps your brand consistent online.",
+    description: "Content planning and profile management that keep your brand consistent online.",
     icon: "social"
   },
   {
     title: "End-to-End Growth Systems",
-    description: "A joined-up approach for brands that need strategy, content, website, and marketing working together.",
+    description: "Strategy, content, website, and campaigns connected into one clearer growth system.",
     icon: "system"
   }
 ];

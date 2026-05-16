@@ -40,11 +40,11 @@ export default function AboutPage() {
       </section>
 
       <SectionShell className="pt-0">
-        <div className="border-y border-white/10">
+        <div className="space-y-8">
           {aboutSections.map((section) => (
             <article
               key={section.title}
-              className="grid gap-7 border-t border-white/10 py-10 first:border-t-0 lg:grid-cols-[0.34fr_1fr] lg:gap-14 lg:py-12"
+              className="grid gap-7 rounded-[2rem] bg-white/[0.022] px-6 py-8 sm:px-8 lg:grid-cols-[0.34fr_1fr] lg:gap-14 lg:py-10"
             >
               <div>
                 <p className="text-sm font-semibold uppercase tracking-[0.22em] text-gold-soft">
@@ -70,7 +70,7 @@ export default function AboutPage() {
 
       <MethodSection />
 
-      <SectionShell className="border-y border-white/10 bg-white/[0.015]">
+      <SectionShell className="bg-white/[0.012]">
         <div className="grid gap-10 lg:grid-cols-[0.62fr_1fr] lg:gap-16">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">

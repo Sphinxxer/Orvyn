@@ -32,7 +32,7 @@ export default function ServicesPage() {
             </p>
           </div>
 
-          <div className="border-y border-white/10 py-5">
+          <div className="rounded-[1.75rem] bg-coal/70 p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
               Capability Index
             </p>
@@ -69,10 +69,11 @@ export default function ServicesPage() {
               </p>
             </div>
           </aside>
-          <div className="border-y border-white/10">
-            {serviceDetails.map((service) => (
+          <div className="space-y-5">
+            {serviceDetails.map((service, index) => (
               <ServiceDetailCard
                 key={service.title}
+                index={index}
                 icon={service.icon}
                 title={service.title}
                 positioning={service.positioning}
@@ -85,7 +86,7 @@ export default function ServicesPage() {
         </div>
       </SectionShell>
 
-      <SectionShell className="border-y border-white/10 bg-white/[0.015]">
+      <SectionShell className="bg-white/[0.012]">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
@@ -100,7 +101,7 @@ export default function ServicesPage() {
               Some need ads only after the foundation is ready.
             </p>
           </div>
-          <div className="border-y border-white/10">
+          <div className="rounded-[2rem] bg-coal/55 px-5 sm:px-7">
             {serviceDecisionSteps.map((step) => (
               <ProcessStep key={step.number} {...step} />
             ))}

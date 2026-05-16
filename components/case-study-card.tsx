@@ -18,14 +18,12 @@ export function CaseStudyCard({
   previewLabel
 }: CaseStudyCardProps) {
   return (
-    <article className="group border-t border-white/10 py-8 transition duration-200 first:border-t-0 hover:-translate-y-0.5 hover:border-gold/45 lg:py-10">
-      <div className="grid gap-7 lg:grid-cols-[0.38fr_0.62fr] lg:gap-12">
-        <div className="relative min-h-72 overflow-hidden border border-white/10 bg-coal p-5 transition duration-200 group-hover:border-gold/35">
-          <div className="absolute inset-0 opacity-[0.035]" aria-hidden="true">
-            <div className="absolute -right-16 top-8 size-56 rounded-full border border-white" />
-            <div className="absolute right-10 top-24 h-px w-64 rotate-[-38deg] bg-white" />
-          </div>
-          <div className="relative flex h-full min-h-60 flex-col justify-between">
+    <article className="group rounded-[2rem] bg-coal/72 p-5 transition duration-300 hover:-translate-y-1 hover:bg-graphite/72 sm:p-6 lg:p-7">
+      <div className="grid gap-7 lg:grid-cols-[0.4fr_0.6fr] lg:gap-12">
+        <div className="relative min-h-72 overflow-hidden rounded-[1.5rem] bg-ink p-5 transition duration-200">
+          <div className="absolute inset-x-6 top-6 h-px bg-gold/35" aria-hidden="true" />
+          <div className="absolute -right-20 bottom-[-5rem] size-64 rounded-full border border-white/10" aria-hidden="true" />
+          <div className="relative flex h-full min-h-60 flex-col justify-between pt-7">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
                 {previewLabel}
@@ -35,14 +33,14 @@ export function CaseStudyCard({
               </p>
             </div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-              Project deck available
+              Project deck
             </p>
           </div>
         </div>
 
         <div className="flex flex-col justify-between">
           <div>
-            <span className="inline-flex border border-gold/35 px-3 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
+            <span className="inline-flex rounded-full bg-gold/10 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft">
               {label}
             </span>
             <p className="mt-5 text-sm font-medium text-muted">{category}</p>
@@ -57,7 +55,7 @@ export function CaseStudyCard({
             <ul className="mt-4 grid gap-3 sm:grid-cols-2">
               {focusAreas.map((area) => (
                 <li key={area} className="flex gap-3 text-sm leading-6 text-muted">
-                  <span className="mt-2 size-1.5 shrink-0 bg-gold" aria-hidden="true" />
+                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold" aria-hidden="true" />
                   <span>{area}</span>
                 </li>
               ))}
@@ -69,7 +67,7 @@ export function CaseStudyCard({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`View project deck for ${title}`}
-            className="mt-8 inline-flex w-fit border border-gold/35 bg-gold/10 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft transition duration-200 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-ink focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink"
+            className="mt-8 inline-flex w-fit rounded-full border border-gold/35 bg-gold/10 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft transition duration-200 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-ink focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink"
           >
             View project deck →
           </a>

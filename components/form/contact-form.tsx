@@ -148,7 +148,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="border border-white/12 bg-coal/90 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.18)] sm:p-7 lg:p-9"
+      className="rounded-[2rem] bg-coal/90 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.18)] sm:p-7 lg:p-9"
       aria-label="Project inquiry form"
     >
       <input
@@ -204,14 +204,14 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="mt-10 inline-flex min-h-12 w-full items-center justify-center border border-gold bg-gold px-6 py-3 text-sm font-semibold text-ink shadow-[0_18px_48px_rgba(200,169,90,0.13)] transition duration-200 hover:-translate-y-0.5 hover:border-gold-soft hover:bg-gold-soft hover:shadow-[0_22px_56px_rgba(200,169,90,0.16)] focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink active:translate-y-0 disabled:cursor-not-allowed disabled:border-white/15 disabled:bg-white/12 disabled:text-muted disabled:shadow-none disabled:hover:translate-y-0 sm:w-fit"
+        className="mt-10 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-gold bg-gold px-6 py-3 text-sm font-semibold text-ink shadow-[0_18px_48px_rgba(200,169,90,0.13)] transition duration-200 hover:-translate-y-0.5 hover:border-gold-soft hover:bg-gold-soft hover:shadow-[0_22px_56px_rgba(200,169,90,0.16)] focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink active:translate-y-0 disabled:cursor-not-allowed disabled:border-white/15 disabled:bg-white/12 disabled:text-muted disabled:shadow-none disabled:hover:translate-y-0 sm:w-fit"
       >
         {isSubmitting ? "Sending..." : "Send Inquiry"}
       </button>
 
       {status ? (
         <p
-          className={`mt-5 border px-4 py-3 text-sm leading-6 ${
+          className={`mt-5 rounded-2xl border px-4 py-3 text-sm leading-6 ${
             status.type === "success"
               ? "border-gold/35 bg-gold/10 text-gold-soft"
               : "border-red-400/30 bg-red-500/10 text-red-200"
