@@ -1,4 +1,4 @@
-import type { MetadataRoute } from "next";
+﻿import type { MetadataRoute } from "next";
 
 const baseUrl = "https://orvyn.cc";
 
@@ -18,3 +18,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route.priority
   }));
 }
+
+
