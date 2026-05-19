@@ -2,13 +2,19 @@ import type { MetadataRoute } from "next";
 
 const baseUrl = "https://orvyn.cc";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/services", "/about", "/case-studies", "/contact"];
+const routes = [
+  { path: "", priority: 1.0, changeFrequency: "monthly" as const },
+  { path: "/services", priority: 0.9, changeFrequency: "monthly" as const },
+  { path: "/about", priority: 0.7, changeFrequency: "monthly" as const },
+  { path: "/case-studies", priority: 0.8, changeFrequency: "monthly" as const },
+  { path: "/contact", priority: 0.8, changeFrequency: "monthly" as const }
+];
 
+export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((route) => ({
-    url: `${baseUrl}${route}`,
+    url: `${baseUrl}${route.path}`,
     lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: route === "" ? 1 : 0.8
+    changeFrequency: route.changeFrequency,
+    priority: route.priority
   }));
 }

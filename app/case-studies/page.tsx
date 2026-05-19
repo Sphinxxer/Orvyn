@@ -9,7 +9,34 @@ import { caseStudyDetails, caseStudyProcessSteps } from "@/data/home";
 export const metadata: Metadata = {
   title: "Case Studies | Orvyn",
   description:
-    "Explore brand directions, digital systems, and project work shaped to improve how businesses look, communicate, and grow."
+    "Explore Orvyn's growing archive of brand directions, digital systems, and project work shaped with clarity and intent.",
+  alternates: {
+    canonical: "/case-studies"
+  },
+  openGraph: {
+    title: "Case Studies | Orvyn",
+    description:
+      "Explore Orvyn's growing archive of brand directions, digital systems, and project work shaped with clarity and intent.",
+    url: "/case-studies",
+    siteName: "Orvyn",
+    type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Orvyn case studies"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Case Studies | Orvyn",
+    description:
+      "Explore Orvyn's growing archive of brand directions, digital systems, and project work shaped with clarity and intent.",
+    images: ["/og-image.png"]
+  }
 };
 
 export default function CaseStudiesPage() {

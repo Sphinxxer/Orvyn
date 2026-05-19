@@ -10,7 +10,34 @@ import { SiteFrame } from "@/components/site-frame";
 export const metadata: Metadata = {
   title: "Orvyn | Modern Brand Growth Agency",
   description:
-    "Orvyn helps brands sharpen their content, website, and marketing system so they look clearer, earn trust faster, and grow with intent."
+    "Orvyn helps brands sharpen their content, website, and marketing system so they look clearer, earn trust faster, and grow with intent.",
+  alternates: {
+    canonical: "/"
+  },
+  openGraph: {
+    title: "Orvyn | Modern Brand Growth Agency",
+    description:
+      "Orvyn helps brands sharpen their content, website, and marketing system so they look clearer, earn trust faster, and grow with intent.",
+    url: "/",
+    siteName: "Orvyn",
+    type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Orvyn — Modern Brand Growth Agency"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Orvyn | Modern Brand Growth Agency",
+    description:
+      "Orvyn helps brands sharpen their content, website, and marketing system so they look clearer, earn trust faster, and grow with intent.",
+    images: ["/og-image.png"]
+  }
 };
 
 export default function Home() {

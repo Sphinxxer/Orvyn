@@ -6,7 +6,34 @@ import { SiteFrame } from "@/components/site-frame";
 export const metadata: Metadata = {
   title: "Contact | Orvyn",
   description:
-    "Start a project with Orvyn and build a sharper digital presence for your brand."
+    "Start a project with Orvyn and build a sharper digital presence for your brand.",
+  alternates: {
+    canonical: "/contact"
+  },
+  openGraph: {
+    title: "Contact | Orvyn",
+    description:
+      "Start a project with Orvyn and build a sharper digital presence for your brand.",
+    url: "/contact",
+    siteName: "Orvyn",
+    type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Contact Orvyn"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact | Orvyn",
+    description:
+      "Start a project with Orvyn and build a sharper digital presence for your brand.",
+    images: ["/og-image.png"]
+  }
 };
 
 export default function ContactPage() {

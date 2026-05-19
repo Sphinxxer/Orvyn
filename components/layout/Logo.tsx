@@ -15,7 +15,7 @@ export function Logo({ href = "/", className = "" }: LogoProps) {
     >
       <Image
         src="/orvyn-icon.svg"
-        alt=""
+        alt="Orvyn logo"
         width={36}
         height={36}
         priority

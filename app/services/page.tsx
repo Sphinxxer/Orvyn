@@ -10,7 +10,34 @@ import { serviceDecisionSteps, serviceDetails } from "@/data/home";
 export const metadata: Metadata = {
   title: "Services | Orvyn",
   description:
-    "Explore Orvyn’s capabilities across performance marketing, content creation, brand development, websites, social media, and end-to-end growth systems."
+    "Explore Orvyn's capabilities across performance marketing, content creation, brand development, websites, social media, and end-to-end growth systems.",
+  alternates: {
+    canonical: "/services"
+  },
+  openGraph: {
+    title: "Services | Orvyn",
+    description:
+      "Explore Orvyn's capabilities across performance marketing, content creation, brand development, websites, social media, and end-to-end growth systems.",
+    url: "/services",
+    siteName: "Orvyn",
+    type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Orvyn services"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services | Orvyn",
+    description:
+      "Explore Orvyn's capabilities across performance marketing, content creation, brand development, websites, social media, and end-to-end growth systems.",
+    images: ["/og-image.png"]
+  }
 };
 
 export default function ServicesPage() {

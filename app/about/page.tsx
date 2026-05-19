@@ -28,7 +28,34 @@ const aboutPrinciples = [
 export const metadata: Metadata = {
   title: "About | Orvyn",
   description:
-    "Orvyn is built on the belief that brands should fix what is unclear, inconsistent, or weak before scaling what works."
+    "Orvyn is a modern brand growth agency built on one belief: fix what is unclear, inconsistent, or weak before scaling what works.",
+  alternates: {
+    canonical: "/about"
+  },
+  openGraph: {
+    title: "About | Orvyn",
+    description:
+      "Orvyn is a modern brand growth agency built on one belief: fix what is unclear, inconsistent, or weak before scaling what works.",
+    url: "/about",
+    siteName: "Orvyn",
+    type: "website",
+    locale: "en_IN",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "About Orvyn"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About | Orvyn",
+    description:
+      "Orvyn is a modern brand growth agency built on one belief: fix what is unclear, inconsistent, or weak before scaling what works.",
+    images: ["/og-image.png"]
+  }
 };
 
 export default function AboutPage() {
