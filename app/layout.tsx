@@ -1,5 +1,6 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity";
 import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
@@ -109,9 +110,8 @@ export default function RootLayout({
       <body className={`${inter.variable} bg-ink font-sans text-white antialiased`}>
         <JsonLd data={jsonLd} />
         {children}
+        <MicrosoftClarity />
       </body>
     </html>
   );
 }
-
-
