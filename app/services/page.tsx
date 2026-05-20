@@ -3,7 +3,7 @@ import { CapabilityIcon } from "@/components/capability-icon";
 import { CTASection } from "@/components/cta-section";
 import { ProcessStep } from "@/components/process-step";
 import { SectionShell } from "@/components/section-shell";
-import { ServiceDetailCard } from "@/components/service-detail-card";
+import { ServicesExplorer } from "@/components/services-explorer";
 import { SiteFrame } from "@/components/site-frame";
 import { serviceDecisionSteps, serviceDetails } from "@/data/home";
 
@@ -78,38 +78,13 @@ export default function ServicesPage() {
       <SectionShell className="pt-0">
         <div className="max-w-4xl border-l border-gold/45 pl-6">
           <p className="max-w-3xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
-            Each capability is chosen for a reason. We do not start with more
-            activity. We start by finding what needs to be fixed, sharpened, and
-            built properly.
+            Not every brand needs more marketing. Some need the right parts
+            fixed first.
           </p>
         </div>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[0.28fr_1fr] lg:gap-12">
-          <aside className="hidden lg:block">
-            <div className="sticky top-28 border-t border-gold pt-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
-                Capability System
-              </p>
-              <p className="mt-4 text-sm leading-6 text-muted">
-                Structured modules chosen by what the brand needs to fix, sharpen,
-                and scale.
-              </p>
-            </div>
-          </aside>
-          <div className="space-y-5">
-            {serviceDetails.map((service, index) => (
-              <ServiceDetailCard
-                key={service.title}
-                index={index}
-                icon={service.icon}
-                title={service.title}
-                positioning={service.positioning}
-                description={service.description}
-                includes={service.includes}
-                bestFor={service.bestFor}
-              />
-            ))}
-          </div>
+        <div className="mt-12">
+          <ServicesExplorer />
         </div>
       </SectionShell>
 
@@ -138,6 +113,7 @@ export default function ServicesPage() {
 
       <CTASection
         title="Not sure what your brand needs yet?"
+        copy="Tell us where things feel unclear. We work with a small number of brands at a time — usually 3 new projects a month — to keep the work focused and intentional."
         ctaLabel="Start a Project"
         ctaHref="/contact"
       />

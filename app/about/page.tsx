@@ -120,8 +120,8 @@ export default function AboutPage() {
             </h2>
           </div>
           <p className="max-w-xl text-base leading-7 text-muted lg:justify-self-end">
-            The people behind Orvyn bring strategy, production, and design
-            together to make brands clearer, sharper, and easier to trust.
+            A focused team bringing strategy, production, design, and execution
+            together.
           </p>
         </div>
         <div className="mt-10 grid gap-8 md:grid-cols-3 lg:gap-10">

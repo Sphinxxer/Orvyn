@@ -18,6 +18,10 @@ export function FinalCta() {
               Let&apos;s build a sharper digital presence for your brand — one that
               looks clearer, earns trust faster, and grows with intent.
             </p>
+            <p className="mt-5 max-w-2xl text-sm leading-6 text-gold-soft/85">
+              Orvyn only takes on a limited number of new projects each month, so every
+              build gets the focus it deserves.
+            </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-start">
             <ButtonLink href="/contact" className="w-full sm:w-auto">

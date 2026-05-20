@@ -17,7 +17,7 @@ export function MobileNav() {
         aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
         aria-expanded={isOpen}
         onClick={() => setIsOpen((current) => !current)}
-        className={`group inline-flex size-11 items-center justify-center border transition duration-200 focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink ${
+        className={`group inline-flex size-11 items-center justify-center border transition duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${
           isOpen
             ? "border-gold/55 bg-gold/10 text-gold-soft"
             : "border-white/14 bg-white/[0.025] text-white hover:border-gold/50 hover:text-gold-soft"
@@ -52,7 +52,7 @@ export function MobileNav() {
                     href={item.href}
                     aria-current={isActive ? "page" : undefined}
                     onClick={() => setIsOpen(false)}
-                    className={`flex min-h-14 items-center justify-between border px-4 py-3.5 text-base font-semibold transition ${
+                    className={`flex min-h-14 items-center justify-between border px-4 py-3.5 text-base font-semibold transition focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${
                       isActive
                         ? "border-gold/55 bg-gold/10 text-gold-soft"
                         : "border-white/10 bg-coal text-white/78 hover:border-gold/40 hover:text-white"

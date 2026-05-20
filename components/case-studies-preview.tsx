@@ -29,10 +29,13 @@ export function CaseStudiesPreview() {
           </ButtonLink>
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-[1.15fr_0.85fr]">
-          <article className="group relative min-h-[28rem] overflow-hidden rounded-[2rem] bg-ink p-7 transition duration-300 hover:-translate-y-1 sm:p-8">
+        <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
+          <article className="group relative min-h-[29rem] overflow-hidden rounded-[2.25rem] bg-ink p-7 transition duration-300 hover:-translate-y-1 sm:p-8">
             <div className="absolute inset-x-8 top-8 h-px bg-gold/40" aria-hidden="true" />
-            <div className="absolute -right-28 bottom-[-7rem] size-80 rounded-full border border-white/10 opacity-80" aria-hidden="true" />
+            <div
+              className="absolute -right-28 bottom-[-7rem] size-80 rounded-full border border-white/10 opacity-70 transition duration-300 group-hover:border-gold/25"
+              aria-hidden="true"
+            />
             <div className="relative flex h-full flex-col justify-between pt-8">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
@@ -49,6 +52,9 @@ export function CaseStudiesPreview() {
                 <p className="mt-6 max-w-xl text-base leading-7 text-muted">
                   {featuredStudy.description}
                 </p>
+                <p className="mt-7 text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
+                  Featured direction
+                </p>
               </div>
             </div>
           </article>
@@ -57,7 +63,7 @@ export function CaseStudiesPreview() {
             {supportingStudies.map((study) => (
               <article
                 key={study.title}
-                className="group rounded-[1.5rem] bg-ink/70 px-5 py-5 transition duration-200 hover:-translate-y-0.5 hover:bg-graphite/80 sm:px-6"
+                className="group rounded-[1.75rem] bg-ink/58 px-5 py-5 transition duration-200 hover:-translate-y-0.5 hover:bg-graphite/75 sm:px-6"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
                   {study.label}

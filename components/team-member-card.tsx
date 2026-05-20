@@ -18,8 +18,8 @@ export function TeamMemberCard({
   alt
 }: TeamMemberCardProps) {
   return (
-    <article className="group rounded-2xl border border-white/0 bg-coal/55 p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/45 hover:bg-graphite/70 sm:p-5">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-xl bg-ink">
+    <article className="group rounded-[1.75rem] border border-white/0 bg-coal/55 p-4 transition duration-300 hover:-translate-y-1 hover:border-gold/40 hover:bg-graphite/70 sm:p-5">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-[1.25rem] bg-ink">
         <Image
           src={imageSrc}
           alt={alt}

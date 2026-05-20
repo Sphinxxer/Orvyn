@@ -40,6 +40,8 @@ export const metadata: Metadata = {
 };
 
 export default function CaseStudiesPage() {
+  const [featuredStudy, ...archiveStudies] = caseStudyDetails;
+
   return (
     <SiteFrame>
       <section className="border-b border-white/10 px-5 pb-14 pt-28 sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pt-44">
@@ -71,9 +73,14 @@ export default function CaseStudiesPage() {
         </div>
 
         <div className="space-y-5">
-          {caseStudyDetails.map((study) => (
-            <CaseStudyCard key={study.title} {...study} />
-          ))}
+          {featuredStudy ? <CaseStudyCard {...featuredStudy} /> : null}
+          {archiveStudies.length ? (
+            <div className="space-y-5">
+              {archiveStudies.map((study) => (
+                <CaseStudyCard key={study.title} {...study} />
+              ))}
+            </div>
+          ) : null}
         </div>
       </SectionShell>
 
@@ -84,7 +91,7 @@ export default function CaseStudiesPage() {
               Project Method
             </p>
             <h2 className="mt-5 text-4xl font-bold leading-[1.04] text-white sm:text-5xl">
-              How we approach every project
+              How we shape project direction.
             </h2>
           </div>
           <div className="rounded-[2rem] bg-coal/55 px-5 sm:px-7">

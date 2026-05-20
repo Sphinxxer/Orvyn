@@ -10,7 +10,7 @@ export function Logo({ href = "/", className = "" }: LogoProps) {
   return (
     <Link
       href={href}
-      className={`group inline-flex items-center gap-3.5 ${className}`}
+      className={`group inline-flex items-center gap-3.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${className}`}
       aria-label="Orvyn home"
     >
       <Image

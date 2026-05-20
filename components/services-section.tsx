@@ -6,7 +6,7 @@ import { SectionShell } from "./section-shell";
 export function ServicesSection() {
   return (
     <SectionShell id="services" className="bg-white/[0.012]">
-      <div className="grid gap-12 lg:grid-cols-[0.38fr_1fr] lg:gap-20">
+      <div className="grid gap-12 lg:grid-cols-[0.36fr_1fr] lg:gap-20">
         <div className="lg:sticky lg:top-28 lg:self-start">
           <div className="mb-6 h-px w-16 bg-gold/70" aria-hidden="true" />
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
@@ -24,11 +24,11 @@ export function ServicesSection() {
           </ButtonLink>
         </div>
 
-        <div className="space-y-3">
+        <div className="rounded-[2.25rem] border border-white/10 bg-[#11100d]/70 px-4 py-2 sm:px-6">
           {services.map((service) => (
             <article
               key={service.title}
-              className="group grid gap-5 rounded-[1.5rem] bg-coal/70 px-5 py-5 transition duration-200 hover:-translate-y-0.5 hover:bg-graphite/80 sm:px-6 sm:py-6 md:grid-cols-[auto_0.42fr_1fr] md:items-center md:gap-7"
+              className="group grid gap-5 border-b border-white/10 py-6 transition duration-200 last:border-b-0 hover:border-gold/35 sm:py-7 md:grid-cols-[auto_0.42fr_1fr] md:items-center md:gap-7"
             >
               <div className="flex size-12 items-center justify-center rounded-full bg-gold/10 text-gold-soft transition duration-200 group-hover:bg-gold group-hover:text-ink">
                 <CapabilityIcon icon={service.icon} className="size-5" />

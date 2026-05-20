@@ -20,6 +20,15 @@ body {
   overflow-x: hidden;
 }
 
+:where(a, button, input, select, textarea, [tabindex]):focus {
+  outline: none;
+}
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 1px solid rgba(200, 169, 90, 0.72);
+  outline-offset: 3px;
+}
+
 ::selection {
   background: rgba(200, 169, 90, 0.36);
   color: #ededed;
@@ -35,4 +44,19 @@ body {
 
 .gold-rule {
   background: linear-gradient(90deg, transparent, rgba(200, 169, 90, 0.75), transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

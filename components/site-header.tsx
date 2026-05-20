@@ -14,7 +14,7 @@ export function SiteHeader() {
         <div className="hidden md:block">
           <Link
             href="/contact"
-            className="group inline-flex min-h-11 items-center gap-3 border border-gold/55 bg-gold/10 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-gold-soft shadow-[inset_0_0_0_1px_rgba(200,169,90,0.08)] transition duration-200 hover:-translate-y-0.5 hover:bg-gold hover:text-ink focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink active:translate-y-0"
+            className="group inline-flex min-h-11 items-center gap-3 border border-gold/55 bg-gold/10 px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-gold-soft shadow-[inset_0_0_0_1px_rgba(200,169,90,0.08)] transition duration-200 hover:-translate-y-0.5 hover:bg-gold hover:text-ink focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink active:translate-y-0"
           >
             Start a Project
             <span className="transition group-hover:translate-x-0.5" aria-hidden="true">

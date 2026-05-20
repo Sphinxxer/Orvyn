@@ -25,7 +25,7 @@ export function MethodSection() {
           {methodSteps.map((step) => (
             <article
               key={step.number}
-              className="rounded-2xl bg-ink/70 p-5 transition duration-200 hover:bg-graphite/70 sm:p-6"
+              className="rounded-[1.5rem] bg-ink/66 p-5 transition duration-200 hover:-translate-y-0.5 hover:bg-graphite/70 sm:p-6"
             >
               <span className="text-sm font-semibold text-gold-soft">
                 {step.number}

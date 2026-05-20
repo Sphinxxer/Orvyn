@@ -16,11 +16,18 @@ export function CaseStudyCard({
   deckHref
 }: CaseStudyCardProps) {
   return (
-    <article className="group rounded-[2rem] bg-coal/72 p-5 transition duration-300 hover:-translate-y-1 hover:bg-graphite/72 sm:p-6 lg:p-7">
+    <article className="group rounded-[2.25rem] bg-coal/70 p-5 transition duration-300 hover:-translate-y-1 hover:bg-graphite/72 hover:ring-1 hover:ring-gold/30 sm:p-6 lg:p-7">
       <div className="grid gap-7 lg:grid-cols-[0.4fr_0.6fr] lg:gap-12">
-        <div className="relative min-h-72 overflow-hidden rounded-[1.5rem] bg-ink p-5 transition duration-200">
+        <div className="relative min-h-72 overflow-hidden rounded-[1.75rem] bg-ink p-5 transition duration-200">
           <div className="absolute inset-x-6 top-6 h-px bg-gold/35" aria-hidden="true" />
-          <div className="absolute -right-20 bottom-[-5rem] size-64 rounded-full border border-white/10" aria-hidden="true" />
+          <div
+            className="absolute -right-20 bottom-[-5rem] size-64 rounded-full border border-white/10 transition duration-300 group-hover:border-gold/30"
+            aria-hidden="true"
+          />
+          <div
+            className="absolute bottom-6 left-5 right-5 h-24 rounded-[1.25rem] border border-white/8 bg-white/[0.025]"
+            aria-hidden="true"
+          />
           <div className="relative flex h-full min-h-60 flex-col justify-between pt-7">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
@@ -30,7 +37,9 @@ export function CaseStudyCard({
                 {title}
               </p>
             </div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">{category}</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
+              Project deck
+            </p>
           </div>
         </div>
 
@@ -63,9 +72,9 @@ export function CaseStudyCard({
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`View project deck for ${title}`}
-            className="mt-8 inline-flex w-fit rounded-full border border-gold/35 bg-gold/10 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft transition duration-200 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-ink focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink"
+            className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-gold/35 bg-gold/10 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft transition duration-200 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-ink focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
           >
-            View project deck →
+            View project deck <span aria-hidden="true">→</span>
           </a>
         </div>
       </div>

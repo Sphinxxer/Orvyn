@@ -53,7 +53,7 @@ export function HeroSection() {
                 Start a Project
               </ButtonLink>
               <ButtonLink href="/services" variant="secondary" className="w-full bg-transparent sm:w-auto">
-                Explore Services
+                Explore Capabilities
               </ButtonLink>
             </div>
           </div>

@@ -18,7 +18,7 @@ export function DesktopNav() {
             key={item.href}
             href={item.href}
             aria-current={isActive ? "page" : undefined}
-            className={`relative pb-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] transition ${
+            className={`relative pb-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] transition focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${
               isActive ? "text-gold-soft" : "text-muted hover:text-white"
             }`}
           >

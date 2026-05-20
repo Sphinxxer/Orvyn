@@ -43,7 +43,7 @@ export function SiteFooter() {
                   aria-label={item.label}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="grid size-8 place-items-center border border-white/10 bg-white/[0.01] text-muted transition hover:-translate-y-0.5 hover:border-gold/45 hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink"
+                  className="grid size-8 place-items-center border border-white/10 bg-white/[0.01] text-muted transition hover:-translate-y-0.5 hover:border-gold/45 hover:text-gold focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                 >
                   <SocialIcon icon={item.icon} />
                 </a>
@@ -57,7 +57,7 @@ export function SiteFooter() {
           <Link
             href="/"
             aria-label="Back to Orvyn home"
-            className="text-xs font-semibold uppercase tracking-[0.38em] text-gold-soft/80 transition hover:text-gold-soft focus:outline-none focus:ring-2 focus:ring-gold/70 focus:ring-offset-2 focus:ring-offset-ink"
+            className="text-xs font-semibold uppercase tracking-[0.38em] text-gold-soft/80 transition hover:text-gold-soft focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
           >
             ORVYN
           </Link>
@@ -106,7 +106,7 @@ function FooterLinks({
           <li key={`${title}-${item.label}`}>
             <Link
               href={item.href}
-              className="text-sm font-medium leading-6 text-muted transition hover:text-white"
+              className="text-sm font-medium leading-6 text-muted transition hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
             >
               {item.label}
             </Link>

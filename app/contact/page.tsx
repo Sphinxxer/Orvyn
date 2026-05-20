@@ -53,6 +53,10 @@ export default function ContactPage() {
                 Tell us where your brand is today, what feels unclear, and what
                 you want to build next.
               </p>
+              <p className="mt-5 max-w-md text-sm leading-6 text-gold-soft/85">
+                We only onboard 3 new projects a month so every brand gets the
+                focus, direction, and execution it deserves.
+              </p>
             </div>
 
             <div className="rounded-[1.75rem] bg-coal/60 px-5 py-7 lg:px-6 lg:py-8">
