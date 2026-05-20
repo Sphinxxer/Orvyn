@@ -59,7 +59,62 @@ export function ServicesExplorer() {
   }
 
   return (
-    <div className="grid min-w-0 gap-8 lg:grid-cols-[0.34fr_1fr] lg:gap-14">
+    <>
+      <div className="space-y-3 lg:hidden">
+        {serviceDetails.map((service) => {
+          const serviceId = slugify(service.title);
+          const isActive = activeService === serviceId;
+          const panelId = `${serviceId}-mobile-panel`;
+
+          return (
+            <article
+              key={service.title}
+              className={`overflow-hidden rounded-[1.5rem] border bg-[#11100d]/90 transition duration-200 ${
+                isActive ? "border-gold/45" : "border-white/10"
+              }`}
+            >
+              <button
+                type="button"
+                aria-expanded={isActive}
+                aria-controls={panelId}
+                onClick={() => setActiveService(serviceId)}
+                className="flex w-full items-start gap-4 px-4 py-5 text-left transition focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+              >
+                <span
+                  className={`mt-0.5 flex size-11 shrink-0 items-center justify-center rounded-full transition ${
+                    isActive ? "bg-gold text-ink" : "bg-gold/10 text-gold-soft"
+                  }`}
+                  aria-hidden="true"
+                >
+                  <CapabilityIcon icon={service.icon} className="size-5" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-lg font-semibold leading-tight text-white">
+                    {service.title}
+                  </span>
+                  <span className="mt-2 block text-sm font-medium leading-6 text-gold-soft/90">
+                    {service.positioning}
+                  </span>
+                </span>
+                <span
+                  className="mt-1 flex size-7 shrink-0 items-center justify-center rounded-full border border-white/10 text-lg leading-none text-muted"
+                  aria-hidden="true"
+                >
+                  {isActive ? "−" : "+"}
+                </span>
+              </button>
+
+              {isActive ? (
+                <div id={panelId} className="border-t border-white/10 px-4 pb-5 pt-5">
+                  <ServiceDetailBlocks service={service} />
+                </div>
+              ) : null}
+            </article>
+          );
+        })}
+      </div>
+
+      <div className="hidden min-w-0 gap-8 lg:grid lg:grid-cols-[0.34fr_1fr] lg:gap-14">
       <aside className="min-w-0 lg:sticky lg:top-28 lg:self-start">
         <div className="rounded-[2rem] border border-white/10 bg-[#11100d]/82 p-4 sm:p-5">
           <p className="px-2 text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
@@ -127,46 +182,53 @@ export function ServicesExplorer() {
                   </p>
                 </div>
 
-                <div>
-                  <p className="max-w-2xl text-base leading-7 text-white/74 sm:text-lg sm:leading-8">
-                    {service.description}
-                  </p>
-
-                  <div className="mt-8 grid gap-5 md:grid-cols-[1fr_0.72fr]">
-                    <div className="rounded-[1.5rem] bg-[#0b0b0b]/70 p-5">
-                      <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
-                        What it includes
-                      </h3>
-                      <ul className="mt-5 grid gap-x-5 gap-y-3 sm:grid-cols-2">
-                        {service.includes.map((item) => (
-                          <li key={item} className="flex gap-3 text-sm leading-6 text-muted">
-                            <span
-                              className="mt-2 size-1.5 shrink-0 rounded-full bg-gold"
-                              aria-hidden="true"
-                            />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="flex flex-col justify-between rounded-[1.5rem] bg-[#0b0b0b]/70 p-5">
-                      <div>
-                        <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
-                          Best for
-                        </h3>
-                        <p className="mt-5 text-sm leading-6 text-muted">{service.bestFor}</p>
-                      </div>
-                      <ButtonLink href="/contact" variant="secondary" className="mt-7 w-full">
-                        Start a Project
-                      </ButtonLink>
-                    </div>
-                  </div>
-                </div>
+                <ServiceDetailBlocks service={service} />
               </div>
             </article>
           );
         })}
+      </div>
+      </div>
+    </>
+  );
+}
+
+function ServiceDetailBlocks({ service }: { service: (typeof serviceDetails)[number] }) {
+  return (
+    <div>
+      <p className="max-w-2xl text-base leading-7 text-white/74 sm:text-lg sm:leading-8">
+        {service.description}
+      </p>
+
+      <div className="mt-7 grid gap-4 md:grid-cols-[1fr_0.72fr] lg:mt-8 lg:gap-5">
+        <div className="rounded-[1.5rem] bg-[#0b0b0b]/70 p-5">
+          <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
+            What it includes
+          </h3>
+          <ul className="mt-5 grid gap-x-5 gap-y-3 sm:grid-cols-2">
+            {service.includes.map((item) => (
+              <li key={item} className="flex gap-3 text-sm leading-6 text-muted">
+                <span
+                  className="mt-2 size-1.5 shrink-0 rounded-full bg-gold"
+                  aria-hidden="true"
+                />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="flex flex-col justify-between rounded-[1.5rem] bg-[#0b0b0b]/70 p-5">
+          <div>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
+              Best for
+            </h3>
+            <p className="mt-5 text-sm leading-6 text-muted">{service.bestFor}</p>
+          </div>
+          <ButtonLink href="/contact" variant="secondary" className="mt-7 w-full">
+            Start a Project
+          </ButtonLink>
+        </div>
       </div>
     </div>
   );
