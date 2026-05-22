@@ -13,7 +13,7 @@ type CapabilityIconProps = {
 
 export function CapabilityIcon({ icon, className = "" }: CapabilityIconProps) {
   const commonProps = {
-    className: `size-9 text-gold-soft transition duration-200 group-hover:text-white ${className}`,
+    className: `size-9 text-gold-soft transition duration-200 ${className}`,
     viewBox: "0 0 40 40",
     fill: "none",
     "aria-hidden": true
