@@ -167,11 +167,20 @@ export function ServicesExplorer() {
                 >
                   <span
                     className={`flex size-9 shrink-0 items-center justify-center rounded-full transition ${
-                      isActive ? "bg-ink/12 text-ink" : "bg-gold/10 text-gold-soft group-hover:bg-gold/15"
+                      isActive
+                        ? "bg-black/15 text-ink ring-1 ring-black/10"
+                        : "bg-gold/10 text-gold-soft group-hover:bg-gold/15"
                     }`}
                     aria-hidden="true"
                   >
-                    <CapabilityIcon icon={service.icon} className="size-4 text-current group-hover:text-current" />
+                    <CapabilityIcon
+                      icon={service.icon}
+                      className={`size-4 ${
+                        isActive
+                          ? "text-ink group-hover:text-ink"
+                          : "text-gold-soft group-hover:text-gold-soft"
+                      }`}
+                    />
                   </span>
                   <span>{service.title}</span>
                 </button>
