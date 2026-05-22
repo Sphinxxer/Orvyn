@@ -110,7 +110,7 @@ export default function ServicesPage() {
             <ol className="mt-5 space-y-3">
               {serviceDetails.map((service) => (
                 <li key={service.title} className="flex items-center gap-4 text-sm">
-                  <CapabilityIcon icon={service.icon} className="size-5 shrink-0" />
+                  <CapabilityIcon icon={service.icon} className="size-5 shrink-0 text-gold-soft" />
                   <span className="text-muted">{service.title}</span>
                 </li>
               ))}

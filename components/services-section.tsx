@@ -31,7 +31,7 @@ export function ServicesSection() {
               className="group grid gap-5 border-b border-white/10 py-6 transition duration-200 last:border-b-0 hover:border-gold/35 sm:py-7 md:grid-cols-[auto_0.42fr_1fr] md:items-center md:gap-7"
             >
               <div className="flex size-12 items-center justify-center rounded-full bg-gold/10 text-gold-soft transition duration-200 group-hover:bg-gold group-hover:text-ink">
-                <CapabilityIcon icon={service.icon} className="size-5" />
+                <CapabilityIcon icon={service.icon} className="size-5 text-current" />
               </div>
               <h3 className="text-xl font-semibold leading-tight text-white sm:text-2xl">
                 {service.title}

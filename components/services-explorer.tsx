@@ -94,7 +94,7 @@ export function ServicesExplorer() {
                     }`}
                     aria-hidden="true"
                   >
-                    <CapabilityIcon icon={service.icon} className="size-4" />
+                    <CapabilityIcon icon={service.icon} className="size-4 text-current" />
                   </span>
                   <span className="min-w-0 flex-1 text-sm font-semibold leading-5">
                     {service.title}
@@ -121,7 +121,7 @@ export function ServicesExplorer() {
               className="flex size-12 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold-soft"
               aria-hidden="true"
             >
-              <CapabilityIcon icon={activeServiceDetail.icon} className="size-5" />
+              <CapabilityIcon icon={activeServiceDetail.icon} className="size-5 text-current" />
             </span>
             <div>
               <h2 className="text-2xl font-semibold leading-tight text-white">
@@ -206,7 +206,7 @@ export function ServicesExplorer() {
               <div className="grid gap-8 xl:grid-cols-[0.42fr_1fr] xl:gap-14">
                 <div className="max-w-xl">
                   <div className="flex size-14 items-center justify-center rounded-full bg-gold/10 text-gold-soft">
-                    <CapabilityIcon icon={service.icon} className="size-6" />
+                    <CapabilityIcon icon={service.icon} className="size-6 text-current" />
                   </div>
                   <h2 className="mt-7 text-3xl font-semibold leading-tight text-white sm:text-4xl">
                     {service.title}
