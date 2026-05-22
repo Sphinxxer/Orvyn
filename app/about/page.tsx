@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { CTASection } from "@/components/cta-section";
 import { MethodSection } from "@/components/method-section";
 import { SectionShell } from "@/components/section-shell";
+import { createBreadcrumbJsonLd } from "@/components/seo/breadcrumbs";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { SiteFrame } from "@/components/site-frame";
 import { TeamMemberCard } from "@/components/team-member-card";
 import { teamMembers } from "@/data/home";
@@ -28,14 +30,14 @@ const aboutPrinciples = [
 export const metadata: Metadata = {
   title: "About | Orvyn",
   description:
-    "Orvyn is a modern brand growth agency built on one belief: fix what is unclear, inconsistent, or weak before scaling what works.",
+    "Orvyn is built on one belief: brands should fix what is unclear, inconsistent, or weak before scaling what works.",
   alternates: {
     canonical: "/about"
   },
   openGraph: {
     title: "About | Orvyn",
     description:
-      "Orvyn is a modern brand growth agency built on one belief: fix what is unclear, inconsistent, or weak before scaling what works.",
+      "Orvyn is built on one belief: brands should fix what is unclear, inconsistent, or weak before scaling what works.",
     url: "/about",
     siteName: "Orvyn",
     type: "website",
@@ -53,7 +55,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About | Orvyn",
     description:
-      "Orvyn is a modern brand growth agency built on one belief: fix what is unclear, inconsistent, or weak before scaling what works.",
+      "Orvyn is built on one belief: brands should fix what is unclear, inconsistent, or weak before scaling what works.",
     images: ["/og-image.png"]
   }
 };
@@ -61,6 +63,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <SiteFrame>
+      <JsonLd data={createBreadcrumbJsonLd("About", "/about")} />
       <section className="border-b border-white/10 px-5 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-36 lg:px-8 lg:pt-40">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-semibold uppercase tracking-[0.26em] text-gold-soft sm:text-sm">

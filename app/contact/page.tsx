@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/form/contact-form";
 import { SectionShell } from "@/components/section-shell";
+import { createBreadcrumbJsonLd } from "@/components/seo/breadcrumbs";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { SiteFrame } from "@/components/site-frame";
 
 export const metadata: Metadata = {
   title: "Contact | Orvyn",
   description:
-    "Start a project with Orvyn and build a sharper digital presence for your brand.",
+    "Start a project with Orvyn and build a sharper digital presence for your brand through content, websites, brand direction, and marketing systems.",
   alternates: {
     canonical: "/contact"
   },
   openGraph: {
     title: "Contact | Orvyn",
     description:
-      "Start a project with Orvyn and build a sharper digital presence for your brand.",
+      "Start a project with Orvyn and build a sharper digital presence for your brand through content, websites, brand direction, and marketing systems.",
     url: "/contact",
     siteName: "Orvyn",
     type: "website",
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact | Orvyn",
     description:
-      "Start a project with Orvyn and build a sharper digital presence for your brand.",
+      "Start a project with Orvyn and build a sharper digital presence for your brand through content, websites, brand direction, and marketing systems.",
     images: ["/og-image.png"]
   }
 };
@@ -39,6 +41,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <SiteFrame>
+      <JsonLd data={createBreadcrumbJsonLd("Contact", "/contact")} />
       <SectionShell className="pt-28 sm:pt-36 lg:pt-44">
         <div className="grid gap-12 lg:grid-cols-[0.62fr_1.38fr] lg:gap-20">
           <aside className="space-y-6">

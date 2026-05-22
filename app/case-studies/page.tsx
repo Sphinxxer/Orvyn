@@ -3,20 +3,22 @@ import { CaseStudyCard } from "@/components/case-study-card";
 import { CTASection } from "@/components/cta-section";
 import { ProcessStep } from "@/components/process-step";
 import { SectionShell } from "@/components/section-shell";
+import { createBreadcrumbJsonLd } from "@/components/seo/breadcrumbs";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { SiteFrame } from "@/components/site-frame";
 import { caseStudyDetails, caseStudyProcessSteps } from "@/data/home";
 
 export const metadata: Metadata = {
   title: "Case Studies | Orvyn",
   description:
-    "Explore Orvyn's growing archive of brand directions, digital systems, and project work shaped with clarity and intent.",
+    "Explore Orvyn’s growing archive of brand directions, digital systems, website concepts, content systems, and project decks shaped with clarity and intent.",
   alternates: {
     canonical: "/case-studies"
   },
   openGraph: {
     title: "Case Studies | Orvyn",
     description:
-      "Explore Orvyn's growing archive of brand directions, digital systems, and project work shaped with clarity and intent.",
+      "Explore Orvyn’s growing archive of brand directions, digital systems, website concepts, content systems, and project decks shaped with clarity and intent.",
     url: "/case-studies",
     siteName: "Orvyn",
     type: "website",
@@ -34,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Case Studies | Orvyn",
     description:
-      "Explore Orvyn's growing archive of brand directions, digital systems, and project work shaped with clarity and intent.",
+      "Explore Orvyn’s growing archive of brand directions, digital systems, website concepts, content systems, and project decks shaped with clarity and intent.",
     images: ["/og-image.png"]
   }
 };
@@ -44,6 +46,7 @@ export default function CaseStudiesPage() {
 
   return (
     <SiteFrame>
+      <JsonLd data={createBreadcrumbJsonLd("Case Studies", "/case-studies")} />
       <section className="border-b border-white/10 px-5 pb-14 pt-28 sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pt-44">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.82fr_0.48fr] lg:items-end">
           <div>

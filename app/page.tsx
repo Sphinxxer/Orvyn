@@ -8,16 +8,16 @@ import { ServicesSection } from "@/components/services-section";
 import { SiteFrame } from "@/components/site-frame";
 
 export const metadata: Metadata = {
-  title: "Orvyn | Modern Brand Growth Agency",
+  title: "Orvyn | Brand Growth Agency & Modern Internet Company",
   description:
-    "Orvyn helps brands sharpen their content, website, and marketing system so they look clearer, earn trust faster, and grow with intent.",
+    "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen their content, websites, marketing systems, and digital presence.",
   alternates: {
     canonical: "/"
   },
   openGraph: {
-    title: "Orvyn | Modern Brand Growth Agency",
+    title: "Orvyn | Brand Growth Agency & Modern Internet Company",
     description:
-      "Orvyn helps brands sharpen their content, website, and marketing system so they look clearer, earn trust faster, and grow with intent.",
+      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen their content, websites, marketing systems, and digital presence.",
     url: "/",
     siteName: "Orvyn",
     type: "website",
@@ -27,15 +27,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Orvyn — Modern Brand Growth Agency"
+        alt: "Orvyn brand growth agency"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Orvyn | Modern Brand Growth Agency",
+    title: "Orvyn | Brand Growth Agency & Modern Internet Company",
     description:
-      "Orvyn helps brands sharpen their content, website, and marketing system so they look clearer, earn trust faster, and grow with intent.",
+      "Orvyn helps brands sharpen their content, websites, marketing systems, and digital presence so they look clearer, earn trust faster, and grow with intent.",
     images: ["/og-image.png"]
   }
 };

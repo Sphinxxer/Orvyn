@@ -3,6 +3,8 @@ import { CapabilityIcon } from "@/components/capability-icon";
 import { CTASection } from "@/components/cta-section";
 import { ProcessStep } from "@/components/process-step";
 import { SectionShell } from "@/components/section-shell";
+import { createBreadcrumbJsonLd } from "@/components/seo/breadcrumbs";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { ServicesExplorer } from "@/components/services-explorer";
 import { SiteFrame } from "@/components/site-frame";
 import { serviceDecisionSteps, serviceDetails } from "@/data/home";
@@ -10,14 +12,14 @@ import { serviceDecisionSteps, serviceDetails } from "@/data/home";
 export const metadata: Metadata = {
   title: "Services | Orvyn",
   description:
-    "Explore Orvyn's capabilities across performance marketing, content creation, brand development, websites, social media, and end-to-end growth systems.",
+    "Explore Orvyn’s capabilities across performance marketing, content creation, brand development, website development, social media management, and end-to-end growth systems.",
   alternates: {
     canonical: "/services"
   },
   openGraph: {
     title: "Services | Orvyn",
     description:
-      "Explore Orvyn's capabilities across performance marketing, content creation, brand development, websites, social media, and end-to-end growth systems.",
+      "Explore Orvyn’s capabilities across performance marketing, content creation, brand development, website development, social media management, and end-to-end growth systems.",
     url: "/services",
     siteName: "Orvyn",
     type: "website",
@@ -35,14 +37,55 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Services | Orvyn",
     description:
-      "Explore Orvyn's capabilities across performance marketing, content creation, brand development, websites, social media, and end-to-end growth systems.",
+      "Explore Orvyn’s capabilities across performance marketing, content creation, brand development, website development, social media management, and end-to-end growth systems.",
     images: ["/og-image.png"]
   }
+};
+
+const serviceFaqs = [
+  {
+    question: "What does Orvyn do?",
+    answer:
+      "Orvyn is a brand growth agency and modern internet company helping brands with performance marketing, content creation, brand development, website development, social media management, and end-to-end growth systems."
+  },
+  {
+    question: "Where is Orvyn based?",
+    answer: "Orvyn is based in Tirupur, India, and works with brands across India."
+  },
+  {
+    question: "Who is Orvyn best suited for?",
+    answer:
+      "Orvyn is best suited for brands that want clearer positioning, sharper content, stronger websites, and marketing systems that work together."
+  },
+  {
+    question: "Does Orvyn only handle social media?",
+    answer:
+      "No. Orvyn connects content, websites, brand direction, performance marketing, and social media into one clearer growth system."
+  },
+  {
+    question: "How many projects does Orvyn onboard?",
+    answer:
+      "Orvyn works with a limited number of new projects each month so every brand gets focused direction and execution."
+  }
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: serviceFaqs.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer
+    }
+  }))
 };
 
 export default function ServicesPage() {
   return (
     <SiteFrame>
+      <JsonLd data={[createBreadcrumbJsonLd("Services", "/services"), faqJsonLd]} />
       <section className="border-b border-white/10 px-5 pb-14 pt-28 sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pt-44">
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_0.55fr] lg:items-end">
           <div>
@@ -55,7 +98,8 @@ export default function ServicesPage() {
             <p className="mt-7 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
               Orvyn helps brands fix unclear messaging, weak content, outdated
               websites, and disconnected marketing — then builds the systems
-              needed to grow with more intent.
+              needed to grow with more intent. Based in Tirupur, Orvyn works
+              with brands across India.
             </p>
           </div>
 
@@ -106,6 +150,31 @@ export default function ServicesPage() {
           <div className="rounded-[2rem] bg-coal/55 px-5 sm:px-7">
             {serviceDecisionSteps.map((step) => (
               <ProcessStep key={step.number} {...step} />
+            ))}
+          </div>
+        </div>
+      </SectionShell>
+
+      <SectionShell className="pt-0">
+        <div className="grid gap-8 lg:grid-cols-[0.42fr_1fr] lg:gap-14">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
+              Common questions
+            </p>
+            <h2 className="mt-4 text-3xl font-bold leading-[1.04] text-white sm:text-5xl">
+              Clear answers before we talk.
+            </h2>
+          </div>
+          <div className="divide-y divide-white/10 rounded-[2rem] bg-coal/55 px-5 sm:px-7">
+            {serviceFaqs.map((item) => (
+              <article key={item.question} className="py-6">
+                <h3 className="text-base font-semibold leading-6 text-white">
+                  {item.question}
+                </h3>
+                <p className="mt-3 max-w-3xl text-sm leading-6 text-muted">
+                  {item.answer}
+                </p>
+              </article>
             ))}
           </div>
         </div>

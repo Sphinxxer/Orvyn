@@ -71,7 +71,7 @@ export function CaseStudyCard({
             href={deckHref}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`View project deck for ${title}`}
+            aria-label={`View ${title} project deck`}
             className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-gold/35 bg-gold/10 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft transition duration-200 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-ink focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
           >
             View project deck <span aria-hidden="true">→</span>

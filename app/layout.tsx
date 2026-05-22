@@ -13,20 +13,36 @@ const inter = Inter({
 const baseUrl = "https://orvyn.cc";
 
 const defaultDescription =
-  "Orvyn helps brands sharpen their content, website, and marketing system so they look clearer, earn trust faster, and grow with intent.";
+  "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen their content, websites, marketing systems, and digital presence.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: "Orvyn | Modern Brand Growth Agency",
+  title: "Orvyn | Brand Growth Agency & Modern Internet Company",
   description: defaultDescription,
+  keywords: [
+    "brand growth agency",
+    "modern internet company",
+    "marketing agency in Tirupur",
+    "brand growth agency India",
+    "content creation agency",
+    "performance marketing agency",
+    "website development agency",
+    "social media management agency",
+    "digital marketing agency in Tirupur"
+  ],
   alternates: {
     canonical: "/"
   },
   icons: {
-    icon: "/orvyn-icon.svg"
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/orvyn-icon.svg", type: "image/svg+xml", media: "(prefers-color-scheme: dark)" }
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg"
   },
   openGraph: {
-    title: "Orvyn | Modern Brand Growth Agency",
+    title: "Orvyn | Brand Growth Agency & Modern Internet Company",
     description: defaultDescription,
     siteName: "Orvyn",
     type: "website",
@@ -37,14 +53,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Orvyn — Modern Brand Growth Agency"
+        alt: "Orvyn brand growth agency"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Orvyn | Modern Brand Growth Agency",
-    description: defaultDescription,
+    title: "Orvyn | Brand Growth Agency & Modern Internet Company",
+    description:
+      "Orvyn helps brands sharpen their content, websites, marketing systems, and digital presence so they look clearer, earn trust faster, and grow with intent.",
     images: ["/og-image.png"]
   }
 };
@@ -54,10 +71,15 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Orvyn",
+    alternateName: ["ORVYN", "Orvyn.cc"],
     url: baseUrl,
-    logo: `${baseUrl}/orvyn-icon.svg`,
+    logo: `${baseUrl}/favicon.svg`,
     description:
-      "Orvyn is a modern brand growth agency helping brands sharpen their content, websites, and marketing systems.",
+      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen their content, websites, marketing systems, and digital presence.",
+    founder: {
+      "@type": "Person",
+      name: "Bharath Kesav"
+    },
     sameAs: [
       "https://www.instagram.com/orvyn.cc/",
       "https://www.linkedin.com/company/orvyncc/"
@@ -67,18 +89,22 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Orvyn",
-    url: baseUrl
+    alternateName: ["ORVYN", "Orvyn.cc"],
+    url: baseUrl,
+    description:
+      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India."
   },
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Orvyn",
+    alternateName: ["ORVYN", "Orvyn.cc"],
     url: baseUrl,
     image: `${baseUrl}/og-image.png`,
-    logo: `${baseUrl}/orvyn-icon.svg`,
+    logo: `${baseUrl}/favicon.svg`,
     description:
-      "Orvyn is a modern brand growth agency helping brands sharpen their content, websites, and marketing systems.",
-    areaServed: "India",
+      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen content, websites, marketing systems, and digital presence.",
+    areaServed: ["India", "Tamil Nadu", "Tirupur"],
     address: {
       "@type": "PostalAddress",
       addressLocality: "Tirupur",
