@@ -12,14 +12,14 @@ import { serviceDecisionSteps, serviceDetails } from "@/data/home";
 export const metadata: Metadata = {
   title: "Services | Orvyn",
   description:
-    "Explore Orvyn’s four core functions: consulting, design, websites, and marketing — one system for modern brand growth.",
+    "Explore Orvyn’s four core functions: consulting, design, marketing, and websites — one system for modern brand growth.",
   alternates: {
     canonical: "/services"
   },
   openGraph: {
     title: "Services | Orvyn",
     description:
-      "Explore Orvyn’s four core functions: consulting, design, websites, and marketing — one system for modern brand growth.",
+      "Explore Orvyn’s four core functions: consulting, design, marketing, and websites — one system for modern brand growth.",
     url: "/services",
     siteName: "Orvyn",
     type: "website",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Services | Orvyn",
     description:
-      "Explore Orvyn’s four core functions: consulting, design, websites, and marketing — one system for modern brand growth.",
+      "Explore Orvyn’s four core functions: consulting, design, marketing, and websites — one system for modern brand growth.",
     images: ["/og-image.png"]
   }
 };
@@ -46,7 +46,7 @@ const serviceFaqs = [
   {
     question: "What does Orvyn do?",
     answer:
-      "Orvyn helps brands fix, build, and market their digital presence through four core functions: consulting, design, websites, and marketing."
+      "Orvyn helps brands fix, build, and market their digital presence through four core functions: consulting, design, marketing, and websites."
   },
   {
     question: "What services does Orvyn offer?",
@@ -102,11 +102,11 @@ export default function ServicesPage() {
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
               Every brand does not need the same fix. Some need sharper
-              direction. Some need better design. Some need a stronger website.
-              Some need marketing that moves with purpose.
+              direction. Some need better design. Some need marketing that
+              moves with purpose. Some need a stronger website.
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 text-gold-soft/85 sm:text-lg sm:leading-8">
-              Orvyn brings consulting, design, websites, and marketing into one
+              Orvyn brings consulting, design, marketing, and websites into one
               clearer system.
             </p>
           </div>
@@ -197,3 +197,4 @@ export default function ServicesPage() {
     </SiteFrame>
   );
 }
+

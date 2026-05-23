@@ -85,13 +85,13 @@ body {
     }
 
     .custom-cursor__arrow {
-      color: rgba(237, 237, 237, 0.94);
+      color: #EDEDED;
       position: fixed;
       left: 0;
       top: 0;
-      width: 1.875rem;
-      height: 2.25rem;
-      filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.38));
+      width: 1.5rem;
+      height: 1.5rem;
+      filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.36));
       transform-origin: 3px 3px;
       transition:
         color 160ms ease,
@@ -102,6 +102,7 @@ body {
 
     .custom-cursor__glyph {
       display: block;
+      transform: translate(-3px, -3px);
       transform-origin: 3px 3px;
       transition: transform 160ms ease;
     }
@@ -112,14 +113,14 @@ body {
     }
 
     .custom-cursor.is-active .custom-cursor__arrow {
-      color: rgba(255, 255, 255, 0.98);
+      color: #C8A95A;
       filter:
         drop-shadow(0 10px 20px rgba(0, 0, 0, 0.44))
-        drop-shadow(0 0 12px rgba(200, 169, 90, 0.16));
+        drop-shadow(0 0 12px rgba(200, 169, 90, 0.22));
     }
 
     .custom-cursor.is-active .custom-cursor__glyph {
-      transform: scale(1.12);
+      transform: translate(-3px, -3px) scale(1.1);
     }
   }
 }

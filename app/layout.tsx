@@ -118,8 +118,8 @@ const jsonLd = [
     serviceType: [
       "Consulting",
       "Design",
-      "Websites",
       "Marketing",
+      "Websites",
       "Performance Marketing",
       "Content Creation",
       "Brand Development",

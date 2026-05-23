@@ -22,18 +22,18 @@ export const services = [
     icon: "brand"
   },
   {
-    title: "Websites",
-    description:
-      "Build a digital home that explains the offer clearly and turns visitors into enquiries.",
-    tags: "Web Design · Development · Landing Pages · Conversion Flow",
-    icon: "website"
-  },
-  {
     title: "Marketing",
     description:
       "Turn attention into visibility, enquiries, leads, and measurable movement.",
     tags: "Social Media · Performance Ads · SEO · Campaigns",
     icon: "performance"
+  },
+  {
+    title: "Websites",
+    description:
+      "Build a digital home that explains the offer clearly and turns visitors into enquiries.",
+    tags: "Web Design · Development · Landing Pages · Conversion Flow",
+    icon: "website"
   }
 ];
 
@@ -80,6 +80,27 @@ export const serviceDetails = [
       "Brand Identity · Social Creatives · Visual Systems · Pitch Decks · Campaign Design"
   },
   {
+    title: "Marketing",
+    icon: "performance",
+    positioning: "Move attention toward business outcomes.",
+    description:
+      "Attention only matters when it moves somewhere. Marketing connects content, campaigns, ads, SEO, and visibility to clearer business movement.",
+    includes: [
+      "Social media management",
+      "Performance marketing",
+      "Meta ads",
+      "Campaign planning",
+      "SEO basics",
+      "Content planning",
+      "Reels and shoot direction",
+      "Monthly marketing systems",
+      "Creative testing"
+    ],
+    bestFor:
+      "Brands that are ready to get more visible, generate enquiries, improve consistency, or create stronger marketing momentum.",
+    relatedServices: "Social Media · Performance Ads · SEO · Campaigns · Content Planning"
+  },
+  {
     title: "Websites",
     icon: "website",
     positioning: "Turn the website into a clearer reason to trust.",
@@ -100,27 +121,6 @@ export const serviceDetails = [
       "Businesses that need a clearer digital home, stronger trust, and a website that supports enquiries, leads, or sales.",
     relatedServices:
       "Web Design · Development · Landing Pages · Conversion Flow · Portfolio Pages"
-  },
-  {
-    title: "Marketing",
-    icon: "performance",
-    positioning: "Move attention toward business outcomes.",
-    description:
-      "Attention only matters when it moves somewhere. Marketing connects content, campaigns, ads, SEO, and visibility to clearer business movement.",
-    includes: [
-      "Social media management",
-      "Performance marketing",
-      "Meta ads",
-      "Campaign planning",
-      "SEO basics",
-      "Content planning",
-      "Reels and shoot direction",
-      "Monthly marketing systems",
-      "Creative testing"
-    ],
-    bestFor:
-      "Brands that are ready to get more visible, generate enquiries, improve consistency, or create stronger marketing momentum.",
-    relatedServices: "Social Media · Performance Ads · SEO · Campaigns · Content Planning"
   }
 ];
 
@@ -150,25 +150,25 @@ export const methodSteps = [
     number: "01",
     title: "Diagnose",
     description:
-      "We understand where the brand stands today: the audience, offer, content, website, visuals, competitors, and current growth gaps."
+      "The first step is finding what feels unclear across the audience, offer, content, website, visuals, and growth gaps."
   },
   {
     number: "02",
     title: "Sharpen",
     description:
-      "We improve the parts that shape perception: messaging, positioning, visual direction, content structure, website flow, and offer clarity."
+      "Next, the parts that shape perception get tightened: messaging, positioning, visual direction, content, and offer clarity."
   },
   {
     number: "03",
     title: "Build",
     description:
-      "We create the assets and systems needed to move the brand forward: content plans, social creatives, websites, landing pages, campaigns, and brand systems."
+      "The right assets and systems are then created to move the brand forward: content, websites, landing pages, campaigns, and brand systems."
   },
   {
     number: "04",
     title: "Scale",
     description:
-      "We review what works, fix what does not, test new ideas, and help the brand grow with better clarity and control."
+      "What works gets reviewed, what does not gets fixed, and growth becomes easier to control."
   }
 ];
 
@@ -332,8 +332,8 @@ export const teamMembers = [
 export const contactNeeds = [
   "Consulting",
   "Design",
-  "Websites",
   "Marketing",
+  "Websites",
   "Not sure yet"
 ];
 

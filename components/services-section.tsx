@@ -13,12 +13,15 @@ export function ServicesSection() {
             What Orvyn does
           </p>
           <h2 className="mt-5 text-balance text-4xl font-bold leading-[1.04] text-white sm:text-5xl">
-            Consulting. Design. Websites. Marketing.
+            Consulting. Design. Marketing. Websites.
           </h2>
           <p className="mt-6 max-w-sm text-base leading-7 text-white/72">
-            Four functions. One system for modern brand growth. We help brands
-            fix, build, and market their digital presence through four core
-            functions.
+            Four functions. One system for modern brand growth.
+          </p>
+          <p className="mt-4 max-w-sm text-base leading-7 text-white/72">
+            Brands do not always need more activity. Sometimes they need clearer
+            direction, sharper design, a better website, or marketing that finally
+            works together.
           </p>
           <ButtonLink href="/services" variant="secondary" className="mt-8">
             Explore Services

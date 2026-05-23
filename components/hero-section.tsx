@@ -20,8 +20,8 @@ export function HeroSection() {
               Home / Modern Brand Growth Agency
             </p>
             <h1 className="text-balance text-[clamp(2.85rem,10vw,4rem)] font-black leading-[1.08] tracking-[-0.025em] text-white sm:leading-[1.06] lg:text-[clamp(5rem,7.5vw,8.25rem)] lg:leading-[1.03] xl:leading-[1.01]">
-              <span className="block">Become</span>
-              <span className="block">impossible</span>
+              <span className="block">Become </span>
+              <span className="block">impossible </span>
               <span className="block">
                 to <span className="text-gold-soft">ignore.</span>
               </span>
