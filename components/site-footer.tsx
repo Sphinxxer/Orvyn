@@ -19,8 +19,8 @@ export function SiteFooter() {
               Become impossible to ignore with ORVYN.
             </p>
             <p className="mt-4 max-w-sm text-sm leading-6 text-muted">
-              Modern brand growth for brands built to grow. A brand growth
-              agency and modern internet company based in Tirupur, India.
+              Brand growth agency and modern internet company based in Tirupur,
+              India.
             </p>
           </div>
 

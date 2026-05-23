@@ -8,137 +8,119 @@
 
 export const services = [
   {
-    title: "Performance Marketing",
-    description: "Meta ads and campaign systems built to turn attention into leads, inquiries, or sales.",
-    icon: "performance"
+    title: "Consulting",
+    description:
+      "Find what is unclear, what needs fixing, and what direction the brand should take next.",
+    tags: "Audits · Strategy · Positioning · Messaging",
+    icon: "system"
   },
   {
-    title: "Content Creation",
-    description: "Reels, shoots, and visuals planned to make your brand look sharper and easier to trust.",
-    icon: "content"
-  },
-  {
-    title: "Brand Development",
-    description: "Positioning, messaging, and visual direction that make your brand easier to understand and remember.",
+    title: "Design",
+    description:
+      "Make the brand look sharper, feel consistent, and communicate with more intent.",
+    tags: "Brand Identity · Social Creatives · Visual Systems · Pitch Decks",
     icon: "brand"
   },
   {
-    title: "Website Development",
-    description: "Modern websites built to explain your offer clearly and convert visitors into action.",
+    title: "Websites",
+    description:
+      "Build a digital home that explains the offer clearly and turns visitors into enquiries.",
+    tags: "Web Design · Development · Landing Pages · Conversion Flow",
     icon: "website"
   },
   {
-    title: "Social Media Management",
-    description: "Content planning and profile management that keep your brand consistent online.",
-    icon: "social"
-  },
-  {
-    title: "End-to-End Growth Systems",
-    description: "Strategy, content, website, and campaigns connected into one clearer growth system.",
-    icon: "system"
+    title: "Marketing",
+    description:
+      "Turn attention into visibility, enquiries, leads, and measurable movement.",
+    tags: "Social Media · Performance Ads · SEO · Campaigns",
+    icon: "performance"
   }
 ];
 
 export const serviceDetails = [
   {
-    title: "Performance Marketing",
-    icon: "performance",
-    positioning: "Turn attention into measurable action.",
+    title: "Consulting",
+    icon: "system",
+    positioning: "Find the gap before building more.",
     description:
-      "We structure ad campaigns, creatives, landing pages, and funnel improvements so paid marketing has a clearer path to leads, inquiries, or sales.",
+      "Before a brand does more content, ads, or redesigns, it needs to know what is actually holding it back. Consulting uncovers what feels unclear, what needs fixing, and what direction makes sense next.",
     includes: [
-      "Meta ads strategy",
-      "Campaign structure",
-      "Creative testing",
-      "Landing page direction",
-      "Funnel review",
-      "Performance improvement"
+      "Brand audits",
+      "Digital presence review",
+      "Positioning direction",
+      "Messaging clarity",
+      "Offer clarity",
+      "Growth planning",
+      "Campaign direction",
+      "Content and website recommendations"
     ],
     bestFor:
-      "Brands that are ready to generate leads, inquiries, traffic, or sales with a clearer paid growth system."
+      "Brands that know something is not working but need a clearer diagnosis before investing in more marketing, content, or website work.",
+    relatedServices: "Audits · Strategy · Positioning · Messaging · Growth Direction"
   },
   {
-    title: "Content Creation",
-    icon: "content",
-    positioning: "Create content that makes the brand easier to trust.",
-    description:
-      "We plan and direct reels, shoots, product visuals, and campaign creatives so your brand shows up with stronger quality and clearer intent.",
-    includes: [
-      "Reels direction",
-      "Shoot planning",
-      "Product content",
-      "Campaign creatives",
-      "Founder-led content direction",
-      "Visual storytelling"
-    ],
-    bestFor:
-      "Brands that need better content quality, stronger creative direction, and a more premium online presence."
-  },
-  {
-    title: "Brand Development",
+    title: "Design",
     icon: "brand",
-    positioning: "Make the brand easier to understand, trust, and remember.",
+    positioning: "Make the brand easier to notice, understand, and trust.",
     description:
-      "We sharpen positioning, messaging, visual direction, and tone so your brand stops feeling scattered and starts feeling intentional.",
+      "People judge a brand before they fully understand it. Design makes the first impression sharper, the message clearer, and every touchpoint feel more intentional.",
     includes: [
-      "Brand positioning",
-      "Visual direction",
-      "Tone of voice",
-      "Messaging structure",
-      "Brand clarity",
-      "Identity refinement"
+      "Brand identity direction",
+      "Visual systems",
+      "Social media creatives",
+      "Pitch decks",
+      "Campaign design",
+      "Content design",
+      "Brand refresh direction",
+      "Creative systems"
     ],
-    bestFor: "Brands that feel unclear, inconsistent, outdated, or difficult to explain."
+    bestFor:
+      "Brands that need a sharper visual presence, stronger consistency, and better creative communication.",
+    relatedServices:
+      "Brand Identity · Social Creatives · Visual Systems · Pitch Decks · Campaign Design"
   },
   {
-    title: "Website Development",
+    title: "Websites",
     icon: "website",
-    positioning: "Build the digital home that earns trust.",
+    positioning: "Turn the website into a clearer reason to trust.",
     description:
-      "We build websites and landing pages that explain your offer clearly, improve first impressions, and guide visitors toward action.",
+      "A website should do more than exist. It should explain the offer, build trust quickly, and make the next step easy for the visitor.",
     includes: [
       "Website strategy",
+      "Website design",
+      "Website development",
       "Landing pages",
-      "Responsive design",
+      "Service pages",
+      "Portfolio pages",
+      "Conversion flow",
       "Copy structure",
-      "Conversion-focused layout",
-      "Portfolio and service pages"
+      "Mobile-first experience"
     ],
     bestFor:
-      "Businesses that need a sharper digital home, better trust, and a more professional first impression."
+      "Businesses that need a clearer digital home, stronger trust, and a website that supports enquiries, leads, or sales.",
+    relatedServices:
+      "Web Design · Development · Landing Pages · Conversion Flow · Portfolio Pages"
   },
   {
-    title: "Social Media Management",
-    icon: "social",
-    positioning: "Show up consistently without looking random.",
+    title: "Marketing",
+    icon: "performance",
+    positioning: "Move attention toward business outcomes.",
     description:
-      "We create a structured social presence through content planning, profile direction, captions, design, and monthly content systems.",
+      "Attention only matters when it moves somewhere. Marketing connects content, campaigns, ads, SEO, and visibility to clearer business movement.",
     includes: [
-      "Content planning",
-      "Post design",
-      "Captions",
-      "Profile optimization",
-      "Monthly content direction",
-      "Grid and highlight structure"
-    ],
-    bestFor:
-      "Brands that want consistency, better presentation, and a more strategic content presence."
-  },
-  {
-    title: "End-to-End Growth Systems",
-    icon: "system",
-    positioning: "Bring the moving parts of growth into one direction.",
-    description:
-      "For brands that need more than one service, we connect brand clarity, content, website, and marketing into one system that can improve over time.",
-    includes: [
-      "Brand audit",
-      "Growth strategy",
-      "Content system",
-      "Website direction",
+      "Social media management",
       "Performance marketing",
-      "Ongoing improvement"
+      "Meta ads",
+      "Campaign planning",
+      "SEO basics",
+      "Content planning",
+      "Reels and shoot direction",
+      "Monthly marketing systems",
+      "Creative testing"
     ],
-    bestFor: "Brands that want one clear system instead of scattered marketing efforts."
+    bestFor:
+      "Brands that are ready to get more visible, generate enquiries, improve consistency, or create stronger marketing momentum.",
+    relatedServices: "Social Media · Performance Ads · SEO · Campaigns · Content Planning"
   }
 ];
 
@@ -190,7 +172,18 @@ export const methodSteps = [
   }
 ];
 
-export const caseStudyDetails = [
+export type CaseStudyDetail = {
+  title: string;
+  category: string;
+  description: string;
+  focusAreas: string[];
+  label: string;
+  deckHref?: string;
+  deckStatus?: "available" | "coming-soon";
+  tags?: string[];
+};
+
+export const caseStudyDetails: CaseStudyDetail[] = [
   {
     title: "Grandeur Associates",
     category: "Instagram Portfolio Direction",
@@ -204,7 +197,27 @@ export const caseStudyDetails = [
       "Shoot direction"
     ],
     label: "Client Direction",
-    deckHref: "/case-studies/grandeur-associates.pdf"
+    deckHref: "/case-studies/grandeur-associates.pdf",
+    deckStatus: "available",
+    tags: ["Strategy", "Content", "Direction"]
+  },
+  {
+    title: "TRIC Academy",
+    category: "Website Direction",
+    description:
+      "A website direction and digital structure for a Tirupur-based sports academy built around swimming programs, memberships, facilities, and application flow.",
+    focusAreas: [
+      "Website structure",
+      "Program discovery",
+      "Application flow",
+      "Facility presentation",
+      "Mobile-first user experience",
+      "Local trust building"
+    ],
+    label: "Website Build",
+    deckHref: "/case-studies/tric-academy.pdf",
+    deckStatus: "coming-soon",
+    tags: ["Website", "Local trust", "Application flow"]
   },
   {
     title: "Biomode",
@@ -219,7 +232,9 @@ export const caseStudyDetails = [
       "Visual system refinement"
     ],
     label: "Client Work",
-    deckHref: "/case-studies/biomode.pdf"
+    deckHref: "/case-studies/biomode.pdf",
+    deckStatus: "available",
+    tags: ["Content", "Catalog", "Design"]
   },
   {
     title: "Cameo Garments",
@@ -234,7 +249,9 @@ export const caseStudyDetails = [
       "Portfolio-building direction"
     ],
     label: "Website Concept",
-    deckHref: "/case-studies/cameo-garments.pdf"
+    deckHref: "/case-studies/cameo-garments.pdf",
+    deckStatus: "available",
+    tags: ["Website", "Concept", "Export"]
   },
   {
     title: "SRA Financial Planning",
@@ -249,7 +266,9 @@ export const caseStudyDetails = [
       "Trust-led communication"
     ],
     label: "Brand Direction",
-    deckHref: "/case-studies/sra-financial-planning.pdf"
+    deckHref: "/case-studies/sra-financial-planning.pdf",
+    deckStatus: "available",
+    tags: ["Brand direction", "Identity", "Trust"]
   }
 ];
 
@@ -311,12 +330,11 @@ export const teamMembers = [
 ];
 
 export const contactNeeds = [
-  "Performance Marketing",
-  "Content Creation",
-  "Brand Development",
-  "Website Development",
-  "Social Media Management",
-  "End-to-End Growth Systems"
+  "Consulting",
+  "Design",
+  "Websites",
+  "Marketing",
+  "Not sure yet"
 ];
 
 export const budgetRanges = [

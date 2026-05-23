@@ -57,8 +57,8 @@ export default function ContactPage() {
                 you want to build next.
               </p>
               <p className="mt-5 max-w-md text-sm leading-6 text-gold-soft/85">
-                We only onboard 3 new projects a month so every brand gets the
-                focus, direction, and execution it deserves.
+                Orvyn only onboards a limited number of new projects each month
+                so every brand gets focused direction and execution.
               </p>
             </div>
 

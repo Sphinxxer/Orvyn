@@ -143,7 +143,7 @@ export function ServicesExplorer() {
       <aside className="min-w-0 lg:sticky lg:top-28 lg:self-start">
         <div className="rounded-[2rem] border border-white/10 bg-[#11100d]/82 p-4 sm:p-5">
           <p className="px-2 text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
-            Capability browser
+            Operating system
           </p>
           <nav
             className="mt-5 flex min-w-0 max-w-full gap-2 overflow-x-auto pb-2 lg:flex-col lg:overflow-visible lg:pb-0"
@@ -258,6 +258,16 @@ function ServiceDetailBlocks({ service }: { service: (typeof serviceDetails)[num
               Best for
             </h3>
             <p className="mt-5 text-sm leading-6 text-muted">{service.bestFor}</p>
+            {service.relatedServices ? (
+              <>
+                <h3 className="mt-7 text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
+                  Related services
+                </h3>
+                <p className="mt-4 text-xs font-semibold uppercase leading-6 tracking-[0.16em] text-white/62">
+                  {service.relatedServices}
+                </p>
+              </>
+            ) : null}
           </div>
           <ButtonLink href="/contact" variant="secondary" className="mt-7 w-full">
             Start a Project

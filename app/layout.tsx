@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { CustomCursor } from "@/components/ui/CustomCursor";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,7 +29,10 @@ export const metadata: Metadata = {
     "performance marketing agency",
     "website development agency",
     "social media management agency",
-    "digital marketing agency in Tirupur"
+    "digital marketing agency in Tirupur",
+    "brand consulting",
+    "website design",
+    "SEO campaigns"
   ],
   alternates: {
     canonical: "/"
@@ -112,12 +116,17 @@ const jsonLd = [
       addressCountry: "IN"
     },
     serviceType: [
+      "Consulting",
+      "Design",
+      "Websites",
+      "Marketing",
       "Performance Marketing",
       "Content Creation",
       "Brand Development",
       "Website Development",
       "Social Media Management",
-      "End-to-End Growth Systems"
+      "SEO",
+      "Campaigns"
     ],
     sameAs: [
       "https://www.instagram.com/orvyn.cc/",
@@ -135,6 +144,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} bg-ink font-sans text-white antialiased`}>
         <JsonLd data={jsonLd} />
+        <CustomCursor />
         {children}
         <MicrosoftClarity />
       </body>

@@ -4,7 +4,10 @@ type CaseStudyCardProps = {
   description: string;
   focusAreas: string[];
   label: string;
-  deckHref: string;
+  deckHref?: string;
+  deckStatus?: "available" | "coming-soon";
+  tags?: string[];
+  featured?: boolean;
 };
 
 export function CaseStudyCard({
@@ -13,69 +16,124 @@ export function CaseStudyCard({
   description,
   focusAreas,
   label,
-  deckHref
+  deckHref,
+  deckStatus = "available",
+  tags = [],
+  featured = false
 }: CaseStudyCardProps) {
+  const hasDeck = deckStatus === "available" && Boolean(deckHref);
+
   return (
-    <article className="group rounded-[2.25rem] bg-coal/70 p-5 transition duration-300 hover:-translate-y-1 hover:bg-graphite/72 hover:ring-1 hover:ring-gold/30 sm:p-6 lg:p-7">
-      <div className="grid gap-7 lg:grid-cols-[0.4fr_0.6fr] lg:gap-12">
-        <div className="relative min-h-72 overflow-hidden rounded-[1.75rem] bg-ink p-5 transition duration-200">
+    <article
+      data-cursor="interactive"
+      className={`group overflow-hidden rounded-[2rem] bg-coal/68 transition duration-300 hover:bg-graphite/70 hover:ring-1 hover:ring-gold/25 ${
+        featured ? "p-5 sm:p-7 lg:p-8" : "p-5 sm:p-6"
+      }`}
+    >
+      <div
+        className={`grid gap-6 ${
+          featured
+            ? "lg:grid-cols-[0.44fr_0.56fr] lg:gap-12"
+            : "lg:grid-cols-[0.32fr_0.68fr] lg:items-center lg:gap-10"
+        }`}
+      >
+        <div
+          className={`relative overflow-hidden rounded-[1.65rem] bg-ink p-5 transition duration-300 group-hover:-translate-y-1 ${
+            featured ? "min-h-80 sm:min-h-[25rem]" : "min-h-56"
+          }`}
+        >
           <div className="absolute inset-x-6 top-6 h-px bg-gold/35" aria-hidden="true" />
           <div
             className="absolute -right-20 bottom-[-5rem] size-64 rounded-full border border-white/10 transition duration-300 group-hover:border-gold/30"
             aria-hidden="true"
           />
           <div
-            className="absolute bottom-6 left-5 right-5 h-24 rounded-[1.25rem] border border-white/8 bg-white/[0.025]"
+            className="absolute bottom-6 left-5 right-5 h-20 rounded-[1.25rem] border border-white/8 bg-white/[0.025] transition duration-300 group-hover:translate-x-2"
             aria-hidden="true"
           />
-          <div className="relative flex h-full min-h-60 flex-col justify-between pt-7">
+          <div className="relative flex h-full flex-col justify-between pt-7">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
                 {label}
               </p>
-              <p className="mt-4 max-w-52 text-3xl font-semibold leading-tight text-white">
+              <p
+                className={`mt-4 max-w-64 font-semibold leading-tight text-white ${
+                  featured ? "text-4xl sm:text-5xl" : "text-3xl"
+                }`}
+              >
                 {title}
               </p>
             </div>
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-              Project deck
+              {hasDeck ? "Project deck" : "Deck pending"}
             </p>
           </div>
         </div>
 
-        <div className="flex flex-col justify-between">
+        <div className="flex min-w-0 flex-col justify-between">
           <div>
-            <span className="inline-flex rounded-full bg-gold/10 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft">
-              {label}
-            </span>
-            <p className="mt-5 text-sm font-medium text-muted">{category}</p>
-            <h2 className="mt-7 text-3xl font-semibold leading-tight text-white transition group-hover:text-gold-soft sm:text-4xl">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="inline-flex rounded-full bg-gold/10 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft">
+                {label}
+              </span>
+              <span className="text-sm font-medium text-muted">{category}</span>
+            </div>
+
+            <h2
+              className={`mt-6 font-semibold leading-tight text-white transition group-hover:text-gold-soft ${
+                featured ? "text-4xl sm:text-6xl" : "text-3xl sm:text-4xl"
+              }`}
+            >
               {title}
             </h2>
-            <p className="mt-4 max-w-2xl text-base leading-7 text-muted">{description}</p>
+            <p className="mt-4 max-w-3xl text-base leading-7 text-muted">{description}</p>
 
-            <h3 className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
-              Focus areas
-            </h3>
-            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-              {focusAreas.map((area) => (
-                <li key={area} className="flex gap-3 text-sm leading-6 text-muted">
-                  <span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold" aria-hidden="true" />
-                  <span>{area}</span>
-                </li>
-              ))}
-            </ul>
+            {tags.length ? (
+              <div className="mt-5 flex flex-wrap gap-2">
+                {tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-white/10 px-3 py-1.5 text-xs font-medium text-white/65"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+
+            <div className="mt-8 border-t border-white/10 pt-6">
+              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
+                Focus areas
+              </h3>
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                {focusAreas.map((area) => (
+                  <li key={area} className="flex gap-3 text-sm leading-6 text-muted">
+                    <span
+                      className="mt-2 size-1.5 shrink-0 rounded-full bg-gold"
+                      aria-hidden="true"
+                    />
+                    <span>{area}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          <a
-            href={deckHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`View ${title} project deck`}
-            className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-gold/35 bg-gold/10 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft transition duration-200 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-ink focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
-          >
-            View project deck <span aria-hidden="true">→</span>
-          </a>
+          {hasDeck ? (
+            <a
+              href={deckHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${title} project deck`}
+              className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-gold/35 bg-gold/10 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft transition duration-200 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-ink focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+            >
+              View project deck <span className="transition group-hover:translate-x-1" aria-hidden="true">→</span>
+            </a>
+          ) : (
+            <span className="mt-8 inline-flex w-fit items-center rounded-full border border-white/10 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/45">
+              Deck coming soon
+            </span>
+          )}
         </div>
       </div>
     </article>

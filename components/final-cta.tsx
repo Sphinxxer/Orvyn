@@ -19,8 +19,8 @@ export function FinalCta() {
               looks clearer, earns trust faster, and grows with intent.
             </p>
             <p className="mt-5 max-w-2xl text-sm leading-6 text-gold-soft/85">
-              Orvyn only takes on a limited number of new projects each month, so every
-              build gets the focus it deserves.
+              Orvyn works with a limited number of new projects each month so
+              every build gets focused direction and execution.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-start">

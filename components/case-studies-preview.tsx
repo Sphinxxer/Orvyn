@@ -4,6 +4,7 @@ import { SectionShell } from "./section-shell";
 
 export function CaseStudiesPreview() {
   const [featuredStudy, ...supportingStudies] = caseStudyDetails;
+  const previewStudies = supportingStudies.slice(0, 3);
 
   if (!featuredStudy) {
     return null;
@@ -22,7 +23,8 @@ export function CaseStudiesPreview() {
           </h2>
           <p className="mt-6 text-base leading-7 text-white/75">
             A growing look at brand directions, digital systems, and project work
-            shaped to improve how businesses look, communicate, and grow.
+            shaped to help businesses look clearer, communicate better, and move
+            with more intent.
           </p>
           <ButtonLink href="/case-studies" variant="secondary" className="mt-8">
             View Case Studies
@@ -30,7 +32,10 @@ export function CaseStudiesPreview() {
         </div>
 
         <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
-          <article className="group relative min-h-[29rem] overflow-hidden rounded-[2.25rem] bg-ink p-7 transition duration-300 hover:-translate-y-1 sm:p-8">
+          <article
+            data-cursor="interactive"
+            className="group relative min-h-[29rem] overflow-hidden rounded-[2.25rem] bg-ink p-7 transition duration-300 hover:-translate-y-1 sm:p-8"
+          >
             <div className="absolute inset-x-8 top-8 h-px bg-gold/40" aria-hidden="true" />
             <div
               className="absolute -right-28 bottom-[-7rem] size-80 rounded-full border border-white/10 opacity-70 transition duration-300 group-hover:border-gold/25"
@@ -60,9 +65,10 @@ export function CaseStudiesPreview() {
           </article>
 
           <div className="grid gap-4">
-            {supportingStudies.map((study) => (
+            {previewStudies.map((study) => (
               <article
                 key={study.title}
+                data-cursor="interactive"
                 className="group rounded-[1.75rem] bg-ink/58 px-5 py-5 transition duration-200 hover:-translate-y-0.5 hover:bg-graphite/75 sm:px-6"
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">

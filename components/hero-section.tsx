@@ -31,7 +31,7 @@ export function HeroSection() {
           <div className="mt-8 grid gap-6 border-t border-white/10 pt-6 lg:mt-12 lg:grid-cols-[minmax(0,0.62fr)_minmax(14rem,0.24fr)_auto] lg:items-end lg:gap-10 lg:pt-7">
             <div className="max-w-2xl">
               <p className="text-base leading-7 text-white/76 sm:text-lg sm:leading-8 lg:text-xl">
-                Orvyn helps brands sharpen their content, website, and marketing system so they
+                We help brands sharpen their content, websites, and marketing systems so they
                 look clearer, earn trust faster, and grow with intent.
               </p>
               <p className="mt-5 hidden max-w-lg text-sm leading-6 text-muted lg:block">
@@ -53,7 +53,7 @@ export function HeroSection() {
                 Start a Project
               </ButtonLink>
               <ButtonLink href="/services" variant="secondary" className="w-full bg-transparent sm:w-auto">
-                Explore Capabilities
+                Explore Services
               </ButtonLink>
             </div>
           </div>

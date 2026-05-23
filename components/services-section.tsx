@@ -10,17 +10,18 @@ export function ServicesSection() {
         <div className="lg:sticky lg:top-28 lg:self-start">
           <div className="mb-6 h-px w-16 bg-gold/70" aria-hidden="true" />
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
-            Capabilities
+            What Orvyn does
           </p>
           <h2 className="mt-5 text-balance text-4xl font-bold leading-[1.04] text-white sm:text-5xl">
-            The growth parts we help sharpen.
+            Consulting. Design. Websites. Marketing.
           </h2>
           <p className="mt-6 max-w-sm text-base leading-7 text-white/72">
-            From ads and content to websites and brand systems, Orvyn helps the
-            parts of your digital presence work together — not against each other.
+            Four functions. One system for modern brand growth. We help brands
+            fix, build, and market their digital presence through four core
+            functions.
           </p>
           <ButtonLink href="/services" variant="secondary" className="mt-8">
-            Explore Capabilities
+            Explore Services
           </ButtonLink>
         </div>
 
@@ -28,6 +29,7 @@ export function ServicesSection() {
           {services.map((service) => (
             <article
               key={service.title}
+              data-cursor="interactive"
               className="group grid gap-5 border-b border-white/10 py-6 transition duration-200 last:border-b-0 hover:border-gold/35 sm:py-7 md:grid-cols-[auto_0.42fr_1fr] md:items-center md:gap-7"
             >
               <div className="flex size-12 items-center justify-center rounded-full bg-gold/10 text-gold-soft transition duration-200 group-hover:bg-gold group-hover:text-ink">
@@ -38,6 +40,9 @@ export function ServicesSection() {
               </h3>
               <p className="max-w-xl text-base leading-7 text-muted">
                 {service.description}
+              </p>
+              <p className="text-xs font-semibold uppercase leading-6 tracking-[0.16em] text-gold-soft/80 md:col-start-2 md:col-span-2">
+                {service.tags}
               </p>
             </article>
           ))}

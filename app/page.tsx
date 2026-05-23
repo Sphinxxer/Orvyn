@@ -42,13 +42,13 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <SiteFrame>
-      <HeroSection />
-      <ProblemSection />
-      <CaseStudiesPreview />
-      <ServicesSection />
-      <AboutPreview />
-      <FinalCta />
-    </SiteFrame>
+      <SiteFrame>
+        <HeroSection />
+        <ProblemSection />
+        <ServicesSection />
+        <CaseStudiesPreview />
+        <AboutPreview />
+        <FinalCta />
+      </SiteFrame>
   );
 }

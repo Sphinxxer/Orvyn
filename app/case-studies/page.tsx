@@ -8,17 +8,19 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SiteFrame } from "@/components/site-frame";
 import { caseStudyDetails, caseStudyProcessSteps } from "@/data/home";
 
+const archiveTags = ["All", "Website", "Brand Direction", "Content", "Strategy", "Marketing"];
+
 export const metadata: Metadata = {
   title: "Case Studies | Orvyn",
   description:
-    "Explore Orvyn’s growing archive of brand directions, digital systems, website concepts, content systems, and project decks shaped with clarity and intent.",
+    "Explore Orvyn's growing archive of brand directions, website builds, digital systems, content directions, and project decks shaped with clarity and intent.",
   alternates: {
     canonical: "/case-studies"
   },
   openGraph: {
     title: "Case Studies | Orvyn",
     description:
-      "Explore Orvyn’s growing archive of brand directions, digital systems, website concepts, content systems, and project decks shaped with clarity and intent.",
+      "Explore Orvyn's growing archive of brand directions, website builds, digital systems, content directions, and project decks shaped with clarity and intent.",
     url: "/case-studies",
     siteName: "Orvyn",
     type: "website",
@@ -36,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Case Studies | Orvyn",
     description:
-      "Explore Orvyn’s growing archive of brand directions, digital systems, website concepts, content systems, and project decks shaped with clarity and intent.",
+      "Explore Orvyn's growing archive of brand directions, website builds, digital systems, content directions, and project decks shaped with clarity and intent.",
     images: ["/og-image.png"]
   }
 };
@@ -70,20 +72,44 @@ export default function CaseStudiesPage() {
         <div className="mb-10 max-w-4xl border-l border-gold/45 pl-6">
           <p className="max-w-3xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
             Some projects are active client work, while others are concept
-            directions or strategic builds. We keep the work honest — no fake
+            directions or strategic builds. The work stays honest — no fake
             numbers, no inflated results.
           </p>
         </div>
 
-        <div className="space-y-5">
-          {featuredStudy ? <CaseStudyCard {...featuredStudy} /> : null}
-          {archiveStudies.length ? (
-            <div className="space-y-5">
-              {archiveStudies.map((study) => (
-                <CaseStudyCard key={study.title} {...study} />
-              ))}
+        <div className="grid gap-8 lg:grid-cols-[0.28fr_1fr] lg:gap-12">
+          <aside className="lg:sticky lg:top-28 lg:self-start">
+            <div className="rounded-[2rem] border border-white/10 bg-ink/55 p-6">
+              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-gold-soft">
+                Archive Index
+              </p>
+              <p className="mt-5 text-sm leading-6 text-white/65">
+                Project decks, website directions, brand systems, and strategic
+                builds shaped with clarity.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {archiveTags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded-full border border-white/10 px-3 py-1.5 text-xs font-medium text-white/55"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-          ) : null}
+          </aside>
+
+          <div className="space-y-5">
+            {featuredStudy ? <CaseStudyCard {...featuredStudy} featured /> : null}
+            {archiveStudies.length ? (
+              <div className="space-y-5">
+                {archiveStudies.map((study) => (
+                  <CaseStudyCard key={study.title} {...study} />
+                ))}
+              </div>
+            ) : null}
+          </div>
         </div>
       </SectionShell>
 

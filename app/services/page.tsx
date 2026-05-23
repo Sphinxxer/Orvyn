@@ -12,14 +12,14 @@ import { serviceDecisionSteps, serviceDetails } from "@/data/home";
 export const metadata: Metadata = {
   title: "Services | Orvyn",
   description:
-    "Explore Orvyn’s capabilities across performance marketing, content creation, brand development, website development, social media management, and end-to-end growth systems.",
+    "Explore Orvyn’s four core functions: consulting, design, websites, and marketing — one system for modern brand growth.",
   alternates: {
     canonical: "/services"
   },
   openGraph: {
     title: "Services | Orvyn",
     description:
-      "Explore Orvyn’s capabilities across performance marketing, content creation, brand development, website development, social media management, and end-to-end growth systems.",
+      "Explore Orvyn’s four core functions: consulting, design, websites, and marketing — one system for modern brand growth.",
     url: "/services",
     siteName: "Orvyn",
     type: "website",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Services | Orvyn",
     description:
-      "Explore Orvyn’s capabilities across performance marketing, content creation, brand development, website development, social media management, and end-to-end growth systems.",
+      "Explore Orvyn’s four core functions: consulting, design, websites, and marketing — one system for modern brand growth.",
     images: ["/og-image.png"]
   }
 };
@@ -46,7 +46,12 @@ const serviceFaqs = [
   {
     question: "What does Orvyn do?",
     answer:
-      "Orvyn is a brand growth agency and modern internet company helping brands with performance marketing, content creation, brand development, website development, social media management, and end-to-end growth systems."
+      "Orvyn helps brands fix, build, and market their digital presence through four core functions: consulting, design, websites, and marketing."
+  },
+  {
+    question: "What services does Orvyn offer?",
+    answer:
+      "Orvyn offers consulting, design, website design and development, social media management, performance marketing, SEO, campaign planning, and content direction."
   },
   {
     question: "Where is Orvyn based?",
@@ -93,13 +98,16 @@ export default function ServicesPage() {
               Services / Capabilities
             </p>
             <h1 className="mt-6 max-w-4xl text-balance text-4xl font-black leading-[0.98] text-white sm:text-6xl lg:text-7xl">
-              Capabilities built to sharpen how your brand grows.
+              Four functions. One system for modern brand growth.
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-              Orvyn helps brands fix unclear messaging, weak content, outdated
-              websites, and disconnected marketing — then builds the systems
-              needed to grow with more intent. Based in Tirupur, Orvyn works
-              with brands across India.
+              Every brand does not need the same fix. Some need sharper
+              direction. Some need better design. Some need a stronger website.
+              Some need marketing that moves with purpose.
+            </p>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-gold-soft/85 sm:text-lg sm:leading-8">
+              Orvyn brings consulting, design, websites, and marketing into one
+              clearer system.
             </p>
           </div>
 
@@ -181,8 +189,8 @@ export default function ServicesPage() {
       </SectionShell>
 
       <CTASection
-        title="Not sure what your brand needs yet?"
-        copy="Tell us where things feel unclear. We work with a small number of brands at a time — usually 3 new projects a month — to keep the work focused and intentional."
+        title="Not sure what your brand needs first?"
+        copy="Tell us what feels unclear. The next move might be strategy, design, a website, marketing, or a mix of all four. Orvyn works with a limited number of new projects each month so every build gets focused direction and execution."
         ctaLabel="Start a Project"
         ctaHref="/contact"
       />

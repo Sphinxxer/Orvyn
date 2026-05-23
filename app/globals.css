@@ -34,6 +34,96 @@ body {
   color: #ededed;
 }
 
+.custom-cursor {
+  display: none;
+}
+
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  @media (prefers-reduced-motion: no-preference) {
+    body {
+      cursor: none;
+    }
+
+    :where(
+        a,
+        button,
+        summary,
+        [role="button"],
+        [data-cursor="interactive"]
+      ) {
+      cursor: none;
+    }
+
+    :where(
+        input,
+        textarea,
+        select,
+        option,
+        label,
+        [contenteditable="true"],
+        [data-cursor="native"]
+      ) {
+      cursor: auto;
+    }
+
+    .custom-cursor {
+      display: block;
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 2147483647;
+      opacity: 0;
+      transition: opacity 160ms ease;
+    }
+
+    .custom-cursor.is-visible {
+      opacity: 1;
+    }
+
+    .custom-cursor.is-hidden {
+      opacity: 0;
+    }
+
+    .custom-cursor__arrow {
+      color: rgba(237, 237, 237, 0.94);
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 1.875rem;
+      height: 2.25rem;
+      filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.38));
+      transform-origin: 3px 3px;
+      transition:
+        color 160ms ease,
+        filter 160ms ease,
+        opacity 180ms ease;
+      will-change: transform, color, filter, opacity;
+    }
+
+    .custom-cursor__glyph {
+      display: block;
+      transform-origin: 3px 3px;
+      transition: transform 160ms ease;
+    }
+
+    .custom-cursor__arrow svg {
+      display: block;
+      overflow: visible;
+    }
+
+    .custom-cursor.is-active .custom-cursor__arrow {
+      color: rgba(255, 255, 255, 0.98);
+      filter:
+        drop-shadow(0 10px 20px rgba(0, 0, 0, 0.44))
+        drop-shadow(0 0 12px rgba(200, 169, 90, 0.16));
+    }
+
+    .custom-cursor.is-active .custom-cursor__glyph {
+      transform: scale(1.12);
+    }
+  }
+}
+
 .surface-grid {
   background-image:
     linear-gradient(rgba(237, 237, 237, 0.055) 1px, transparent 1px),

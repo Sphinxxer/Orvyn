@@ -21,8 +21,8 @@ export function AboutPreview() {
               Growth gets easier when the brand is clear.
             </p>
             <p className="mt-6 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-              Orvyn starts by finding what needs to be fixed before scaling what
-              works.
+              Orvyn starts by finding what needs to be fixed before building
+              what should be scaled.
             </p>
             <ButtonLink href="/about" variant="secondary" className="mt-8">
               About Orvyn
