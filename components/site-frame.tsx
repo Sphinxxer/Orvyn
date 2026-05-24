@@ -4,14 +4,15 @@ import { SiteHeader } from "./site-header";
 
 type SiteFrameProps = {
   children: ReactNode;
+  footerVariant?: "full" | "minimal";
 };
 
-export function SiteFrame({ children }: SiteFrameProps) {
+export function SiteFrame({ children, footerVariant = "full" }: SiteFrameProps) {
   return (
     <>
       <SiteHeader />
       <main>{children}</main>
-      <SiteFooter />
+      <SiteFooter variant={footerVariant} />
     </>
   );
 }

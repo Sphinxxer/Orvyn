@@ -44,33 +44,19 @@ export const metadata: Metadata = {
 
 const serviceFaqs = [
   {
-    question: "What does Orvyn do?",
+    question: "Do I need all four functions?",
     answer:
-      "Orvyn helps brands fix, build, and market their digital presence through four core functions: consulting, design, marketing, and websites."
+      "Not always. Some brands only need consulting or a website. Others need design and marketing working together. The first step is understanding what is actually holding growth back."
   },
   {
-    question: "What services does Orvyn offer?",
+    question: "Which function should my brand start with?",
     answer:
-      "Orvyn offers consulting, design, website design and development, social media management, performance marketing, SEO, campaign planning, and content direction."
+      "Start with the weakest link. If the direction is unclear, start with consulting. If the brand looks inconsistent, start with design. If trust is weak, start with the website. If visibility is the issue, start with marketing."
   },
   {
-    question: "Where is Orvyn based?",
-    answer: "Orvyn is based in Tirupur, India, and works with brands across India."
-  },
-  {
-    question: "Who is Orvyn best suited for?",
+    question: "Can Orvyn handle only one part?",
     answer:
-      "Orvyn is best suited for brands that want clearer positioning, sharper content, stronger websites, and marketing systems that work together."
-  },
-  {
-    question: "Does Orvyn only handle social media?",
-    answer:
-      "No. Orvyn connects content, websites, brand direction, performance marketing, and social media into one clearer growth system."
-  },
-  {
-    question: "How many projects does Orvyn onboard?",
-    answer:
-      "Orvyn works with a limited number of new projects each month so every brand gets focused direction and execution."
+      "Yes. Orvyn can work on one focused area or connect multiple functions into one clearer system."
   }
 ];
 
@@ -167,10 +153,10 @@ export default function ServicesPage() {
         <div className="grid gap-8 lg:grid-cols-[0.42fr_1fr] lg:gap-14">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
-              Common questions
+              Not sure what your brand needs?
             </p>
             <h2 className="mt-4 text-3xl font-bold leading-[1.04] text-white sm:text-5xl">
-              Clear answers before we talk.
+              Start with the part that is holding growth back.
             </h2>
           </div>
           <div className="divide-y divide-white/10 rounded-[2rem] bg-coal/55 px-5 sm:px-7">

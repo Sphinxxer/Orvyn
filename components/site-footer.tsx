@@ -8,7 +8,28 @@ const socialLinks = [
   { label: "LinkedIn", href: "https://www.linkedin.com/company/orvyncc/", icon: "linkedin" }
 ] as const;
 
-export function SiteFooter() {
+type SiteFooterProps = {
+  variant?: "full" | "minimal";
+};
+
+export function SiteFooter({ variant = "full" }: SiteFooterProps) {
+  if (variant === "minimal") {
+    return (
+      <footer className="border-t border-white/10 bg-coal/50 px-5 py-6 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; {new Date().getFullYear()} Orvyn. All rights reserved.</p>
+          <Link
+            href="/"
+            aria-label="Back to Orvyn home"
+            className="text-xs font-semibold uppercase tracking-[0.38em] text-gold-soft/80 transition hover:text-gold-soft focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+          >
+            ORVYN
+          </Link>
+        </div>
+      </footer>
+    );
+  }
+
   return (
     <footer className="border-t border-white/10 bg-coal/60 px-5 py-12 sm:px-6 lg:px-8 lg:py-[72px]">
       <div className="mx-auto max-w-7xl">

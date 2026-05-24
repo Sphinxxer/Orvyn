@@ -27,6 +27,46 @@ const aboutPrinciples = [
   }
 ];
 
+const aboutFaqs = [
+  {
+    question: "What does Orvyn do?",
+    answer:
+      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India. We help brands fix, build, and market their digital presence through consulting, design, marketing, and websites."
+  },
+  {
+    question: "Why does Orvyn say \"Fix first. Then scale.\"?",
+    answer:
+      "Because more activity does not help when the foundation is unclear. Orvyn starts by finding what needs to be fixed before building what should be scaled."
+  },
+  {
+    question: "How does Orvyn work with brands?",
+    answer:
+      "Orvyn first understands where the brand stands, what feels unclear, and what needs to improve. From there, the right mix of consulting, design, marketing, and website work is shaped around the brand's needs."
+  },
+  {
+    question: "How many projects does Orvyn onboard?",
+    answer:
+      "Orvyn works with a limited number of new projects each month so every brand gets focused direction and execution."
+  },
+  {
+    question: "Where is Orvyn based?",
+    answer: "Orvyn is based in Tirupur, India, and works with brands across India."
+  }
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: aboutFaqs.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer
+    }
+  }))
+};
+
 export const metadata: Metadata = {
   title: "About | Orvyn",
   description:
@@ -63,7 +103,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <SiteFrame>
-      <JsonLd data={createBreadcrumbJsonLd("About", "/about")} />
+      <JsonLd data={[createBreadcrumbJsonLd("About", "/about"), faqJsonLd]} />
       <section className="border-b border-white/10 px-5 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-36 lg:px-8 lg:pt-40">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-semibold uppercase tracking-[0.26em] text-gold-soft sm:text-sm">
@@ -156,6 +196,31 @@ export default function AboutPage() {
                 </h3>
                 <p className="mt-4 text-sm leading-6 text-muted">
                   {principle.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </SectionShell>
+
+      <SectionShell className="pt-0">
+        <div className="grid gap-8 lg:grid-cols-[0.42fr_1fr] lg:gap-14">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
+              Common questions
+            </p>
+            <h2 className="mt-4 text-3xl font-bold leading-[1.04] text-white sm:text-5xl">
+              How Orvyn thinks and works.
+            </h2>
+          </div>
+          <div className="divide-y divide-white/10 rounded-[2rem] bg-coal/55 px-5 sm:px-7">
+            {aboutFaqs.map((item) => (
+              <article key={item.question} className="py-6">
+                <h3 className="text-base font-semibold leading-6 text-white">
+                  {item.question}
+                </h3>
+                <p className="mt-3 max-w-3xl text-sm leading-6 text-muted">
+                  {item.answer}
                 </p>
               </article>
             ))}

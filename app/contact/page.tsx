@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <SiteFrame>
+    <SiteFrame footerVariant="minimal">
       <JsonLd data={createBreadcrumbJsonLd("Contact", "/contact")} />
       <SectionShell className="pt-28 sm:pt-36 lg:pt-44">
         <div className="grid gap-12 lg:grid-cols-[0.62fr_1.38fr] lg:gap-20">
