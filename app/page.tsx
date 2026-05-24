@@ -42,13 +42,25 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-      <SiteFrame>
-        <HeroSection />
-        <ProblemSection />
-        <ServicesSection />
-        <CaseStudiesPreview />
-        <AboutPreview />
-        <FinalCta />
-      </SiteFrame>
+    <SiteFrame>
+      <HeroSection />
+      <div className="flex flex-col">
+        <div className="order-2 lg:order-1">
+          <ProblemSection />
+        </div>
+        <div className="order-1 lg:order-2">
+          <ServicesSection />
+        </div>
+        <div className="order-3">
+          <CaseStudiesPreview />
+        </div>
+        <div className="order-4">
+          <AboutPreview />
+        </div>
+        <div className="order-5">
+          <FinalCta />
+        </div>
+      </div>
+    </SiteFrame>
   );
 }

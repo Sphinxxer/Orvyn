@@ -58,85 +58,64 @@ export function ServicesExplorer() {
     });
   }
 
-  const activeServiceDetail =
-    serviceDetails.find((service) => slugify(service.title) === activeService) ??
-    serviceDetails[0];
-  const activeMobilePanelId = `${slugify(activeServiceDetail.title)}-mobile-panel`;
-
   return (
     <>
-      <div className="lg:hidden">
-        <nav
-          className="rounded-[1.75rem] bg-[#11100d]/82 p-2 ring-1 ring-white/10"
-          aria-label="Service capabilities"
-        >
-          <div className="grid gap-2">
-            {serviceDetails.map((service) => {
-              const serviceId = slugify(service.title);
-              const isActive = activeService === serviceId;
+      <div className="space-y-3 lg:hidden">
+        {serviceDetails.map((service) => {
+          const serviceId = slugify(service.title);
+          const isActive = activeService === serviceId;
+          const panelId = `${serviceId}-mobile-panel`;
 
-              return (
-                <button
-                  key={service.title}
-                  type="button"
-                  aria-pressed={isActive}
-                  aria-controls={`${serviceId}-mobile-panel`}
-                  onClick={() => setActiveService(serviceId)}
-                  className={`group flex w-full items-center gap-3 rounded-[1.2rem] px-3 py-3 text-left transition duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${
-                    isActive
-                      ? "bg-white/[0.055] text-white ring-1 ring-gold/40"
-                      : "text-white/72 hover:bg-white/[0.035] hover:text-white"
+          return (
+            <article
+              key={service.title}
+              className={`overflow-hidden rounded-[1.5rem] border bg-[#11100d]/86 transition duration-200 ${
+                isActive ? "border-gold/45" : "border-white/10"
+              }`}
+            >
+              <button
+                type="button"
+                aria-expanded={isActive}
+                aria-controls={panelId}
+                onClick={() => setActiveService(serviceId)}
+                className="group flex w-full items-start gap-3 px-4 py-4 text-left transition duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+              >
+                <span
+                  className={`mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-full transition ${
+                    isActive ? "bg-gold text-ink" : "bg-gold/10 text-gold-soft"
                   }`}
+                  aria-hidden="true"
                 >
-                  <span
-                    className={`flex size-9 shrink-0 items-center justify-center rounded-full transition ${
-                      isActive ? "bg-gold text-ink" : "bg-gold/10 text-gold-soft"
-                    }`}
-                    aria-hidden="true"
-                  >
-                    <CapabilityIcon icon={service.icon} className="size-4 text-current" />
-                  </span>
-                  <span className="min-w-0 flex-1 text-sm font-semibold leading-5">
+                  <CapabilityIcon icon={service.icon} className="size-4 text-current" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-lg font-semibold leading-6 text-white">
                     {service.title}
                   </span>
-                  <span
-                    className={`h-px w-7 shrink-0 transition ${
-                      isActive ? "bg-gold" : "bg-white/12 group-hover:bg-white/25"
-                    }`}
-                    aria-hidden="true"
-                  />
-                </button>
-              );
-            })}
-          </div>
-        </nav>
+                  <span className="mt-2 block text-sm font-semibold leading-5 text-gold-soft/90">
+                    {service.positioning}
+                  </span>
+                </span>
+                <span
+                  className={`mt-1 grid size-8 shrink-0 place-items-center rounded-full border text-lg leading-none transition ${
+                    isActive
+                      ? "border-gold/45 text-gold-soft"
+                      : "border-white/10 text-white/55 group-hover:border-gold/35 group-hover:text-gold-soft"
+                  }`}
+                  aria-hidden="true"
+                >
+                  {isActive ? "−" : "+"}
+                </span>
+              </button>
 
-        <article
-          id={activeMobilePanelId}
-          aria-live="polite"
-          className="mt-5 rounded-[2rem] bg-[#11100d]/90 p-5 ring-1 ring-gold/30"
-        >
-          <div className="flex items-start gap-4">
-            <span
-              className="flex size-12 shrink-0 items-center justify-center rounded-full bg-gold/10 text-gold-soft"
-              aria-hidden="true"
-            >
-              <CapabilityIcon icon={activeServiceDetail.icon} className="size-5 text-current" />
-            </span>
-            <div>
-              <h2 className="text-2xl font-semibold leading-tight text-white">
-                {activeServiceDetail.title}
-              </h2>
-              <p className="mt-3 text-base font-semibold leading-6 text-gold-soft">
-                {activeServiceDetail.positioning}
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-6 border-t border-white/10 pt-6">
-            <ServiceDetailBlocks service={activeServiceDetail} />
-          </div>
-        </article>
+              {isActive ? (
+                <div id={panelId} className="border-t border-white/10 px-4 pb-5 pt-5">
+                  <ServiceDetailBlocks service={service} />
+                </div>
+              ) : null}
+            </article>
+          );
+        })}
       </div>
 
       <div className="hidden min-w-0 gap-8 lg:grid lg:grid-cols-[0.34fr_1fr] lg:gap-14">
