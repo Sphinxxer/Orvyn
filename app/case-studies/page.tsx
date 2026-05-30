@@ -93,8 +93,16 @@ export default function CaseStudiesPage() {
       </section>
 
       <SectionShell className="pt-0">
-        <div className="mb-10 max-w-4xl border-l border-gold/45 pl-6">
-          <p className="max-w-3xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
+        <div className="mb-10 grid gap-6 lg:grid-cols-[0.38fr_1fr] lg:items-end">
+          <div className="border-t border-gold/45 pt-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
+              Project library
+            </p>
+            <h2 className="mt-4 text-3xl font-bold leading-[1.04] text-white sm:text-5xl">
+              Strategic directions and project decks.
+            </h2>
+          </div>
+          <p className="max-w-3xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8 lg:justify-self-end">
             Some projects are active client work, while others are concept
             directions or strategic builds. The work stays honest{" \u2014 "}no
             fake numbers, no inflated results.

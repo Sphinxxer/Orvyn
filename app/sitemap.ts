@@ -1,4 +1,5 @@
-﻿import type { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
+import { caseStudyDetails } from "@/data/home";
 
 const baseUrl = "https://orvyn.cc";
 
@@ -11,12 +12,19 @@ const routes = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return routes.map((route) => ({
+  const mainRoutes = routes.map((route) => ({
     url: `${baseUrl}${route.path}`,
     lastModified: new Date(),
     changeFrequency: route.changeFrequency,
     priority: route.priority
   }));
+
+  const caseStudyRoutes = caseStudyDetails.map((project) => ({
+    url: `${baseUrl}/case-studies/${project.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.65
+  }));
+
+  return [...mainRoutes, ...caseStudyRoutes];
 }
-
-

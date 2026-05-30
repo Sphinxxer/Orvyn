@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { caseStudyDetails } from "@/data/home";
 import { ButtonLink } from "./button-link";
 import { SectionShell } from "./section-shell";
@@ -32,9 +33,11 @@ export function CaseStudiesPreview() {
         </div>
 
         <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
-          <article
+          <Link
+            href={`/case-studies/${featuredStudy.slug}`}
             data-cursor="interactive"
             className="group relative min-h-[29rem] overflow-hidden rounded-[2.25rem] bg-ink p-7 transition duration-300 hover:-translate-y-1 sm:p-8"
+            aria-label={`View ${featuredStudy.title} case study`}
           >
             <div className="absolute inset-x-8 top-8 h-px bg-gold/40" aria-hidden="true" />
             <div
@@ -62,14 +65,16 @@ export function CaseStudiesPreview() {
                 </p>
               </div>
             </div>
-          </article>
+          </Link>
 
           <div className="grid gap-4">
             {previewStudies.map((study) => (
-              <article
+              <Link
                 key={study.title}
+                href={`/case-studies/${study.slug}`}
                 data-cursor="interactive"
                 className="group rounded-[1.75rem] bg-ink/58 px-5 py-5 transition duration-200 hover:-translate-y-0.5 hover:bg-graphite/75 sm:px-6"
+                aria-label={`View ${study.title} case study`}
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
                   {study.label}
@@ -78,7 +83,7 @@ export function CaseStudiesPreview() {
                   {study.title}
                 </h3>
                 <p className="mt-3 text-sm leading-6 text-muted">{study.category}</p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>

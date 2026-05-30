@@ -173,12 +173,16 @@ export const methodSteps = [
 ];
 
 export type CaseStudyDetail = {
+  slug: string;
   title: string;
   category: string;
   description: string;
   whatThisShows: string;
   focusAreas: string[];
   label: string;
+  serviceWing: string;
+  status: string;
+  previewImage: string;
   deckHref?: string;
   deckStatus?: "available" | "coming-soon";
   tags?: string[];
@@ -186,6 +190,7 @@ export type CaseStudyDetail = {
 
 export const caseStudyDetails: CaseStudyDetail[] = [
   {
+    slug: "grandeur-associates",
     title: "Grandeur Associates",
     category: "Instagram Portfolio Direction",
     description:
@@ -200,15 +205,19 @@ export const caseStudyDetails: CaseStudyDetail[] = [
       "Shoot direction"
     ],
     label: "Client Direction",
+    serviceWing: "Marketing",
+    status: "Strategic direction",
+    previewImage: "/case-studies/previews/grandeur-associates.jpg",
     deckHref: "/case-studies/grandeur-associates.pdf",
     deckStatus: "available",
     tags: ["Strategy", "Content", "Marketing"]
   },
   {
+    slug: "tric-academy",
     title: "TRIC Academy",
     category: "Website Direction",
     description:
-      "A website direction and digital structure for a Tirupur-based sports academy built around swimming programs, memberships, facilities, and application flow.",
+      "A website direction for a Tirupur-based sports academy built around programs, facilities, trust, and application flow.",
     whatThisShows:
       "How Orvyn structures a service website around programs, facilities, trust, and application flow.",
     focusAreas: [
@@ -220,11 +229,15 @@ export const caseStudyDetails: CaseStudyDetail[] = [
       "Local trust building"
     ],
     label: "Website Build",
+    serviceWing: "Websites",
+    status: "Website build",
+    previewImage: "/case-studies/previews/tric-academy.jpg",
     deckHref: "/case-studies/tric-academy.pdf",
     deckStatus: "coming-soon",
     tags: ["Websites", "Strategy", "Local trust"]
   },
   {
+    slug: "cameo-garments",
     title: "Cameo Garments",
     category: "Website Revamp Concept",
     description:
@@ -239,11 +252,15 @@ export const caseStudyDetails: CaseStudyDetail[] = [
       "Portfolio-building direction"
     ],
     label: "Website Concept",
+    serviceWing: "Websites",
+    status: "Website concept",
+    previewImage: "/case-studies/previews/cameo-garments.jpg",
     deckHref: "/case-studies/cameo-garments.pdf",
     deckStatus: "available",
     tags: ["Websites", "Strategy", "Export"]
   },
   {
+    slug: "sra-financial-planning",
     title: "SRA Financial Planning",
     category: "Brand Identity Direction",
     description:
@@ -258,6 +275,9 @@ export const caseStudyDetails: CaseStudyDetail[] = [
       "Trust-led communication"
     ],
     label: "Brand Direction",
+    serviceWing: "Design",
+    status: "Brand direction",
+    previewImage: "/case-studies/previews/sra-financial-planning.jpg",
     deckHref: "/case-studies/sra-financial-planning.pdf",
     deckStatus: "available",
     tags: ["Brand Direction", "Strategy", "Trust"]

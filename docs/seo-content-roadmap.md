@@ -29,16 +29,16 @@ Future pages can support service and location searches without changing the curr
 
 Each page should be useful, specific, and grounded in real services. Do not create thin keyword pages.
 
-## Phase 3: HTML Case Studies
+## Phase 3: Deeper HTML Case Studies
 
-Turn project PDFs into crawlable HTML case study pages later:
+The first individual case study routes are live. Expand them over time with more crawlable detail when the proof is ready:
 
 - `/case-studies/grandeur-associates`
 - `/case-studies/tric-academy`
 - `/case-studies/cameo-garments`
 - `/case-studies/sra-financial-planning`
 
-Each page should include:
+Each mature page can include:
 
 - Problem
 - Context

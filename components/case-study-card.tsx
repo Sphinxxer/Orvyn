@@ -1,179 +1,146 @@
+import { existsSync } from "node:fs";
+import path from "node:path";
+import Image from "next/image";
+import Link from "next/link";
+import type { CaseStudyDetail } from "@/data/home";
+
 type CaseStudyCardProps = {
-  title: string;
-  category: string;
-  description: string;
-  whatThisShows: string;
-  focusAreas: string[];
-  label: string;
-  deckHref?: string;
-  deckStatus?: "available" | "coming-soon";
-  tags?: string[];
-  featured?: boolean;
+  project: CaseStudyDetail;
 };
 
-export function CaseStudyCard({
-  title,
-  category,
-  description,
-  whatThisShows,
-  focusAreas,
-  label,
-  deckHref,
-  deckStatus = "available",
-  tags = [],
-  featured = false
-}: CaseStudyCardProps) {
-  const hasDeck = deckStatus === "available" && Boolean(deckHref);
-
+export function CaseStudyCard({ project }: CaseStudyCardProps) {
   return (
-    <article
+    <Link
+      href={`/case-studies/${project.slug}`}
       data-cursor="interactive"
-      className={`group overflow-hidden rounded-[2rem] border border-white/10 bg-coal/68 transition duration-300 hover:border-gold/35 hover:bg-graphite/70 ${
-        featured ? "p-5 sm:p-7 lg:p-8" : "p-4 sm:p-5 lg:p-6"
-      }`}
+      className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-coal/68 transition duration-300 hover:-translate-y-1 hover:border-gold/40 hover:bg-graphite/70 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+      aria-label={`View ${project.title} case study`}
     >
-      <div
-        className={`grid gap-6 ${
-          featured
-            ? "lg:grid-cols-[0.48fr_0.52fr] lg:gap-12"
-            : "lg:grid-cols-[0.36fr_0.64fr] lg:items-stretch lg:gap-9"
-        }`}
-      >
-        <DeckPreview
-          title={title}
-          category={category}
-          label={label}
-          hasDeck={hasDeck}
-          featured={featured}
-        />
+      <ProjectPreviewPanel project={project} mode="card" />
 
-        <div className="flex min-w-0 flex-col justify-between">
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="rounded-full bg-gold/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-gold-soft">
+            {project.label}
+          </span>
+          <span className="text-xs font-medium text-muted">{project.category}</span>
+        </div>
+
+        <div className="mt-6 flex flex-1 items-end justify-between gap-5">
           <div>
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="inline-flex rounded-full bg-gold/10 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft">
-                {label}
-              </span>
-              <span className="text-sm font-medium text-muted">{category}</span>
-            </div>
-
-            <h2
-              className={`mt-6 font-semibold leading-tight text-white transition group-hover:text-gold-soft ${
-                featured ? "text-4xl sm:text-6xl" : "text-3xl sm:text-4xl"
-              }`}
-            >
-              {title}
+            <h2 className="text-3xl font-semibold leading-tight text-white transition group-hover:text-gold-soft">
+              {project.title}
             </h2>
-            <p className="mt-4 max-w-3xl text-base leading-7 text-muted">{description}</p>
-
-            <div className="mt-6 rounded-[1.25rem] border border-white/10 bg-ink/40 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
-                What this shows
-              </p>
-              <p className="mt-3 text-sm leading-6 text-white/72">{whatThisShows}</p>
-            </div>
-
-            {tags.length ? (
-              <div className="mt-5 flex flex-wrap gap-2">
-                {tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-white/10 px-3 py-1.5 text-xs font-medium text-white/65"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            ) : null}
-
-            <div className="mt-8 border-t border-white/10 pt-6">
-              <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
-                Focus areas
-              </h3>
-              <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                {focusAreas.map((area) => (
-                  <li key={area} className="flex gap-3 text-sm leading-6 text-muted">
-                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-gold" aria-hidden="true" />
-                    <span>{area}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <p className="mt-4 max-w-md text-sm leading-6 text-muted">
+              {project.description}
+            </p>
           </div>
 
-          {hasDeck ? (
-            <a
-              href={deckHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`View ${title} project deck`}
-              className="mt-8 inline-flex w-fit items-center gap-2 rounded-full border border-gold/35 bg-gold/10 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft transition duration-200 hover:-translate-y-0.5 hover:border-gold hover:bg-gold hover:text-ink focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
-            >
-              View project deck{" "}
-              <span className="transition group-hover:translate-x-1" aria-hidden="true">
-                {"\u2192"}
-              </span>
-            </a>
-          ) : (
-            <span className="mt-8 inline-flex w-fit items-center rounded-full border border-white/10 px-4 py-2.5 text-xs font-semibold uppercase tracking-[0.18em] text-white/45">
-              Deck coming soon
-            </span>
-          )}
+          <span
+            className="grid size-12 shrink-0 place-items-center rounded-full border border-white/12 text-gold-soft transition duration-300 group-hover:translate-x-1 group-hover:border-gold group-hover:bg-gold group-hover:text-ink"
+            aria-hidden="true"
+          >
+            {"\u2192"}
+          </span>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }
 
-function DeckPreview({
-  title,
-  category,
-  label,
-  hasDeck,
-  featured
+export function ProjectPreviewPanel({
+  project,
+  mode = "wide",
+  priority = false
 }: {
-  title: string;
-  category: string;
-  label: string;
-  hasDeck: boolean;
-  featured: boolean;
+  project: CaseStudyDetail;
+  mode?: "card" | "wide";
+  priority?: boolean;
 }) {
+  const hasPreview = publicAssetExists(project.previewImage);
+
   return (
     <div
-      className={`relative overflow-hidden rounded-[1.65rem] bg-ink p-5 transition duration-300 group-hover:-translate-y-1 ${
-        featured ? "min-h-80 sm:min-h-[27rem]" : "min-h-64"
+      className={`relative isolate overflow-hidden bg-ink ${
+        mode === "card"
+          ? "aspect-[1.28/1] rounded-b-[1.5rem]"
+          : "min-h-[22rem] rounded-[2rem] sm:min-h-[30rem]"
       }`}
     >
+      {hasPreview ? (
+        <Image
+          src={project.previewImage}
+          alt={getPreviewAlt(project)}
+          fill
+          priority={priority}
+          sizes={mode === "card" ? "(min-width: 1280px) 33vw, (min-width: 768px) 50vw, 100vw" : "100vw"}
+          className="object-cover transition duration-500 group-hover:scale-[1.03]"
+        />
+      ) : (
+        <PlaceholderPreview project={project} />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/12 to-transparent" />
       <div className="absolute inset-x-6 top-6 h-px bg-gold/45" aria-hidden="true" />
-      <div className="absolute right-6 top-9 text-xs font-semibold uppercase tracking-[0.2em] text-white/35">
-        {hasDeck ? "PDF" : "Pending"}
-      </div>
-      <div
-        className="absolute -right-24 bottom-[-6rem] size-72 rounded-full border border-white/10 transition duration-300 group-hover:border-gold/30"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-6 left-5 right-5 h-24 rounded-[1.25rem] border border-white/8 bg-white/[0.025] transition duration-300 group-hover:translate-x-2"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-12 right-10 h-px w-24 bg-gold/45 transition duration-300 group-hover:w-32"
-        aria-hidden="true"
-      />
-      <div className="relative flex h-full flex-col justify-between pt-7">
+      <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
-            {label}
+            {project.label}
           </p>
-          <p
-            className={`mt-4 max-w-72 font-semibold leading-tight text-white ${
-              featured ? "text-4xl sm:text-5xl" : "text-3xl"
-            }`}
-          >
-            {title}
+          <p className="mt-2 max-w-sm text-sm font-medium leading-5 text-white/70">
+            {project.category}
           </p>
         </div>
-        <p className="max-w-72 text-xs font-semibold uppercase leading-5 tracking-[0.2em] text-muted">
-          {category}
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/38">
+          Project
+        </p>
+      </div>
+    </div>
+  );
+}
+
+export function publicAssetExists(src?: string) {
+  if (!src) {
+    return false;
+  }
+
+  const relativePath = src.replace(/^\/+/, "");
+  return existsSync(path.join(process.cwd(), "public", relativePath));
+}
+
+export function getPreviewAlt(project: CaseStudyDetail) {
+  if (project.slug === "grandeur-associates") {
+    return "Grandeur Associates project preview";
+  }
+
+  if (project.slug === "tric-academy") {
+    return "TRIC Academy website direction project preview";
+  }
+
+  if (project.slug === "cameo-garments") {
+    return "Cameo Garments website concept project preview";
+  }
+
+  return "SRA Financial Planning brand direction project preview";
+}
+
+function PlaceholderPreview({ project }: { project: CaseStudyDetail }) {
+  return (
+    <div className="absolute inset-0 overflow-hidden bg-[radial-gradient(circle_at_26%_18%,rgba(200,169,90,0.22),transparent_30%),linear-gradient(135deg,#171511,#070707)]">
+      <div
+        className="absolute -right-16 -top-16 size-56 rounded-full border border-white/10"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute -bottom-20 left-8 size-72 rounded-full border border-gold/15"
+        aria-hidden="true"
+      />
+      <div className="absolute left-5 top-5 h-px w-28 bg-gold/50" aria-hidden="true" />
+      <div className="absolute bottom-20 left-5 right-5">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-soft">
+          Orvyn direction
+        </p>
+        <p className="mt-4 max-w-md text-3xl font-semibold leading-tight text-white">
+          {project.title}
         </p>
       </div>
     </div>
