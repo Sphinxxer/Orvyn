@@ -139,6 +139,7 @@ export function ServicesExplorer() {
                   <span className="block text-lg font-semibold leading-6 text-white">
                     {service.title}
                   </span>
+                  <span className="sr-only">: </span>
                   <span className="mt-2 block text-sm font-semibold leading-5 text-gold-soft/90">
                     {service.positioning}
                   </span>
@@ -151,7 +152,14 @@ export function ServicesExplorer() {
                   }`}
                   aria-hidden="true"
                 >
-                  {isActive ? "-" : "+"}
+                  <span className="relative block size-3" aria-hidden="true">
+                    <span className="absolute left-0 top-1/2 h-px w-3 -translate-y-1/2 bg-current" />
+                    <span
+                      className={`absolute left-1/2 top-0 h-3 w-px -translate-x-1/2 bg-current transition ${
+                        isActive ? "scale-y-0" : "scale-y-100"
+                      }`}
+                    />
+                  </span>
                 </span>
               </button>
 

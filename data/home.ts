@@ -129,19 +129,19 @@ export const serviceDecisionSteps = [
     number: "01",
     title: "Find the gap",
     description:
-      "We look for what is stopping people from understanding, trusting, or taking action."
+      "The first step is identifying what stops people from understanding, trusting, or taking action."
   },
   {
     number: "02",
     title: "Build the right system",
     description:
-      "We choose the services that solve the actual problem, not just the most obvious one."
+      "The right mix of consulting, design, marketing, and website work is shaped around the actual problem."
   },
   {
     number: "03",
     title: "Improve with intent",
     description:
-      "We review what works, refine what does not, and scale the parts that start creating momentum."
+      "What works gets refined, what does not gets fixed, and the system becomes easier to scale."
   }
 ];
 

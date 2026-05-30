@@ -159,7 +159,7 @@ export default function ServicesPage() {
 
       <CTASection
         title="Not sure what your brand needs first?"
-        copy="Tell us what feels unclear. The next move might be strategy, design, a website, marketing, or a mix of all four. Orvyn works with a limited number of new projects each month so every build gets focused direction and execution."
+        copy="Tell us what feels unclear. The next move might be consulting, design, marketing, websites, or a mix of all four. Orvyn works with a limited number of new projects each month so every build gets focused direction and execution."
         ctaLabel="Start a Project"
         ctaHref="/contact"
       />

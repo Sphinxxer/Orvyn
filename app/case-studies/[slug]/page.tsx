@@ -173,12 +173,17 @@ export default async function CaseStudyProjectPage({ params }: ProjectPageProps)
         <div className="mt-10 grid gap-8 lg:grid-cols-[0.45fr_0.55fr] lg:gap-12">
           <div className="rounded-[2rem] border border-white/10 bg-coal/55 p-5 sm:p-7">
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-soft">
-              What this shows
+              What this solves
             </p>
             <h2 className="mt-5 text-3xl font-semibold leading-tight text-white sm:text-4xl">
-              A direction with a clear role.
+              What this project solves
             </h2>
-            <p className="mt-5 text-base leading-7 text-muted">{project.whatThisShows}</p>
+            <p className="mt-5 text-base leading-7 text-muted">
+              {getProjectSolveCopy(project.slug)}
+            </p>
+            <p className="mt-5 border-t border-white/10 pt-5 text-sm leading-6 text-white/58">
+              {project.whatThisShows}
+            </p>
           </div>
 
           <div className="rounded-[2rem] border border-white/10 bg-coal/55 p-5 sm:p-7">
@@ -204,11 +209,10 @@ export default async function CaseStudyProjectPage({ params }: ProjectPageProps)
               Project deck
             </p>
             <h2 className="mt-4 text-3xl font-semibold leading-tight text-white">
-              Review the project direction.
+              Project deck
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-muted">
-              The deck opens in a new tab so the case study page stays light and
-              mobile-friendly.
+              Open the deck to view the project direction in more detail.
             </p>
           </div>
 
@@ -276,6 +280,22 @@ function getProjectMetaDescription(slug: string) {
   }
 
   return "A clean brand identity and digital presentation direction for a financial planning and advisory firm.";
+}
+
+function getProjectSolveCopy(slug: string) {
+  if (slug === "grandeur-associates") {
+    return "A premium construction and interiors brand needs its Instagram to work like a portfolio \u2014 not just a posting page. This direction shows how project presentation, visual rhythm, and content structure can create stronger trust.";
+  }
+
+  if (slug === "tric-academy") {
+    return "A sports academy website needs to do more than look good. It has to explain programs, show facilities clearly, build parent trust, and make applications easier.";
+  }
+
+  if (slug === "cameo-garments") {
+    return "An export business with an outdated website needs a clearer digital presence. This concept shows how structure, positioning, and homepage flow can make the company feel sharper and more credible online.";
+  }
+
+  return "A financial planning brand needs to feel clear, credible, and calm. This direction shows how identity, communication, and visual consistency can support trust-led decision making.";
 }
 
 function projectHasDeck(deckHref?: string) {
