@@ -77,7 +77,7 @@ export default function ContactPage() {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <span className="text-gold-soft/65" aria-hidden="true">
-                      —
+                      {" \u2014 "}
                     </span>
                     <span>{item}</span>
                   </div>

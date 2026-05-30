@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { CapabilityIcon } from "@/components/capability-icon";
 import { CTASection } from "@/components/cta-section";
 import { ProcessStep } from "@/components/process-step";
 import { SectionShell } from "@/components/section-shell";
@@ -7,7 +6,7 @@ import { createBreadcrumbJsonLd } from "@/components/seo/breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ServicesExplorer } from "@/components/services-explorer";
 import { SiteFrame } from "@/components/site-frame";
-import { serviceDecisionSteps, serviceDetails } from "@/data/home";
+import { serviceDecisionSteps } from "@/data/home";
 
 export const metadata: Metadata = {
   title: "Services | Orvyn",
@@ -78,38 +77,22 @@ export default function ServicesPage() {
     <SiteFrame>
       <JsonLd data={[createBreadcrumbJsonLd("Services", "/services"), faqJsonLd]} />
       <section className="border-b border-white/10 px-5 pb-14 pt-28 sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pt-44">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.9fr_0.55fr] lg:items-end">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.26em] text-gold-soft sm:text-sm">
-              Services / Capabilities
-            </p>
-            <h1 className="mt-6 max-w-4xl text-balance text-4xl font-black leading-[0.98] text-white sm:text-6xl lg:text-7xl">
-              Four functions. One system for modern brand growth.
-            </h1>
-            <p className="mt-7 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-              Every brand does not need the same fix. Some need sharper
-              direction. Some need better design. Some need marketing that
-              moves with purpose. Some need a stronger website.
-            </p>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-gold-soft/85 sm:text-lg sm:leading-8">
-              Orvyn brings consulting, design, marketing, and websites into one
-              clearer system.
-            </p>
-          </div>
-
-          <div className="rounded-[1.75rem] bg-coal/70 p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
-              Capability Index
-            </p>
-            <ol className="mt-5 space-y-3">
-              {serviceDetails.map((service) => (
-                <li key={service.title} className="flex items-center gap-4 text-sm">
-                  <CapabilityIcon icon={service.icon} className="size-5 shrink-0 text-gold-soft" />
-                  <span className="text-muted">{service.title}</span>
-                </li>
-              ))}
-            </ol>
-          </div>
+        <div className="mx-auto max-w-7xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-gold-soft sm:text-sm">
+            Services / Capabilities
+          </p>
+          <h1 className="mt-6 max-w-4xl text-balance text-4xl font-black leading-[0.98] text-white sm:text-6xl lg:text-7xl">
+            Four functions. One system for modern brand growth.
+          </h1>
+          <p className="mt-7 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
+            Every brand does not need the same fix. Some need sharper direction.
+            Some need better design. Some need marketing that moves with purpose.
+            Some need a stronger website.
+          </p>
+          <p className="mt-5 max-w-2xl text-base leading-7 text-gold-soft/85 sm:text-lg sm:leading-8">
+            Orvyn brings consulting, design, marketing, and websites into one
+            clearer system.
+          </p>
         </div>
       </section>
 

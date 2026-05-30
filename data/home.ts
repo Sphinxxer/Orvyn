@@ -288,25 +288,26 @@ export const caseStudyProcessSteps = [
   {
     number: "01",
     title: "Understand the business",
-    description: "We first understand the brand, offer, audience, and current gaps."
+    description:
+      "The first step is understanding the brand, offer, audience, and current gaps."
   },
   {
     number: "02",
     title: "Define the direction",
     description:
-      "We decide what needs to change visually, strategically, and structurally."
+      "The right visual, strategic, and structural changes become clear."
   },
   {
     number: "03",
     title: "Build the system",
     description:
-      "We create the assets, pages, content, or campaigns needed to move the brand forward."
+      "Assets, pages, content, or campaigns are created to move the brand forward."
   },
   {
     number: "04",
     title: "Refine the outcome",
     description:
-      "We improve the work based on clarity, usability, perception, and performance."
+      "The work is improved through clarity, usability, perception, and performance."
   }
 ];
 
