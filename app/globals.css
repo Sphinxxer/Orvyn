@@ -49,8 +49,14 @@ body {
         button,
         summary,
         [role="button"],
-        [data-cursor="interactive"]
+        [data-cursor="interactive"],
+        [data-service-cursor="menu"]
       ) {
+      cursor: none;
+    }
+
+    [data-service-cursor="menu"],
+    [data-service-cursor="menu"] * {
       cursor: none;
     }
 

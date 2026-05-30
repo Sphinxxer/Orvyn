@@ -35,9 +35,11 @@ export function CaseStudiesPreview() {
         <div className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
           <Link
             href={`/case-studies/${featuredStudy.slug}`}
+            target="_blank"
+            rel="noopener noreferrer"
             data-cursor="interactive"
             className="group relative min-h-[29rem] overflow-hidden rounded-[2.25rem] bg-ink p-7 transition duration-300 hover:-translate-y-1 sm:p-8"
-            aria-label={`View ${featuredStudy.title} case study`}
+            aria-label={`Open ${featuredStudy.title} case study in a new tab`}
           >
             <div className="absolute inset-x-8 top-8 h-px bg-gold/40" aria-hidden="true" />
             <div
@@ -72,9 +74,11 @@ export function CaseStudiesPreview() {
               <Link
                 key={study.title}
                 href={`/case-studies/${study.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 data-cursor="interactive"
                 className="group rounded-[1.75rem] bg-ink/58 px-5 py-5 transition duration-200 hover:-translate-y-0.5 hover:bg-graphite/75 sm:px-6"
-                aria-label={`View ${study.title} case study`}
+                aria-label={`Open ${study.title} case study in a new tab`}
               >
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
                   {study.label}

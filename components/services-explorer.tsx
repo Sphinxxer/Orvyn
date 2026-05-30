@@ -78,6 +78,7 @@ export function ServicesExplorer() {
                 <button
                   key={service.title}
                   type="button"
+                  data-service-cursor="menu"
                   onClick={() => scrollToService(serviceId)}
                   aria-current={isActive ? "true" : undefined}
                   className={`group flex items-center gap-4 rounded-2xl px-4 py-3 text-left text-sm font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${
