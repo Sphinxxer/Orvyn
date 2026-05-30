@@ -6,11 +6,11 @@ import { notFound } from "next/navigation";
 import { CaseStudyCard, ProjectPreviewPanel } from "@/components/case-study-card";
 import { CTASection } from "@/components/cta-section";
 import { SectionShell } from "@/components/section-shell";
+import { createProjectBreadcrumbJsonLd } from "@/components/seo/breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SiteFrame } from "@/components/site-frame";
 import { caseStudyDetails } from "@/data/home";
-
-const baseUrl = "https://orvyn.cc";
+import { createCreativeWorkSchema } from "@/data/schema";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -79,46 +79,11 @@ export default async function CaseStudyProjectPage({ params }: ProjectPageProps)
     .filter((item) => item.slug !== project.slug)
     .slice(0, 3);
   const hasDeck = projectHasDeck(project.deckHref);
-  const projectUrl = `${baseUrl}/case-studies/${project.slug}`;
+  const projectPath = `/case-studies/${project.slug}`;
 
   const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: `${baseUrl}/`
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          name: "Case Studies",
-          item: `${baseUrl}/case-studies`
-        },
-        {
-          "@type": "ListItem",
-          position: 3,
-          name: project.title,
-          item: projectUrl
-        }
-      ]
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "CreativeWork",
-      name: project.title,
-      url: projectUrl,
-      description: project.description,
-      about: project.category,
-      creator: {
-        "@type": "Organization",
-        name: "Orvyn",
-        url: baseUrl
-      }
-    }
+    createProjectBreadcrumbJsonLd(project.title, projectPath),
+    createCreativeWorkSchema(project, getProjectMetaDescription(project.slug))
   ];
 
   return (
@@ -276,7 +241,7 @@ function getProjectMetaDescription(slug: string) {
   }
 
   if (slug === "cameo-garments") {
-    return "A modern website direction for a Tirupur-based garment exporter with an outdated digital presence.";
+    return "A modern website direction for a Tirupur-based export business with an outdated digital presence.";
   }
 
   return "A clean brand identity and digital presentation direction for a financial planning and advisory firm.";

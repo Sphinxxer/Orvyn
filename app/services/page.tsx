@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { ServicesExplorer } from "@/components/services-explorer";
 import { SiteFrame } from "@/components/site-frame";
 import { serviceDecisionSteps } from "@/data/home";
+import { createFaqSchema, createServicesItemListSchema } from "@/data/schema";
 
 export const metadata: Metadata = {
   title: "Services | Orvyn",
@@ -59,23 +60,16 @@ const serviceFaqs = [
   }
 ];
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: serviceFaqs.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer
-    }
-  }))
-};
-
 export default function ServicesPage() {
   return (
     <SiteFrame>
-      <JsonLd data={[createBreadcrumbJsonLd("Services", "/services"), faqJsonLd]} />
+      <JsonLd
+        data={[
+          createBreadcrumbJsonLd("Services", "/services"),
+          createServicesItemListSchema(),
+          createFaqSchema(serviceFaqs)
+        ]}
+      />
       <section className="border-b border-white/10 px-5 pb-14 pt-28 sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pt-44">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-semibold uppercase tracking-[0.26em] text-gold-soft sm:text-sm">

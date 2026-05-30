@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { globalSchema } from "@/data/schema";
 import "./globals.css";
 
 const inter = Inter({
@@ -14,7 +15,7 @@ const inter = Inter({
 const baseUrl = "https://orvyn.cc";
 
 const defaultDescription =
-  "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen their content, websites, marketing systems, and digital presence.";
+  "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen consulting, design, marketing, websites, and digital presence.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -67,75 +68,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Orvyn | Brand Growth Agency in Tirupur",
     description:
-      "Orvyn helps brands sharpen their content, websites, marketing systems, and digital presence so they look clearer, earn trust faster, and grow with intent.",
+      "Orvyn helps brands sharpen their digital presence through consulting, design, marketing, and websites.",
     images: ["/og-image.png"]
   }
 };
-
-const jsonLd = [
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Orvyn",
-    alternateName: ["ORVYN", "Orvyn.cc"],
-    url: baseUrl,
-    logo: `${baseUrl}/orvyn-search-icon.png`,
-    description:
-      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen their content, websites, marketing systems, and digital presence.",
-    founder: {
-      "@type": "Person",
-      name: "Bharath Kesav"
-    },
-    sameAs: [
-      "https://www.instagram.com/orvyn.cc/",
-      "https://www.linkedin.com/company/orvyncc/"
-    ]
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Orvyn",
-    alternateName: ["ORVYN", "Orvyn.cc"],
-    url: baseUrl,
-    description:
-      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India."
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "Orvyn",
-    alternateName: ["ORVYN", "Orvyn.cc"],
-    url: baseUrl,
-    image: `${baseUrl}/og-image.png`,
-    logo: `${baseUrl}/orvyn-search-icon.png`,
-    description:
-      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen content, websites, marketing systems, and digital presence.",
-    areaServed: ["India", "Tamil Nadu", "Tirupur"],
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Tirupur",
-      addressRegion: "Tamil Nadu",
-      addressCountry: "IN"
-    },
-    serviceType: [
-      "Consulting",
-      "Design",
-      "Marketing",
-      "Websites",
-      "Performance Marketing",
-      "Content Creation",
-      "Brand Development",
-      "Website Development",
-      "Social Media Management",
-      "SEO",
-      "Campaigns"
-    ],
-    sameAs: [
-      "https://www.instagram.com/orvyn.cc/",
-      "https://www.linkedin.com/company/orvyncc/"
-    ]
-  }
-];
 
 export default function RootLayout({
   children
@@ -145,7 +81,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} bg-ink font-sans text-white antialiased`}>
-        <JsonLd data={jsonLd} />
+        <JsonLd data={globalSchema} />
         <CustomCursor />
         {children}
         <MicrosoftClarity />

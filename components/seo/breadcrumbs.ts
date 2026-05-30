@@ -1,22 +1,16 @@
-const baseUrl = "https://orvyn.cc";
+import { createBreadcrumbSchema } from "@/data/schema";
 
 export function createBreadcrumbJsonLd(name: string, path: string) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: `${baseUrl}/`
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name,
-        item: `${baseUrl}${path}`
-      }
-    ]
-  };
+  return createBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name, path }
+  ]);
+}
+
+export function createProjectBreadcrumbJsonLd(name: string, path: string) {
+  return createBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "Case Studies", path: "/case-studies" },
+    { name, path }
+  ]);
 }

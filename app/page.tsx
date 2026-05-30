@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Orvyn | Brand Growth Agency in Tirupur",
     description:
-      "Orvyn helps brands sharpen their content, websites, marketing systems, and digital presence so they look clearer, earn trust faster, and grow with intent.",
+      "Orvyn helps brands sharpen their digital presence through consulting, design, marketing, and websites.",
     images: ["/og-image.png"]
   }
 };

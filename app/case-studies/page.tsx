@@ -7,8 +7,7 @@ import { createBreadcrumbJsonLd } from "@/components/seo/breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SiteFrame } from "@/components/site-frame";
 import { caseStudyDetails } from "@/data/home";
-
-const baseUrl = "https://orvyn.cc";
+import { createCreativeWorkSchema } from "@/data/schema";
 
 export const metadata: Metadata = {
   title: "Case Studies | Orvyn",
@@ -50,16 +49,7 @@ const caseStudiesJsonLd = {
   itemListElement: caseStudyDetails.map((project, index) => ({
     "@type": "ListItem",
     position: index + 1,
-    item: {
-      "@type": "CreativeWork",
-      name: project.title,
-      description: project.description,
-      about: project.category,
-      url:
-        project.deckStatus === "available" && project.deckHref
-          ? `${baseUrl}${project.deckHref}`
-          : `${baseUrl}/case-studies`
-    }
+    item: createCreativeWorkSchema(project, project.description)
   }))
 };
 

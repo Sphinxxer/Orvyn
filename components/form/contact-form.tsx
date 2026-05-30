@@ -267,9 +267,9 @@ function PhoneField({
 }) {
   return (
     <div className={`${labelBase} md:col-span-2`}>
-      <span>
+      <span className="inline-flex min-h-4 items-center gap-1 whitespace-nowrap max-[420px]:whitespace-normal">
         Phone / WhatsApp
-        <span className="text-gold-soft" aria-hidden="true"> *</span>
+        <span className="text-gold-soft" aria-hidden="true">*</span>
       </span>
       <div className="mt-3 grid gap-3 sm:grid-cols-[minmax(12rem,0.48fr)_1fr]">
         <select

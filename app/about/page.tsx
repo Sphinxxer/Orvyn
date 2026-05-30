@@ -7,6 +7,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { SiteFrame } from "@/components/site-frame";
 import { TeamMemberCard } from "@/components/team-member-card";
 import { teamMembers } from "@/data/home";
+import { createFaqSchema } from "@/data/schema";
 
 const aboutPrinciples = [
   {
@@ -34,6 +35,11 @@ const aboutFaqs = [
       "Orvyn is a brand growth agency and modern internet company based in Tirupur, India. Orvyn helps brands fix, build, and market their digital presence through consulting, design, marketing, and websites."
   },
   {
+    question: "Is Orvyn a garment manufacturing company?",
+    answer:
+      "No. Orvyn is a brand growth agency and modern internet company based in Tirupur, India. Orvyn helps brands with consulting, design, marketing, websites, and digital presence."
+  },
+  {
     question: "Where is Orvyn based?",
     answer: "Orvyn is based in Tirupur, India, and works with brands across India."
   },
@@ -49,30 +55,17 @@ const aboutFaqs = [
   }
 ];
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: aboutFaqs.map((item) => ({
-    "@type": "Question",
-    name: item.question,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: item.answer
-    }
-  }))
-};
-
 export const metadata: Metadata = {
   title: "About | Orvyn",
   description:
-    "Orvyn is built on one belief: brands should fix what is unclear, inconsistent, or weak before scaling what works.",
+    "Orvyn is a brand growth agency and modern internet company based in Tirupur, India. It helps brands fix, build, and market their digital presence through consulting, design, marketing, and websites.",
   alternates: {
     canonical: "/about"
   },
   openGraph: {
     title: "About | Orvyn",
     description:
-      "Orvyn is built on one belief: brands should fix what is unclear, inconsistent, or weak before scaling what works.",
+      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India. It helps brands fix, build, and market their digital presence through consulting, design, marketing, and websites.",
     url: "/about",
     siteName: "Orvyn",
     type: "website",
@@ -90,7 +83,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About | Orvyn",
     description:
-      "Orvyn is built on one belief: brands should fix what is unclear, inconsistent, or weak before scaling what works.",
+      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India. It helps brands fix, build, and market their digital presence through consulting, design, marketing, and websites.",
     images: ["/og-image.png"]
   }
 };
@@ -98,7 +91,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <SiteFrame>
-      <JsonLd data={[createBreadcrumbJsonLd("About", "/about"), faqJsonLd]} />
+      <JsonLd data={[createBreadcrumbJsonLd("About", "/about"), createFaqSchema(aboutFaqs)]} />
       <section className="border-b border-white/10 px-5 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-36 lg:px-8 lg:pt-40">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-semibold uppercase tracking-[0.26em] text-gold-soft sm:text-sm">
@@ -113,8 +106,10 @@ export default function AboutPage() {
                 Growth gets stronger when the brand gets clearer.
               </p>
               <p className="mt-6 text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-                Orvyn was built on a simple belief: before a brand scales, it
-                needs to be clear enough to be trusted, remembered, and chosen.
+                Orvyn is a brand growth agency and modern internet company based
+                in Tirupur, India, built on a simple belief: before a brand
+                scales, it needs to be clear enough to be trusted, remembered,
+                and chosen.
               </p>
             </div>
           </div>
@@ -194,6 +189,29 @@ export default function AboutPage() {
                 </p>
               </article>
             ))}
+          </div>
+        </div>
+      </SectionShell>
+
+      <SectionShell className="pt-0">
+        <div className="grid gap-7 rounded-[2rem] border border-white/10 bg-coal/55 px-6 py-7 sm:px-8 lg:grid-cols-[0.34fr_1fr] lg:gap-14">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-gold-soft">
+              A quick clarification
+            </p>
+          </div>
+          <div>
+            <p className="max-w-3xl text-base leading-7 text-white/78">
+              Orvyn is a brand growth agency and modern internet company based
+              in Tirupur, India. It is not a garment manufacturing company,
+              apparel production unit, stitching partner, or clothing production
+              business.
+            </p>
+            <p className="mt-4 max-w-3xl text-sm leading-6 text-muted">
+              The work is focused on consulting, design, marketing, websites,
+              and digital presence for brands that want to grow with more
+              clarity.
+            </p>
           </div>
         </div>
       </SectionShell>

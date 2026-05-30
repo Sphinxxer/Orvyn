@@ -241,7 +241,7 @@ export const caseStudyDetails: CaseStudyDetail[] = [
     title: "Cameo Garments",
     category: "Website Revamp Concept",
     description:
-      "A modern website direction for a Tirupur-based garment exporter with an outdated digital presence.",
+      "A modern website direction for a Tirupur-based export business with an outdated digital presence.",
     whatThisShows:
       "How Orvyn reframes an old business website into a sharper export-focused digital presence.",
     focusAreas: [
