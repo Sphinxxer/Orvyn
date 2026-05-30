@@ -31,12 +31,11 @@ const aboutFaqs = [
   {
     question: "What does Orvyn do?",
     answer:
-      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India. We help brands fix, build, and market their digital presence through consulting, design, marketing, and websites."
+      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India. Orvyn helps brands fix, build, and market their digital presence through consulting, design, marketing, and websites."
   },
   {
-    question: "Why does Orvyn say \"Fix first. Then scale.\"?",
-    answer:
-      "Because more activity does not help when the foundation is unclear. Orvyn starts by finding what needs to be fixed before building what should be scaled."
+    question: "Where is Orvyn based?",
+    answer: "Orvyn is based in Tirupur, India, and works with brands across India."
   },
   {
     question: "How does Orvyn work with brands?",
@@ -47,10 +46,6 @@ const aboutFaqs = [
     question: "How many projects does Orvyn onboard?",
     answer:
       "Orvyn works with a limited number of new projects each month so every brand gets focused direction and execution."
-  },
-  {
-    question: "Where is Orvyn based?",
-    answer: "Orvyn is based in Tirupur, India, and works with brands across India."
   }
 ];
 
@@ -143,7 +138,7 @@ export default function AboutPage() {
               not working in one clear direction.
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 text-muted">
-              Orvyn exists to sharpen that foundation — so every post, page,
+              Orvyn exists to sharpen that foundation{" \u2014 "}so every post, page,
               campaign, and creative decision has a clearer role.
             </p>
           </div>

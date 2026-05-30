@@ -1,26 +1,26 @@
 import type { Metadata } from "next";
-import { CaseStudyCard } from "@/components/case-study-card";
+import { ButtonLink } from "@/components/button-link";
+import { CaseStudiesArchive } from "@/components/case-studies-archive";
 import { CTASection } from "@/components/cta-section";
-import { ProcessStep } from "@/components/process-step";
 import { SectionShell } from "@/components/section-shell";
 import { createBreadcrumbJsonLd } from "@/components/seo/breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SiteFrame } from "@/components/site-frame";
-import { caseStudyDetails, caseStudyProcessSteps } from "@/data/home";
+import { caseStudyDetails } from "@/data/home";
 
-const archiveTags = ["All", "Website", "Brand Direction", "Content", "Strategy", "Marketing"];
+const baseUrl = "https://orvyn.cc";
 
 export const metadata: Metadata = {
   title: "Case Studies | Orvyn",
   description:
-    "Explore Orvyn's growing archive of brand directions, website builds, digital systems, content directions, and project decks shaped with clarity and intent.",
+    "Explore Orvyn's growing archive of brand directions, website builds, digital systems, and project decks shaped with clarity and intent.",
   alternates: {
     canonical: "/case-studies"
   },
   openGraph: {
     title: "Case Studies | Orvyn",
     description:
-      "Explore Orvyn's growing archive of brand directions, website builds, digital systems, content directions, and project decks shaped with clarity and intent.",
+      "Explore Orvyn's growing archive of brand directions, website builds, digital systems, and project decks shaped with clarity and intent.",
     url: "/case-studies",
     siteName: "Orvyn",
     type: "website",
@@ -38,17 +38,37 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Case Studies | Orvyn",
     description:
-      "Explore Orvyn's growing archive of brand directions, website builds, digital systems, content directions, and project decks shaped with clarity and intent.",
+      "Explore Orvyn's growing archive of brand directions, website builds, digital systems, and project decks shaped with clarity and intent.",
     images: ["/og-image.png"]
   }
 };
 
-export default function CaseStudiesPage() {
-  const [featuredStudy, ...archiveStudies] = caseStudyDetails;
+const caseStudiesJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Orvyn case studies and project decks",
+  itemListElement: caseStudyDetails.map((project, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "CreativeWork",
+      name: project.title,
+      description: project.description,
+      about: project.category,
+      url:
+        project.deckStatus === "available" && project.deckHref
+          ? `${baseUrl}${project.deckHref}`
+          : `${baseUrl}/case-studies`
+    }
+  }))
+};
 
+export default function CaseStudiesPage() {
   return (
     <SiteFrame>
-      <JsonLd data={createBreadcrumbJsonLd("Case Studies", "/case-studies")} />
+      <JsonLd
+        data={[createBreadcrumbJsonLd("Case Studies", "/case-studies"), caseStudiesJsonLd]}
+      />
       <section className="border-b border-white/10 px-5 pb-14 pt-28 sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pt-44">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.82fr_0.48fr] lg:items-end">
           <div>
@@ -61,9 +81,13 @@ export default function CaseStudiesPage() {
           </div>
           <div className="border-t border-gold pt-6">
             <p className="text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-              A growing archive of brand directions, digital systems, and project
-              work shaped to improve how businesses look, communicate, and grow.
+              A growing archive of brand directions, website builds, digital
+              systems, and project work shaped to improve how businesses look,
+              communicate, and grow.
             </p>
+            <ButtonLink href="/contact" className="mt-7">
+              Start a Project
+            </ButtonLink>
           </div>
         </div>
       </section>
@@ -72,67 +96,17 @@ export default function CaseStudiesPage() {
         <div className="mb-10 max-w-4xl border-l border-gold/45 pl-6">
           <p className="max-w-3xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
             Some projects are active client work, while others are concept
-            directions or strategic builds. The work stays honest — no fake
-            numbers, no inflated results.
+            directions or strategic builds. The work stays honest{" \u2014 "}no
+            fake numbers, no inflated results.
           </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-[0.28fr_1fr] lg:gap-12">
-          <aside className="lg:sticky lg:top-28 lg:self-start">
-            <div className="rounded-[2rem] border border-white/10 bg-ink/55 p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-gold-soft">
-                Archive Index
-              </p>
-              <p className="mt-5 text-sm leading-6 text-white/65">
-                Project decks, website directions, brand systems, and strategic
-                builds shaped with clarity.
-              </p>
-              <div className="mt-6 flex flex-wrap gap-2">
-                {archiveTags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded-full border border-white/10 px-3 py-1.5 text-xs font-medium text-white/55"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </aside>
-
-          <div className="space-y-5">
-            {featuredStudy ? <CaseStudyCard {...featuredStudy} featured /> : null}
-            {archiveStudies.length ? (
-              <div className="space-y-5">
-                {archiveStudies.map((study) => (
-                  <CaseStudyCard key={study.title} {...study} />
-                ))}
-              </div>
-            ) : null}
-          </div>
-        </div>
-      </SectionShell>
-
-      <SectionShell className="bg-white/[0.012]">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
-              Project Method
-            </p>
-            <h2 className="mt-5 text-4xl font-bold leading-[1.04] text-white sm:text-5xl">
-              How we shape project direction.
-            </h2>
-          </div>
-          <div className="rounded-[2rem] bg-coal/55 px-5 sm:px-7">
-            {caseStudyProcessSteps.map((step) => (
-              <ProcessStep key={step.number} {...step} />
-            ))}
-          </div>
-        </div>
+        <CaseStudiesArchive projects={caseStudyDetails} />
       </SectionShell>
 
       <CTASection
-        title="Want this kind of clarity for your brand?"
+        title="Have a brand that needs clearer direction?"
+        copy="Tell us what feels unclear. The next move might be consulting, design, marketing, websites, or a mix of all four."
         ctaLabel="Start a Project"
         ctaHref="/contact"
       />

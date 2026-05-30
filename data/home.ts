@@ -176,6 +176,7 @@ export type CaseStudyDetail = {
   title: string;
   category: string;
   description: string;
+  whatThisShows: string;
   focusAreas: string[];
   label: string;
   deckHref?: string;
@@ -189,6 +190,8 @@ export const caseStudyDetails: CaseStudyDetail[] = [
     category: "Instagram Portfolio Direction",
     description:
       "A content and presentation direction for a premium architecture, construction, and interiors brand.",
+    whatThisShows:
+      "How Orvyn structures a premium Instagram portfolio for a high-ticket construction and interiors brand.",
     focusAreas: [
       "Instagram audit",
       "Project showcase structure",
@@ -199,13 +202,15 @@ export const caseStudyDetails: CaseStudyDetail[] = [
     label: "Client Direction",
     deckHref: "/case-studies/grandeur-associates.pdf",
     deckStatus: "available",
-    tags: ["Strategy", "Content", "Direction"]
+    tags: ["Strategy", "Content", "Marketing"]
   },
   {
     title: "TRIC Academy",
     category: "Website Direction",
     description:
       "A website direction and digital structure for a Tirupur-based sports academy built around swimming programs, memberships, facilities, and application flow.",
+    whatThisShows:
+      "How Orvyn structures a service website around programs, facilities, trust, and application flow.",
     focusAreas: [
       "Website structure",
       "Program discovery",
@@ -217,30 +222,15 @@ export const caseStudyDetails: CaseStudyDetail[] = [
     label: "Website Build",
     deckHref: "/case-studies/tric-academy.pdf",
     deckStatus: "coming-soon",
-    tags: ["Website", "Local trust", "Application flow"]
-  },
-  {
-    title: "Biomode",
-    category: "Content & Catalog Direction",
-    description:
-      "A content and catalog direction for a premium kids innerwear brand focused on comfort, fabric education, and product presentation.",
-    focusAreas: [
-      "Product content direction",
-      "Catalog image planning",
-      "Instagram positioning",
-      "Parent-focused messaging",
-      "Visual system refinement"
-    ],
-    label: "Client Work",
-    deckHref: "/case-studies/biomode.pdf",
-    deckStatus: "available",
-    tags: ["Content", "Catalog", "Design"]
+    tags: ["Websites", "Strategy", "Local trust"]
   },
   {
     title: "Cameo Garments",
     category: "Website Revamp Concept",
     description:
       "A modern website direction for a Tirupur-based garment exporter with an outdated digital presence.",
+    whatThisShows:
+      "How Orvyn reframes an old business website into a sharper export-focused digital presence.",
     focusAreas: [
       "Website structure",
       "Export-focused positioning",
@@ -251,13 +241,15 @@ export const caseStudyDetails: CaseStudyDetail[] = [
     label: "Website Concept",
     deckHref: "/case-studies/cameo-garments.pdf",
     deckStatus: "available",
-    tags: ["Website", "Concept", "Export"]
+    tags: ["Websites", "Strategy", "Export"]
   },
   {
     title: "SRA Financial Planning",
     category: "Brand Identity Direction",
     description:
       "A clean brand identity and digital presentation direction for a financial planning and advisory firm.",
+    whatThisShows:
+      "How Orvyn approaches trust-led identity for a financial service brand.",
     focusAreas: [
       "Logo direction",
       "Brand system",
@@ -268,7 +260,7 @@ export const caseStudyDetails: CaseStudyDetail[] = [
     label: "Brand Direction",
     deckHref: "/case-studies/sra-financial-planning.pdf",
     deckStatus: "available",
-    tags: ["Brand direction", "Identity", "Trust"]
+    tags: ["Brand Direction", "Strategy", "Trust"]
   }
 ];
 

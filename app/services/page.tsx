@@ -12,14 +12,14 @@ import { serviceDecisionSteps, serviceDetails } from "@/data/home";
 export const metadata: Metadata = {
   title: "Services | Orvyn",
   description:
-    "Explore Orvyn’s four core functions: consulting, design, marketing, and websites — one system for modern brand growth.",
+    "Explore Orvyn's four core functions: consulting, design, marketing, and websites \u2014 one system for modern brand growth.",
   alternates: {
     canonical: "/services"
   },
   openGraph: {
     title: "Services | Orvyn",
     description:
-      "Explore Orvyn’s four core functions: consulting, design, marketing, and websites — one system for modern brand growth.",
+      "Explore Orvyn's four core functions: consulting, design, marketing, and websites \u2014 one system for modern brand growth.",
     url: "/services",
     siteName: "Orvyn",
     type: "website",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Services | Orvyn",
     description:
-      "Explore Orvyn’s four core functions: consulting, design, marketing, and websites — one system for modern brand growth.",
+      "Explore Orvyn's four core functions: consulting, design, marketing, and websites \u2014 one system for modern brand growth.",
     images: ["/og-image.png"]
   }
 };

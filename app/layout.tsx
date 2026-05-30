@@ -18,7 +18,7 @@ const defaultDescription =
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: "Orvyn | Brand Growth Agency & Modern Internet Company",
+  title: "Orvyn | Brand Growth Agency in Tirupur",
   description: defaultDescription,
   keywords: [
     "brand growth agency",
@@ -39,14 +39,16 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/orvyn-icon.svg", type: "image/svg+xml", media: "(prefers-color-scheme: dark)" }
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-48x48.png", type: "image/png", sizes: "48x48" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/icon-512.png", type: "image/png", sizes: "512x512" }
     ],
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg"
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png"
   },
   openGraph: {
-    title: "Orvyn | Brand Growth Agency & Modern Internet Company",
+    title: "Orvyn | Brand Growth Agency in Tirupur",
     description: defaultDescription,
     siteName: "Orvyn",
     type: "website",
@@ -63,7 +65,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Orvyn | Brand Growth Agency & Modern Internet Company",
+    title: "Orvyn | Brand Growth Agency in Tirupur",
     description:
       "Orvyn helps brands sharpen their content, websites, marketing systems, and digital presence so they look clearer, earn trust faster, and grow with intent.",
     images: ["/og-image.png"]
@@ -77,7 +79,7 @@ const jsonLd = [
     name: "Orvyn",
     alternateName: ["ORVYN", "Orvyn.cc"],
     url: baseUrl,
-    logo: `${baseUrl}/favicon.svg`,
+    logo: `${baseUrl}/orvyn-search-icon.png`,
     description:
       "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen their content, websites, marketing systems, and digital presence.",
     founder: {
@@ -105,7 +107,7 @@ const jsonLd = [
     alternateName: ["ORVYN", "Orvyn.cc"],
     url: baseUrl,
     image: `${baseUrl}/og-image.png`,
-    logo: `${baseUrl}/favicon.svg`,
+    logo: `${baseUrl}/orvyn-search-icon.png`,
     description:
       "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen content, websites, marketing systems, and digital presence.",
     areaServed: ["India", "Tamil Nadu", "Tirupur"],

@@ -8,14 +8,14 @@ import { SiteFrame } from "@/components/site-frame";
 export const metadata: Metadata = {
   title: "Contact | Orvyn",
   description:
-    "Start a project with Orvyn and build a sharper digital presence for your brand through content, websites, brand direction, and marketing systems.",
+    "Start a project with Orvyn and build a sharper digital presence through consulting, design, marketing, and websites.",
   alternates: {
     canonical: "/contact"
   },
   openGraph: {
     title: "Contact | Orvyn",
     description:
-      "Start a project with Orvyn and build a sharper digital presence for your brand through content, websites, brand direction, and marketing systems.",
+      "Start a project with Orvyn and build a sharper digital presence through consulting, design, marketing, and websites.",
     url: "/contact",
     siteName: "Orvyn",
     type: "website",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact | Orvyn",
     description:
-      "Start a project with Orvyn and build a sharper digital presence for your brand through content, websites, brand direction, and marketing systems.",
+      "Start a project with Orvyn and build a sharper digital presence through consulting, design, marketing, and websites.",
     images: ["/og-image.png"]
   }
 };

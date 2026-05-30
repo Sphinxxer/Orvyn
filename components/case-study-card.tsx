@@ -2,6 +2,7 @@ type CaseStudyCardProps = {
   title: string;
   category: string;
   description: string;
+  whatThisShows: string;
   focusAreas: string[];
   label: string;
   deckHref?: string;
@@ -14,6 +15,7 @@ export function CaseStudyCard({
   title,
   category,
   description,
+  whatThisShows,
   focusAreas,
   label,
   deckHref,
@@ -26,49 +28,24 @@ export function CaseStudyCard({
   return (
     <article
       data-cursor="interactive"
-      className={`group overflow-hidden rounded-[2rem] bg-coal/68 transition duration-300 hover:bg-graphite/70 hover:ring-1 hover:ring-gold/25 ${
-        featured ? "p-5 sm:p-7 lg:p-8" : "p-5 sm:p-6"
+      className={`group overflow-hidden rounded-[2rem] border border-white/10 bg-coal/68 transition duration-300 hover:border-gold/35 hover:bg-graphite/70 ${
+        featured ? "p-5 sm:p-7 lg:p-8" : "p-4 sm:p-5 lg:p-6"
       }`}
     >
       <div
         className={`grid gap-6 ${
           featured
-            ? "lg:grid-cols-[0.44fr_0.56fr] lg:gap-12"
-            : "lg:grid-cols-[0.32fr_0.68fr] lg:items-center lg:gap-10"
+            ? "lg:grid-cols-[0.48fr_0.52fr] lg:gap-12"
+            : "lg:grid-cols-[0.36fr_0.64fr] lg:items-stretch lg:gap-9"
         }`}
       >
-        <div
-          className={`relative overflow-hidden rounded-[1.65rem] bg-ink p-5 transition duration-300 group-hover:-translate-y-1 ${
-            featured ? "min-h-80 sm:min-h-[25rem]" : "min-h-56"
-          }`}
-        >
-          <div className="absolute inset-x-6 top-6 h-px bg-gold/35" aria-hidden="true" />
-          <div
-            className="absolute -right-20 bottom-[-5rem] size-64 rounded-full border border-white/10 transition duration-300 group-hover:border-gold/30"
-            aria-hidden="true"
-          />
-          <div
-            className="absolute bottom-6 left-5 right-5 h-20 rounded-[1.25rem] border border-white/8 bg-white/[0.025] transition duration-300 group-hover:translate-x-2"
-            aria-hidden="true"
-          />
-          <div className="relative flex h-full flex-col justify-between pt-7">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
-                {label}
-              </p>
-              <p
-                className={`mt-4 max-w-64 font-semibold leading-tight text-white ${
-                  featured ? "text-4xl sm:text-5xl" : "text-3xl"
-                }`}
-              >
-                {title}
-              </p>
-            </div>
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-              {category}
-            </p>
-          </div>
-        </div>
+        <DeckPreview
+          title={title}
+          category={category}
+          label={label}
+          hasDeck={hasDeck}
+          featured={featured}
+        />
 
         <div className="flex min-w-0 flex-col justify-between">
           <div>
@@ -87,6 +64,13 @@ export function CaseStudyCard({
               {title}
             </h2>
             <p className="mt-4 max-w-3xl text-base leading-7 text-muted">{description}</p>
+
+            <div className="mt-6 rounded-[1.25rem] border border-white/10 bg-ink/40 p-4">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft">
+                What this shows
+              </p>
+              <p className="mt-3 text-sm leading-6 text-white/72">{whatThisShows}</p>
+            </div>
 
             {tags.length ? (
               <div className="mt-5 flex flex-wrap gap-2">
@@ -126,7 +110,7 @@ export function CaseStudyCard({
             >
               View project deck{" "}
               <span className="transition group-hover:translate-x-1" aria-hidden="true">
-                -&gt;
+                {"\u2192"}
               </span>
             </a>
           ) : (
@@ -137,5 +121,61 @@ export function CaseStudyCard({
         </div>
       </div>
     </article>
+  );
+}
+
+function DeckPreview({
+  title,
+  category,
+  label,
+  hasDeck,
+  featured
+}: {
+  title: string;
+  category: string;
+  label: string;
+  hasDeck: boolean;
+  featured: boolean;
+}) {
+  return (
+    <div
+      className={`relative overflow-hidden rounded-[1.65rem] bg-ink p-5 transition duration-300 group-hover:-translate-y-1 ${
+        featured ? "min-h-80 sm:min-h-[27rem]" : "min-h-64"
+      }`}
+    >
+      <div className="absolute inset-x-6 top-6 h-px bg-gold/45" aria-hidden="true" />
+      <div className="absolute right-6 top-9 text-xs font-semibold uppercase tracking-[0.2em] text-white/35">
+        {hasDeck ? "PDF" : "Pending"}
+      </div>
+      <div
+        className="absolute -right-24 bottom-[-6rem] size-72 rounded-full border border-white/10 transition duration-300 group-hover:border-gold/30"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-6 left-5 right-5 h-24 rounded-[1.25rem] border border-white/8 bg-white/[0.025] transition duration-300 group-hover:translate-x-2"
+        aria-hidden="true"
+      />
+      <div
+        className="absolute bottom-12 right-10 h-px w-24 bg-gold/45 transition duration-300 group-hover:w-32"
+        aria-hidden="true"
+      />
+      <div className="relative flex h-full flex-col justify-between pt-7">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
+            {label}
+          </p>
+          <p
+            className={`mt-4 max-w-72 font-semibold leading-tight text-white ${
+              featured ? "text-4xl sm:text-5xl" : "text-3xl"
+            }`}
+          >
+            {title}
+          </p>
+        </div>
+        <p className="max-w-72 text-xs font-semibold uppercase leading-5 tracking-[0.2em] text-muted">
+          {category}
+        </p>
+      </div>
+    </div>
   );
 }
