@@ -81,7 +81,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} bg-ink font-sans text-white antialiased`}>
-        <JsonLd data={globalSchema} />
+        {globalSchema.map((schema) => (
+          <JsonLd key={String(schema["@id"])} data={schema} />
+        ))}
         <CustomCursor />
         {children}
         <MicrosoftClarity />
