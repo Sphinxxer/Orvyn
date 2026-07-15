@@ -20,7 +20,7 @@ export const portfolioProjects: PortfolioProject[] = [
     description:
       "A complete brand identity system designed for a premium children's innerwear company.",
     services: ["Identity", "Guidelines", "Visual System"],
-    previewImage: "/case-studies/previews/biomode-brand-guidelines.jpg",
+    previewImage: "/case-studies/previews/biomode-main-icon.jpg",
     href: "/case-studies/biomode.pdf",
     ctaLabel: "Open PDF",
     kind: "pdf"
