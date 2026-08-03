@@ -194,6 +194,22 @@ body {
   animation: reveal-up 620ms ease forwards;
 }
 
+@keyframes project-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.project-dialog__panel {
+  animation: project-dialog-in 280ms ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -206,5 +222,10 @@ body {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  [data-portfolio-cursor="true"]:hover,
+  [data-portfolio-cursor="true"]:hover img {
+    transform: none !important;
   }
 }

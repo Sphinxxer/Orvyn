@@ -1,4 +1,4 @@
-import type { caseStudyDetails } from "./home";
+import type { caseStudyDetails } from "./case-studies";
 
 export const siteUrl = "https://orvyn.cc";
 export const siteName = "Orvyn";

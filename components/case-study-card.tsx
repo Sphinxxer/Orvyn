@@ -2,7 +2,7 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import Image from "next/image";
 import Link from "next/link";
-import type { CaseStudyDetail } from "@/data/home";
+import type { CaseStudyDetail } from "@/data/case-studies";
 
 type CaseStudyCardProps = {
   project: CaseStudyDetail;

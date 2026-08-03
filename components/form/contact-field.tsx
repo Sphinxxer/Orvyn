@@ -47,9 +47,9 @@ export function SelectField({
 }: SelectFieldProps) {
   return (
     <label className={`${labelBase} ${className}`}>
-      <span className="inline-flex min-h-4 items-center gap-1 whitespace-nowrap max-[420px]:whitespace-normal">
-        {label}
-        {required ? <span className="text-gold-soft" aria-hidden="true">*</span> : null}
+      <span className="flex min-h-4 items-center gap-1 whitespace-nowrap text-[11px] leading-4 tracking-[0.13em]">
+        <span>{label}</span>
+        {required ? <span className="shrink-0 text-gold-soft" aria-hidden="true">*</span> : null}
       </span>
       <select className={fieldBase} name={name} defaultValue="" required={required}>
         <option value="" disabled>

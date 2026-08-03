@@ -3,6 +3,7 @@
 import type { FormEvent, ReactNode } from "react";
 import { useState } from "react";
 import { budgetRanges, contactNeeds } from "@/data/home";
+import { trackClarityEvent } from "@/components/analytics/track-event";
 import { fieldBase, labelBase, SelectField, TextAreaField, TextField } from "./contact-field";
 import {
   COUNTRY_CODES,
@@ -32,6 +33,7 @@ export function ContactForm() {
     const form = event.currentTarget;
 
     if (!form.reportValidity()) {
+      trackClarityEvent("contact_form_submission_failed");
       setStatus({
         type: "error",
         message: "Please complete the required fields before sending your inquiry."
@@ -57,6 +59,7 @@ export function ContactForm() {
     };
 
     if (nextFieldErrors.phone || nextFieldErrors.link) {
+      trackClarityEvent("contact_form_submission_failed");
       setFieldErrors(nextFieldErrors);
       return;
     }
@@ -100,6 +103,7 @@ export function ContactForm() {
       !payload.get("message");
 
     if (hasMissingRequiredField) {
+      trackClarityEvent("contact_form_submission_failed");
       setStatus({
         type: "error",
         message: "Please complete the required fields before sending your inquiry."
@@ -110,6 +114,7 @@ export function ContactForm() {
     const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL;
 
     if (!scriptUrl) {
+      trackClarityEvent("contact_form_submission_failed");
       setStatus({
         type: "error",
         message: "Something went wrong. Please try again or contact us directly."
@@ -135,7 +140,9 @@ export function ContactForm() {
         type: "success",
         message: "Your inquiry has been received. We\u2019ll get back to you soon."
       });
+      trackClarityEvent("contact_form_submitted");
     } catch {
+      trackClarityEvent("contact_form_submission_failed");
       setStatus({
         type: "error",
         message: "Something went wrong. Please try again or contact us directly."
@@ -148,6 +155,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
+      data-analytics-form="contact"
       className="rounded-[2.25rem] border border-white/10 bg-[#11100d]/95 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.18)] sm:p-7 lg:p-9"
       aria-label="Project inquiry form"
     >
@@ -193,7 +201,7 @@ export function ContactForm() {
           required
         />
         <SelectField
-          label="Budget range"
+          label="Budget range (INR)"
           name="budget"
           options={budgetRanges}
           placeholder="Select a range"

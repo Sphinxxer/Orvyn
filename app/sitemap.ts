@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { caseStudyDetails } from "@/data/home";
+import { caseStudyDetails } from "@/data/case-studies";
 
 const baseUrl = "https://orvyn.cc";
 

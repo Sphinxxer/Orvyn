@@ -10,14 +10,14 @@ import { organizationId, siteUrl } from "@/data/schema";
 export const metadata: Metadata = {
   title: "Case Studies | Orvyn",
   description:
-    "Explore Orvyn's growing archive of brand directions, website builds, digital systems, and project decks shaped with clarity and intent.",
+    "Explore Orvyn's work across brand identity, website builds, strategic direction, and digital systems.",
   alternates: {
     canonical: "/case-studies"
   },
   openGraph: {
     title: "Case Studies | Orvyn",
     description:
-      "Explore Orvyn's growing archive of brand directions, website builds, digital systems, and project decks shaped with clarity and intent.",
+      "Explore Orvyn's work across brand identity, website builds, strategic direction, and digital systems.",
     url: "/case-studies",
     siteName: "Orvyn",
     type: "website",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Case Studies | Orvyn",
     description:
-      "Explore Orvyn's growing archive of brand directions, website builds, digital systems, and project decks shaped with clarity and intent.",
+      "Explore Orvyn's work across brand identity, website builds, strategic direction, and digital systems.",
     images: ["/og-image.png"]
   }
 };
@@ -51,7 +51,11 @@ const caseStudiesJsonLd = {
       "@type": "CreativeWork",
       name: project.client,
       description: project.description,
-      url: project.href.startsWith("http") ? project.href : `${siteUrl}${project.href}`,
+      url: project.destinationUrl
+        ? project.destinationUrl.startsWith("http")
+          ? project.destinationUrl
+          : `${siteUrl}${project.destinationUrl}`
+        : `${siteUrl}/case-studies#${project.slug}`,
       creator: {
         "@id": organizationId
       },
@@ -66,31 +70,31 @@ export default function CaseStudiesPage() {
       <JsonLd
         data={[createBreadcrumbJsonLd("Case Studies", "/case-studies"), caseStudiesJsonLd]}
       />
-      <section className="flex min-h-[58vh] items-end px-5 pb-16 pt-[120px] sm:px-6 lg:min-h-[62vh] lg:px-8">
-        <div className="mx-auto w-full max-w-7xl">
-          <p
-            className="reveal-up text-xs font-semibold uppercase tracking-[0.28em] text-gold-soft sm:text-sm"
-            style={{ animationDelay: "0ms" }}
-          >
-            Selected Work
-          </p>
-          <h1
-            className="reveal-up mt-6 max-w-5xl text-balance text-4xl font-black leading-[0.98] text-white sm:text-5xl lg:text-6xl"
-            style={{ animationDelay: "110ms" }}
-          >
-            Projects built with clarity and intention.
-          </h1>
-          <p
-            className="reveal-up mt-6 max-w-3xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8"
-            style={{ animationDelay: "220ms" }}
-          >
-            From brand systems and websites to growth strategies and digital direction,
-            every project reflects how Orvyn approaches modern brand building.
-          </p>
+      <section className="px-5 pb-20 pt-32 sm:px-6 sm:pb-24 sm:pt-36 lg:px-8 lg:pt-40">
+        <div className="mx-auto grid w-full max-w-7xl gap-10 border-b border-white/10 pb-12 lg:grid-cols-[0.9fr_0.72fr] lg:items-end lg:gap-20 lg:pb-16">
+          <div className="reveal-up">
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gold-soft sm:text-sm">
+              Case Studies
+            </p>
+            <h1 className="mt-6 max-w-3xl text-balance text-4xl font-black leading-[0.98] text-white sm:text-5xl lg:text-6xl">
+              Work built with clarity and intent.
+            </h1>
+          </div>
+          <div className="reveal-up lg:justify-self-end" style={{ animationDelay: "90ms" }}>
+            <p className="max-w-xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
+              A growing archive of brand identities, website builds, strategic
+              directions, and digital systems shaped by Orvyn.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-semibold sm:text-base">
+              <p className="text-gold-soft">Consulting. Design. Marketing. Websites.</p>
+              <span className="hidden h-4 w-px bg-white/15 sm:block" aria-hidden="true" />
+              <p className="uppercase tracking-[0.16em] text-white/56">07 Projects</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <SectionShell className="pt-0">
+      <SectionShell className="pt-0 lg:pt-0">
         <CaseStudiesArchive projects={portfolioProjects} />
       </SectionShell>
     </SiteFrame>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { navItems } from "@/data/home";
 import { ButtonLink } from "../button-link";
@@ -11,9 +11,21 @@ import { Logo } from "./Logo";
 export function MobileNav() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuPanelRef = useRef<HTMLDivElement>(null);
+  const shouldRestoreFocus = useRef(false);
+
+  const closeMenu = useCallback(() => {
+    shouldRestoreFocus.current = true;
+    setIsOpen(false);
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
+      if (shouldRestoreFocus.current) {
+        window.requestAnimationFrame(() => menuButtonRef.current?.focus());
+        shouldRestoreFocus.current = false;
+      }
       return;
     }
 
@@ -22,21 +34,56 @@ export function MobileNav() {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setIsOpen(false);
+        closeMenu();
+        return;
+      }
+
+      if (event.key !== "Tab") {
+        return;
+      }
+
+      const focusable = Array.from(
+        menuPanelRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        ) ?? []
+      ).filter((element) => !element.hasAttribute("disabled"));
+
+      if (!focusable.length) {
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
+    window.requestAnimationFrame(() => {
+      menuPanelRef.current?.querySelector<HTMLElement>("button[aria-label='Close menu']")?.focus();
+    });
 
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen]);
+  }, [isOpen, closeMenu]);
 
   const menuPanel = isOpen
     ? createPortal(
-        <div className="fixed inset-0 z-[70] overflow-y-auto bg-ink/98 px-5 pb-6 pt-5 shadow-[0_28px_80px_rgba(0,0,0,0.72)] backdrop-blur-xl animate-in fade-in duration-200 supports-[backdrop-filter]:bg-ink/94 sm:px-6">
+        <div
+          ref={menuPanelRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Site navigation"
+          className="fixed inset-0 z-[70] overflow-y-auto bg-ink/98 px-5 pb-6 pt-5 shadow-[0_28px_80px_rgba(0,0,0,0.72)] backdrop-blur-xl animate-in fade-in duration-200 supports-[backdrop-filter]:bg-ink/94 sm:px-6"
+        >
           <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_18%_18%,rgba(200,169,90,0.12),transparent_28%),radial-gradient(circle_at_78%_72%,rgba(200,169,90,0.09),transparent_26%)]" />
           <div className="mx-auto flex min-h-full max-w-7xl flex-col">
             <div className="flex items-center justify-between gap-5 border-b border-white/10 pb-5">
@@ -44,7 +91,7 @@ export function MobileNav() {
               <button
                 type="button"
                 aria-label="Close menu"
-                onClick={() => setIsOpen(false)}
+                onClick={closeMenu}
                 className="group inline-flex size-11 items-center justify-center rounded-full border border-gold/35 bg-gold/5 text-gold-soft transition duration-200 hover:border-gold/60 hover:bg-gold/10 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
               >
                 <span className="relative block size-4" aria-hidden="true">
@@ -65,7 +112,7 @@ export function MobileNav() {
                       key={item.href}
                       href={item.href}
                       aria-current={isActive ? "page" : undefined}
-                      onClick={() => setIsOpen(false)}
+                      onClick={closeMenu}
                       className={`group flex min-h-[4.35rem] items-center justify-between gap-5 border-b border-white/10 py-3.5 transition duration-200 last:border-b-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink sm:min-h-[4.75rem] sm:py-4 ${
                         isActive ? "text-gold-soft" : "text-white hover:text-gold-soft"
                       }`}
@@ -98,7 +145,7 @@ export function MobileNav() {
             </nav>
 
             <div className="border-t border-white/10 pt-5">
-              <ButtonLink href="/contact" className="w-full min-h-13" onClick={() => setIsOpen(false)}>
+              <ButtonLink href="/contact" className="w-full min-h-13" onClick={closeMenu}>
                 Start a Project
               </ButtonLink>
             </div>
@@ -112,9 +159,10 @@ export function MobileNav() {
     <div className="lg:hidden">
       <button
         type="button"
+        ref={menuButtonRef}
         aria-label="Open menu"
         aria-expanded={isOpen}
-        onClick={() => setIsOpen((current) => !current)}
+        onClick={() => (isOpen ? closeMenu() : setIsOpen(true))}
         className={`group inline-flex size-11 items-center justify-center border transition duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${
           isOpen
             ? "border-gold/55 bg-gold/10 text-gold-soft"

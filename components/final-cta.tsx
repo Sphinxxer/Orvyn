@@ -11,16 +11,16 @@ export function FinalCta() {
             <p className="mb-6 text-xs font-semibold uppercase tracking-[0.26em] text-gold-soft sm:text-sm">
               Next Step
             </p>
-            <h2 className="max-w-5xl text-balance text-4xl font-black leading-[0.96] text-white sm:text-6xl lg:text-8xl lg:leading-[0.92]">
+            <h2 className="max-w-5xl text-balance text-4xl font-black leading-[1.16] text-white sm:text-6xl sm:leading-[0.98] lg:text-8xl lg:leading-[0.92]">
               Ready to become impossible to ignore?
             </h2>
             <p className="mt-7 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-              Let&apos;s build a sharper digital presence for your brand — one that
+              Let&apos;s build a sharper digital presence for your brand - one that
               looks clearer, earns trust faster, and grows with intent.
             </p>
             <p className="mt-5 max-w-2xl text-sm leading-6 text-gold-soft/85">
-              Orvyn works with a limited number of new projects each month so
-              every build gets focused direction and execution.
+              Orvyn onboards up to three new projects each month so every build
+              gets focused direction and execution.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-start">

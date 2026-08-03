@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { AnalyticsEvents } from "@/components/analytics/AnalyticsEvents";
 import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CustomCursor } from "@/components/ui/CustomCursor";
@@ -87,6 +88,7 @@ export default function RootLayout({
         <CustomCursor />
         {children}
         <MicrosoftClarity />
+        <AnalyticsEvents />
       </body>
     </html>
   );

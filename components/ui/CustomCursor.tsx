@@ -2,37 +2,31 @@
 
 import { useEffect, useRef, useState } from "react";
 
-type CursorMode = "default" | "active" | "hidden";
-
 const interactiveSelector =
   'a, button, summary, [role="button"], [data-cursor="interactive"]';
 const formSelector =
   "input, textarea, select, option, label, [contenteditable='true'], [data-cursor='native']";
 
 export function CustomCursor() {
+  const cursorRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef<HTMLDivElement>(null);
   const target = useRef({ x: 0, y: 0 });
   const current = useRef({ x: 0, y: 0 });
   const frame = useRef<number | null>(null);
+  const hasPosition = useRef(false);
   const [enabled, setEnabled] = useState(false);
-  const [visible, setVisible] = useState(false);
-  const [mode, setMode] = useState<CursorMode>("default");
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(
       "(min-width: 1024px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)"
     );
 
-    const updateEnabled = () => {
-      setEnabled(mediaQuery.matches);
-    };
+    const updateEnabled = () => setEnabled(mediaQuery.matches);
 
     updateEnabled();
     mediaQuery.addEventListener("change", updateEnabled);
 
-    return () => {
-      mediaQuery.removeEventListener("change", updateEnabled);
-    };
+    return () => mediaQuery.removeEventListener("change", updateEnabled);
   }, []);
 
   useEffect(() => {
@@ -40,97 +34,96 @@ export function CustomCursor() {
       return;
     }
 
-    const moveCursor = () => {
-      current.current.x += (target.current.x - current.current.x) * 0.34;
-      current.current.y += (target.current.y - current.current.y) * 0.34;
+    const cursor = cursorRef.current;
+    const arrow = arrowRef.current;
 
-      if (arrowRef.current) {
-        arrowRef.current.style.transform = `translate3d(${current.current.x}px, ${current.current.y}px, 0)`;
+    if (!cursor || !arrow) {
+      return;
+    }
+
+    const renderCursor = () => {
+      const dx = target.current.x - current.current.x;
+      const dy = target.current.y - current.current.y;
+
+      current.current.x += dx * 0.34;
+      current.current.y += dy * 0.34;
+      arrow.style.transform = `translate3d(${current.current.x}px, ${current.current.y}px, 0)`;
+
+      if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
+        frame.current = window.requestAnimationFrame(renderCursor);
+      } else {
+        current.current = { ...target.current };
+        arrow.style.transform = `translate3d(${target.current.x}px, ${target.current.y}px, 0)`;
+        frame.current = null;
+      }
+    };
+
+    const requestCursorFrame = () => {
+      if (frame.current === null) {
+        frame.current = window.requestAnimationFrame(renderCursor);
+      }
+    };
+
+    const updateMode = (element: EventTarget | null) => {
+      if (!(element instanceof Element)) {
+        cursor.classList.remove("is-active", "is-hidden");
+        return;
       }
 
-      frame.current = window.requestAnimationFrame(moveCursor);
+      const usesNativeCursor = Boolean(element.closest(formSelector));
+      cursor.classList.toggle("is-hidden", usesNativeCursor);
+      cursor.classList.toggle(
+        "is-active",
+        !usesNativeCursor && Boolean(element.closest(interactiveSelector))
+      );
     };
 
     const handlePointerMove = (event: PointerEvent) => {
       target.current = { x: event.clientX, y: event.clientY };
 
-      if (!visible) {
-        current.current = target.current;
-        setVisible(true);
+      if (!hasPosition.current) {
+        current.current = { ...target.current };
+        arrow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+        hasPosition.current = true;
       }
+
+      cursor.classList.add("is-visible");
+      updateMode(event.target);
+      requestCursorFrame();
     };
 
-    const handlePointerOver = (event: PointerEvent) => {
-      const element = event.target;
-
-      if (!(element instanceof Element)) {
-        return;
-      }
-
-      if (element.closest(formSelector)) {
-        setMode("hidden");
-        return;
-      }
-
-      setMode(element.closest(interactiveSelector) ? "active" : "default");
-    };
-
-    const handlePointerOut = (event: PointerEvent) => {
-      const nextTarget = event.relatedTarget;
-
-      if (!(nextTarget instanceof Element)) {
-        setMode("default");
-        return;
-      }
-
-      if (nextTarget.closest(formSelector)) {
-        setMode("hidden");
-        return;
-      }
-
-      setMode(nextTarget.closest(interactiveSelector) ? "active" : "default");
-    };
-
-    const handlePointerLeave = () => {
-      setVisible(false);
-    };
-
+    const handlePointerOver = (event: PointerEvent) => updateMode(event.target);
+    const handlePointerLeave = () => cursor.classList.remove("is-visible");
     const handlePointerEnter = () => {
-      setVisible(true);
+      if (hasPosition.current) {
+        cursor.classList.add("is-visible");
+      }
     };
 
     window.addEventListener("pointermove", handlePointerMove, { passive: true });
     window.addEventListener("pointerover", handlePointerOver, { passive: true });
-    window.addEventListener("pointerout", handlePointerOut, { passive: true });
     document.documentElement.addEventListener("pointerleave", handlePointerLeave);
     document.documentElement.addEventListener("pointerenter", handlePointerEnter);
-
-    frame.current = window.requestAnimationFrame(moveCursor);
 
     return () => {
       window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("pointerover", handlePointerOver);
-      window.removeEventListener("pointerout", handlePointerOut);
       document.documentElement.removeEventListener("pointerleave", handlePointerLeave);
       document.documentElement.removeEventListener("pointerenter", handlePointerEnter);
 
-      if (frame.current) {
+      if (frame.current !== null) {
         window.cancelAnimationFrame(frame.current);
+        frame.current = null;
       }
     };
-  }, [enabled, visible]);
+  }, [enabled]);
 
   if (!enabled) {
     return null;
   }
 
   return (
-    <div
-      className={`custom-cursor ${visible ? "is-visible" : ""} ${
-        mode === "active" ? "is-active" : ""
-      } ${mode === "hidden" ? "is-hidden" : ""}`}
-      aria-hidden="true"
-    >
+    <div ref={cursorRef} className="custom-cursor" aria-hidden="true">
       <div ref={arrowRef} className="custom-cursor__arrow">
         <span className="custom-cursor__glyph">
           <svg

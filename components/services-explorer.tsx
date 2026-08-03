@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { serviceDetails } from "@/data/home";
-import { ButtonLink } from "./button-link";
 import { CapabilityIcon } from "./capability-icon";
 
 function slugify(value: string) {
@@ -79,6 +78,7 @@ export function ServicesExplorer() {
                   key={service.title}
                   type="button"
                   data-service-cursor="menu"
+                  data-analytics-event="service_wing_selected"
                   onClick={() => scrollToService(serviceId)}
                   aria-current={isActive ? "true" : undefined}
                   className={`group flex items-center gap-4 rounded-2xl px-4 py-3 text-left text-sm font-semibold transition duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${
@@ -122,6 +122,7 @@ export function ServicesExplorer() {
             >
               <button
                 type="button"
+                data-analytics-event="service_wing_selected"
                 aria-expanded={isActive}
                 aria-controls={panelId}
                 onClick={() => setActiveService(serviceId)}
@@ -230,9 +231,6 @@ function ServiceDetailBlocks({ service }: { service: (typeof serviceDetails)[num
               </>
             ) : null}
           </div>
-          <ButtonLink href="/contact" variant="secondary" className="mt-7 w-full">
-            Start a Project
-          </ButtonLink>
         </div>
       </div>
     </div>

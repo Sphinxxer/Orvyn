@@ -79,9 +79,11 @@ export default function ServicesPage() {
             Four functions. One system for modern brand growth.
           </h1>
           <p className="mt-7 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-            Every brand does not need the same fix. Some need sharper direction.
-            Some need better design. Some need marketing that moves with purpose.
-            Some need a stronger website.
+            No two brands need exactly the same fix.
+          </p>
+          <p className="mt-4 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
+            Some need sharper direction. Some need better design. Some need
+            marketing that moves with purpose. Others need a stronger website.
           </p>
           <p className="mt-5 max-w-2xl text-base leading-7 text-gold-soft/85 sm:text-lg sm:leading-8">
             Orvyn brings consulting, design, marketing, and websites into one
@@ -90,17 +92,8 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <SectionShell className="pt-0">
-        <div className="max-w-4xl border-l border-gold/45 pl-6">
-          <p className="max-w-3xl text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
-            Not every brand needs more marketing. Some need the right parts
-            fixed first.
-          </p>
-        </div>
-
-        <div className="mt-12">
-          <ServicesExplorer />
-        </div>
+      <SectionShell>
+        <ServicesExplorer />
       </SectionShell>
 
       <SectionShell className="bg-white/[0.012]">
@@ -133,7 +126,7 @@ export default function ServicesPage() {
               Not sure what your brand needs?
             </p>
             <h2 className="mt-4 text-3xl font-bold leading-[1.04] text-white sm:text-5xl">
-              Start with the part that is holding growth back.
+              Start with the weakest link.
             </h2>
           </div>
           <div className="divide-y divide-white/10 rounded-[2rem] bg-coal/55 px-5 sm:px-7">
@@ -152,8 +145,8 @@ export default function ServicesPage() {
       </SectionShell>
 
       <CTASection
-        title="Not sure what your brand needs first?"
-        copy="Tell us what feels unclear. The next move might be consulting, design, marketing, websites, or a mix of all four. Orvyn works with a limited number of new projects each month so every build gets focused direction and execution."
+        title="Not sure where to start?"
+        copy="Tell us what feels unclear. The right next move may be consulting, design, marketing, websites, or a mix of all four."
         ctaLabel="Start a Project"
         ctaHref="/contact"
       />

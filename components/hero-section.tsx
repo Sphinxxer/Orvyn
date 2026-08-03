@@ -3,7 +3,7 @@ import { ButtonLink } from "./button-link";
 
 export function HeroSection() {
   return (
-    <section className="relative isolate min-h-screen overflow-hidden px-5 pb-12 pt-24 sm:px-6 sm:pt-28 lg:px-8 lg:pb-16 lg:pt-32 xl:pt-36">
+    <section className="relative isolate min-h-screen overflow-hidden px-5 pb-12 pt-24 sm:px-6 sm:pt-28 lg:px-8 lg:pb-16 lg:pt-24 xl:pt-28">
       <div className="absolute inset-x-0 top-[4.75rem] -z-10 h-px bg-gold/30 lg:top-20" aria-hidden="true" />
       <Image
         src="/orvyn-icon.svg"
@@ -16,9 +16,6 @@ export function HeroSection() {
       <div className="mx-auto grid min-h-[calc(100vh-7rem)] max-w-7xl content-center gap-10 lg:min-h-[calc(100vh-8rem)]">
         <div>
           <div className="max-w-6xl">
-            <p className="mb-7 text-xs font-semibold uppercase tracking-[0.28em] text-gold-soft sm:text-sm lg:mb-8">
-              Home / Modern Brand Growth Agency
-            </p>
             <h1 className="text-balance text-[clamp(2.85rem,10vw,4rem)] font-black leading-[1.08] tracking-[-0.025em] text-white sm:leading-[1.06] lg:text-[clamp(5rem,7.5vw,8.25rem)] lg:leading-[1.03] xl:leading-[1.01]">
               <span className="block">Become </span>
               <span className="block">impossible </span>

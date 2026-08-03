@@ -37,7 +37,7 @@ const aboutFaqs = [
   {
     question: "Is Orvyn a garment manufacturing company?",
     answer:
-      "No. Orvyn is a brand growth agency and modern internet company based in Tirupur, India. Orvyn helps brands with consulting, design, marketing, websites, and digital presence."
+      "No. Orvyn is a brand growth agency and modern internet company based in Tirupur, India. Orvyn works across consulting, design, marketing, websites, and digital presence."
   },
   {
     question: "Where is Orvyn based?",
@@ -51,7 +51,7 @@ const aboutFaqs = [
   {
     question: "How many projects does Orvyn onboard?",
     answer:
-      "Orvyn works with a limited number of new projects each month so every brand gets focused direction and execution."
+      "Project availability is reviewed through the contact process, with each scope planned around the work it needs."
   }
 ];
 
@@ -189,29 +189,6 @@ export default function AboutPage() {
                 </p>
               </article>
             ))}
-          </div>
-        </div>
-      </SectionShell>
-
-      <SectionShell className="pt-0">
-        <div className="grid gap-7 rounded-[2rem] border border-white/10 bg-coal/55 px-6 py-7 sm:px-8 lg:grid-cols-[0.34fr_1fr] lg:gap-14">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-gold-soft">
-              A quick clarification
-            </p>
-          </div>
-          <div>
-            <p className="max-w-3xl text-base leading-7 text-white/78">
-              Orvyn is a brand growth agency and modern internet company based
-              in Tirupur, India. It is not a garment manufacturing company,
-              apparel production unit, stitching partner, or clothing production
-              business.
-            </p>
-            <p className="mt-4 max-w-3xl text-sm leading-6 text-muted">
-              The work is focused on consulting, design, marketing, websites,
-              and digital presence for brands that want to grow with more
-              clarity.
-            </p>
           </div>
         </div>
       </SectionShell>

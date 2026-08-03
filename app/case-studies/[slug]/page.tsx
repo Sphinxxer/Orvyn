@@ -9,7 +9,7 @@ import { SectionShell } from "@/components/section-shell";
 import { createProjectBreadcrumbJsonLd } from "@/components/seo/breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SiteFrame } from "@/components/site-frame";
-import { caseStudyDetails } from "@/data/home";
+import { caseStudyDetails } from "@/data/case-studies";
 import { createCreativeWorkSchema } from "@/data/schema";
 
 type ProjectPageProps = {
@@ -78,7 +78,7 @@ export default async function CaseStudyProjectPage({ params }: ProjectPageProps)
   const relatedProjects = caseStudyDetails
     .filter((item) => item.slug !== project.slug)
     .slice(0, 3);
-  const hasDeck = projectHasDeck(project.deckHref);
+  const hasDeck = projectHasDeck(project.deckHref, project.deckStatus);
   const projectPath = `/case-studies/${project.slug}`;
 
   const jsonLd = [
@@ -170,10 +170,7 @@ export default async function CaseStudyProjectPage({ params }: ProjectPageProps)
 
         <div className="mt-10 rounded-[2rem] border border-gold/25 bg-[linear-gradient(135deg,rgba(200,169,90,0.11),rgba(255,255,255,0.02))] p-5 sm:p-7 lg:flex lg:items-center lg:justify-between lg:gap-8">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-soft">
-              Project deck
-            </p>
-            <h2 className="mt-4 text-3xl font-semibold leading-tight text-white">
+            <h2 className="text-3xl font-semibold leading-tight text-white">
               Project deck
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-muted">
@@ -263,8 +260,11 @@ function getProjectSolveCopy(slug: string) {
   return "A financial planning brand needs to feel clear, credible, and calm. This direction shows how identity, communication, and visual consistency can support trust-led decision making.";
 }
 
-function projectHasDeck(deckHref?: string) {
-  if (!deckHref) {
+function projectHasDeck(
+  deckHref?: string,
+  deckStatus?: "available" | "coming-soon"
+) {
+  if (!deckHref || deckStatus !== "available") {
     return false;
   }
 
