@@ -29,9 +29,14 @@ export function ButtonLink({
     <Link
       href={href}
       onClick={onClick}
-      className={`inline-flex min-h-12 items-center justify-center rounded-full border px-6 py-3 text-sm font-semibold leading-none tracking-[0.01em] transition duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink active:translate-y-0 ${variants[variant]} ${className}`}
+      data-magnetic
+      data-cursor="interactive"
+      className={`orvyn-button group inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full border px-6 py-3 text-sm font-semibold leading-none tracking-[0.01em] transition duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink active:translate-y-0 ${variants[variant]} ${className}`}
     >
       {children}
+      <svg className="orvyn-button__arrow size-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
     </Link>
   );
 }

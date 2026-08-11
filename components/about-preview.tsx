@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { ButtonLink } from "./button-link";
 import { SectionShell } from "./section-shell";
 
@@ -7,16 +8,17 @@ export function AboutPreview() {
       <div className="rounded-[2rem] bg-white/[0.025] px-6 py-10 sm:px-8 lg:px-12 lg:py-14">
         <div className="grid gap-10 lg:grid-cols-[0.44fr_1fr] lg:items-end lg:gap-16">
           <div>
-            <div className="mb-6 h-px w-16 bg-gold/70" aria-hidden="true" />
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
+            <div className="mb-6 h-px w-16 bg-gold/70" data-reveal="rule" aria-hidden="true" />
+            <p data-reveal="eyebrow" className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
               Orvyn Philosophy
             </p>
             <h2 className="mt-5 text-balance text-4xl font-black leading-[1] text-white sm:text-6xl">
-              Fix first. <span className="block text-gold-soft">Then scale.</span>
+              <span data-reveal="heading">Fix first.</span>{" "}
+              <span data-reveal="heading" className="block text-gold-soft" style={{ "--reveal-delay": "200ms" } as CSSProperties}>Then scale.</span>
             </h2>
           </div>
 
-          <div className="max-w-3xl">
+          <div className="max-w-3xl" data-reveal="body">
             <p className="text-2xl font-semibold leading-snug text-white sm:text-3xl">
               Growth gets easier when the brand is clear.
             </p>

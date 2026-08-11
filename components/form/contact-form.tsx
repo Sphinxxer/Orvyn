@@ -19,10 +19,14 @@ type FormStatus = {
   message: string;
 } | null;
 
+type FieldErrors = Partial<
+  Record<"name" | "email" | "phone" | "link" | "need" | "message", string>
+>;
+
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<FormStatus>(null);
-  const [fieldErrors, setFieldErrors] = useState<{ phone?: string; link?: string }>({});
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [selectedPhoneCountry, setSelectedPhoneCountry] = useState(COUNTRY_CODES[0]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -31,15 +35,6 @@ export function ContactForm() {
     setFieldErrors({});
 
     const form = event.currentTarget;
-
-    if (!form.reportValidity()) {
-      trackClarityEvent("contact_form_submission_failed");
-      setStatus({
-        type: "error",
-        message: "Please complete the required fields before sending your inquiry."
-      });
-      return;
-    }
 
     const formData = new FormData(form);
 
@@ -53,14 +48,37 @@ export function ContactForm() {
     const linkInput = String(formData.get("link") ?? "");
     const phoneValidation = validatePhoneNumber(countryCode, phoneInput);
     const isValidLink = validateWebsiteOrInstagram(linkInput);
-    const nextFieldErrors = {
+    const emailInput = form.elements.namedItem("email") as HTMLInputElement | null;
+    const nextFieldErrors: FieldErrors = {
+      name: String(formData.get("name") ?? "").trim()
+        ? undefined
+        : "Please enter your name.",
+      email:
+        String(formData.get("email") ?? "").trim() && emailInput?.validity.valid
+          ? undefined
+          : "Please enter a valid email address.",
       phone: phoneValidation.isValid ? undefined : phoneValidation.message,
-      link: isValidLink ? undefined : "Please enter a valid website, Instagram link, or handle."
+      link: isValidLink ? undefined : "Please enter a valid website, Instagram link, or handle.",
+      need: String(formData.get("need") ?? "").trim()
+        ? undefined
+        : "Please select the capability you need help with.",
+      message: String(formData.get("message") ?? "").trim()
+        ? undefined
+        : "Please tell us what you are trying to build."
     };
 
-    if (nextFieldErrors.phone || nextFieldErrors.link) {
+    const firstInvalidField = Object.entries(nextFieldErrors).find(([, message]) => message)?.[0];
+
+    if (firstInvalidField) {
       trackClarityEvent("contact_form_submission_failed");
       setFieldErrors(nextFieldErrors);
+      setStatus({
+        type: "error",
+        message: "Please review the highlighted fields before sending your inquiry."
+      });
+      window.requestAnimationFrame(() => {
+        form.querySelector<HTMLElement>(`[name="${firstInvalidField}"]`)?.focus();
+      });
       return;
     }
 
@@ -155,6 +173,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
+      noValidate
       data-analytics-form="contact"
       className="rounded-[2.25rem] border border-white/10 bg-[#11100d]/95 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.18)] sm:p-7 lg:p-9"
       aria-label="Project inquiry form"
@@ -169,8 +188,22 @@ export function ContactForm() {
       />
 
       <FormGroup title="Your details">
-        <TextField label="Name" name="name" type="text" autoComplete="name" required />
-        <TextField label="Email" name="email" type="email" autoComplete="email" required />
+        <TextField
+          label="Name"
+          name="name"
+          type="text"
+          autoComplete="name"
+          required
+          error={fieldErrors.name}
+        />
+        <TextField
+          label="Email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+          error={fieldErrors.email}
+        />
         <PhoneField
           error={fieldErrors.phone}
           selectedCountry={selectedPhoneCountry}
@@ -199,6 +232,7 @@ export function ContactForm() {
           options={contactNeeds}
           placeholder="Select a service"
           required
+          error={fieldErrors.need}
         />
         <SelectField
           label="Budget range (INR)"
@@ -206,7 +240,13 @@ export function ContactForm() {
           options={budgetRanges}
           placeholder="Select a range"
         />
-        <TextAreaField label="Message" name="message" className="md:col-span-2" required />
+        <TextAreaField
+          label="Message"
+          name="message"
+          className="md:col-span-2"
+          required
+          error={fieldErrors.message}
+        />
       </FormGroup>
 
       <button

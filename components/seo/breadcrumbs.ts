@@ -10,7 +10,7 @@ export function createBreadcrumbJsonLd(name: string, path: string) {
 export function createProjectBreadcrumbJsonLd(name: string, path: string) {
   return createBreadcrumbSchema([
     { name: "Home", path: "/" },
-    { name: "Case Studies", path: "/case-studies" },
+    { name: "Work", path: "/case-studies" },
     { name, path }
   ]);
 }

@@ -19,6 +19,7 @@ export function ServicesExplorer() {
   );
   const [activeService, setActiveService] = useState(serviceIds[0]);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
+  const pendingMobileScrollRef = useRef<string | null>(null);
 
   useEffect(() => {
     if (!window.matchMedia("(min-width: 1024px)").matches) {
@@ -50,6 +51,29 @@ export function ServicesExplorer() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const serviceId = pendingMobileScrollRef.current;
+
+    if (
+      !serviceId ||
+      serviceId !== activeService ||
+      window.matchMedia("(min-width: 1024px)").matches
+    ) {
+      return;
+    }
+
+    pendingMobileScrollRef.current = null;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const frame = window.requestAnimationFrame(() => {
+      sectionRefs.current[serviceId]?.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "start"
+      });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [activeService]);
+
   function scrollToService(serviceId: string) {
     const target = sectionRefs.current[serviceId];
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -59,6 +83,22 @@ export function ServicesExplorer() {
       behavior: reduceMotion ? "auto" : "smooth",
       block: "start"
     });
+  }
+
+  function openMobileService(serviceId: string) {
+    pendingMobileScrollRef.current = serviceId;
+
+    if (serviceId === activeService) {
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      sectionRefs.current[serviceId]?.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "start"
+      });
+      pendingMobileScrollRef.current = null;
+      return;
+    }
+
+    setActiveService(serviceId);
   }
 
   return (
@@ -125,7 +165,7 @@ export function ServicesExplorer() {
                 data-analytics-event="service_wing_selected"
                 aria-expanded={isActive}
                 aria-controls={panelId}
-                onClick={() => setActiveService(serviceId)}
+                onClick={() => openMobileService(serviceId)}
                 className="group flex w-full items-start gap-3 px-4 py-4 text-left transition duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink lg:hidden"
               >
                 <span

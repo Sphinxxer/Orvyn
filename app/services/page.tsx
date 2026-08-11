@@ -12,14 +12,14 @@ import { createFaqSchema, createServicesItemListSchema } from "@/data/schema";
 export const metadata: Metadata = {
   title: "Services | Orvyn",
   description:
-    "Explore Orvyn's four core functions: consulting, design, marketing, and websites \u2014 one system for modern brand growth.",
+    "Explore Orvyn's three connected capabilities: branding, websites, and marketing \u2014 one system for modern brand growth.",
   alternates: {
     canonical: "/services"
   },
   openGraph: {
     title: "Services | Orvyn",
     description:
-      "Explore Orvyn's four core functions: consulting, design, marketing, and websites \u2014 one system for modern brand growth.",
+      "Explore Orvyn's three connected capabilities: branding, websites, and marketing \u2014 one system for modern brand growth.",
     url: "/services",
     siteName: "Orvyn",
     type: "website",
@@ -37,26 +37,26 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Services | Orvyn",
     description:
-      "Explore Orvyn's four core functions: consulting, design, marketing, and websites \u2014 one system for modern brand growth.",
+      "Explore Orvyn's three connected capabilities: branding, websites, and marketing \u2014 one system for modern brand growth.",
     images: ["/og-image.png"]
   }
 };
 
 const serviceFaqs = [
   {
-    question: "Do I need all four functions?",
+    question: "Do I need all three capabilities?",
     answer:
-      "Not always. Some brands only need consulting or a website. Others need design and marketing working together. The first step is understanding what is actually holding growth back."
+      "Not always. Some brands need a clearer identity. Others need a stronger website or marketing that moves with purpose. The first step is understanding what is actually holding growth back."
   },
   {
-    question: "Which function should my brand start with?",
+    question: "Which capability should my brand start with?",
     answer:
-      "Start with the weakest link. If the direction is unclear, start with consulting. If the brand looks inconsistent, start with design. If visibility is the issue, start with marketing. If trust or conversion is weak, start with the website."
+      "Start with the weakest link. If the direction or identity is unclear, start with branding. If trust or conversion is weak, start with the website. If visibility and demand are the issue, start with marketing."
   },
   {
     question: "Can Orvyn handle only one part?",
     answer:
-      "Yes. Orvyn can work on one focused area or connect multiple functions into one clearer system."
+      "Yes. Orvyn can work on one focused area or connect multiple capabilities into one clearer system."
   }
 ];
 
@@ -72,22 +72,18 @@ export default function ServicesPage() {
       />
       <section className="border-b border-white/10 px-5 pb-14 pt-28 sm:px-6 sm:pb-20 sm:pt-36 lg:px-8 lg:pt-44">
         <div className="mx-auto max-w-7xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-gold-soft sm:text-sm">
-            Services / Capabilities
-          </p>
-          <h1 className="mt-6 max-w-4xl text-balance text-4xl font-black leading-[0.98] text-white sm:text-6xl lg:text-7xl">
-            Four functions. One system for modern brand growth.
+          <h1 data-reveal="heading" className="max-w-4xl text-balance text-4xl font-black leading-[0.98] text-white sm:text-6xl lg:text-7xl">
+            Three connected capabilities for modern brand growth.
           </h1>
-          <p className="mt-7 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
+          <p data-reveal="body" className="mt-7 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
             No two brands need exactly the same fix.
           </p>
           <p className="mt-4 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-            Some need sharper direction. Some need better design. Some need
-            marketing that moves with purpose. Others need a stronger website.
+            Some need sharper branding. Some need a stronger website. Others need
+            marketing that moves with purpose.
           </p>
           <p className="mt-5 max-w-2xl text-base leading-7 text-gold-soft/85 sm:text-lg sm:leading-8">
-            Orvyn brings consulting, design, marketing, and websites into one
-            clearer system.
+            Orvyn brings branding, websites, and marketing into one clearer system.
           </p>
         </div>
       </section>
@@ -146,7 +142,7 @@ export default function ServicesPage() {
 
       <CTASection
         title="Not sure where to start?"
-        copy="Tell us what feels unclear. The right next move may be consulting, design, marketing, websites, or a mix of all four."
+        copy="Tell us what feels unclear. The right next move may be branding, websites, marketing, or a mix of all three."
         ctaLabel="Start a Project"
         ctaHref="/contact"
       />

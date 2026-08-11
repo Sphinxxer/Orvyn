@@ -4,7 +4,10 @@ import Image from "next/image";
 import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import type { PortfolioProject } from "@/data/case-studies";
-import { ProjectPdfViewer } from "@/components/project-pdf-viewer";
+import {
+  preloadProjectPdfViewer,
+  ProjectPdfViewer
+} from "@/components/project-pdf-viewer";
 
 type ProjectDeckDialogProps = {
   project: PortfolioProject;
@@ -85,6 +88,26 @@ export function ProjectDeckDialog({
 
   const deckHref = project.deckHref ?? project.destinationUrl;
 
+  useEffect(() => {
+    const trigger = triggerRef.current;
+    if (!trigger || !deckHref) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          preloadProjectPdfViewer(deckHref);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "400px 0px" }
+    );
+
+    observer.observe(trigger);
+    return () => observer.disconnect();
+  }, [deckHref]);
+
   return (
     <>
       <button
@@ -95,9 +118,21 @@ export function ProjectDeckDialog({
         aria-label={project.ariaLabel}
         data-cursor="interactive"
         data-portfolio-cursor="true"
+        data-reveal="card"
+        data-tilt
         data-analytics-event={`${project.id}_project_viewer_opened`}
         className={`${className} cursor-none text-left`}
         style={style}
+        onPointerEnter={() => {
+          if (deckHref) {
+            preloadProjectPdfViewer(deckHref);
+          }
+        }}
+        onFocus={() => {
+          if (deckHref) {
+            preloadProjectPdfViewer(deckHref);
+          }
+        }}
         onClick={() => setIsOpen(true)}
       >
         {children}
@@ -154,7 +189,11 @@ export function ProjectDeckDialog({
                   </button>
                 </div>
 
-                <ProjectPdfViewer pdfUrl={deckHref} projectName={project.client} />
+                <ProjectPdfViewer
+                  pdfUrl={deckHref}
+                  projectName={project.client}
+                  previewImage={project.previewImage}
+                />
 
               </div>
             </div>,

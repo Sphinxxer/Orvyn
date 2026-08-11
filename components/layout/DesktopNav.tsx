@@ -23,9 +23,10 @@ export function DesktopNav() {
             }`}
           >
             {item.label}
-            {isActive ? (
-              <span className="absolute inset-x-0 bottom-0 h-px bg-gold" aria-hidden="true" />
-            ) : null}
+            <span
+              className={`nav-active-rule absolute inset-x-0 bottom-0 h-px origin-left bg-gold ${isActive ? "is-active" : ""}`}
+              aria-hidden="true"
+            />
           </Link>
         );
       })}

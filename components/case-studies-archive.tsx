@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import type { PortfolioProject } from "@/data/case-studies";
 import { ProjectDeckDialog } from "@/components/project-deck-dialog";
 
@@ -52,10 +53,11 @@ export function ProjectTile({
               ? "(min-width: 1024px) 20vw, (min-width: 768px) 30vw, 92vw"
               : "(min-width: 1280px) 31vw, (min-width: 768px) 46vw, 92vw"
           }
-          className="z-0 object-cover brightness-95 transition duration-300 ease-out group-hover:scale-[1.03] group-hover:brightness-100"
+          className="z-0 object-cover brightness-[0.88] transition duration-300 ease-out group-hover:scale-[1.03] group-hover:brightness-100"
         />
         <div className="absolute inset-0 z-10 bg-black/[0.14] transition duration-300 group-hover:bg-black/[0.05]" />
-        <div className="absolute inset-x-0 bottom-0 z-20 h-px origin-left scale-x-0 bg-gold transition duration-300 ease-out group-hover:scale-x-100" />
+        <div className="project-image-mask absolute inset-0 z-20 bg-ink" aria-hidden="true" />
+        <div className="absolute inset-x-0 bottom-0 z-30 h-px origin-left scale-x-0 bg-gold transition duration-300 ease-out group-hover:scale-x-100" />
       </div>
 
       <div className={`flex ${footerHeight} min-h-0 flex-col p-5 sm:p-6`}>
@@ -70,7 +72,7 @@ export function ProjectTile({
               className="inline-block pl-1 transition duration-300 group-hover:translate-x-1"
               aria-hidden="true"
             >
-              {opensProjectViewer ? "\u2192" : "\u2197"}
+              {opensInNewTab ? "\u2197" : "\u2192"}
             </span>
           ) : null}
         </span>
@@ -78,19 +80,19 @@ export function ProjectTile({
     </>
   );
 
-  const className = `group flex flex-col overflow-hidden rounded-[24px] border border-white/10 bg-[#090909] transition duration-300 ease-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${
-    "portfolio-tile opacity-0"
-  } ${tileHeight} ${
+  const className = `project-tile group flex flex-col overflow-hidden rounded-[24px] border border-white/10 bg-[#090909] transition duration-300 ease-out focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${tileHeight} ${
     hasDestination
-      ? "hover:-translate-y-1.5 hover:border-gold/60 hover:shadow-[0_16px_42px_rgba(200,169,90,0.12)]"
+      ? "project-tile--interactive hover:border-gold/45 hover:shadow-[0_16px_42px_rgba(200,169,90,0.09)]"
       : "opacity-75"
   }`;
+  const revealStyle = { "--reveal-delay": `${Math.min(index, 6) * 90}ms` } as CSSProperties;
 
   if (!hasDestination) {
     return (
       <article
+        data-reveal="card"
         className={className}
-        style={{ animationDelay: `${Math.min(index, 6) * 90}ms` }}
+        style={revealStyle}
       >
         {content}
       </article>
@@ -102,7 +104,7 @@ export function ProjectTile({
       <ProjectDeckDialog
         project={project}
         className={className}
-        style={{ animationDelay: `${Math.min(index, 6) * 90}ms` }}
+        style={revealStyle}
       >
         {content}
       </ProjectDeckDialog>
@@ -116,13 +118,15 @@ export function ProjectTile({
       rel={opensInNewTab ? "noopener noreferrer" : undefined}
       data-cursor="interactive"
       data-portfolio-cursor="true"
+      data-reveal="card"
+      data-tilt
       data-analytics-event={project.id === "biomode" ? "biomode_pdf_opened" : "case_study_opened"}
       aria-label={
         opensInNewTab && !project.ariaLabel.includes("new tab")
           ? `${project.ariaLabel} in a new tab`
           : project.ariaLabel
       }
-      style={{ animationDelay: `${Math.min(index, 6) * 90}ms` }}
+      style={revealStyle}
       className={className}
     >
       {content}

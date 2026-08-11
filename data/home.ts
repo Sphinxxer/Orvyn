@@ -1,104 +1,64 @@
 ﻿export const navItems = [
   { label: "Home", href: "/" },
+  { label: "Work", href: "/case-studies" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Case Studies", href: "/case-studies" },
   { label: "Contact", href: "/contact" }
 ];
 
 export const services = [
   {
-    title: "Consulting",
+    title: "Branding",
     description:
-      "Find what is unclear, what needs fixing, and what direction the brand should take next.",
-    tags: "Audits · Strategy · Positioning · Messaging",
-    icon: "system"
+      "Find the gap, sharpen the direction, and build a brand people can understand and trust.",
+    tags: "Audits · Strategy · Positioning · Brand Identity",
+    icon: "brand",
+    imageSrc: "/capabilities/branding-editorial.webp",
+    imageAlt: "Creative director arranging typography and brand identity materials"
   },
   {
-    title: "Design",
+    title: "Websites",
     description:
-      "Make the brand look sharper, feel consistent, and communicate with more intent.",
-    tags: "Brand Identity · Social Creatives · Visual Systems · Pitch Decks",
-    icon: "brand"
+      "Create a digital home that explains the offer clearly, builds trust, and supports enquiries.",
+    tags: "Web Design · Development · Landing Pages · Conversion Flow",
+    icon: "website",
+    imageSrc: "/capabilities/websites-editorial.webp",
+    imageAlt: "Designer developing responsive website layouts in a dark studio"
   },
   {
     title: "Marketing",
     description:
       "Turn attention into visibility, enquiries, leads, and measurable movement.",
     tags: "Social Media · Performance Ads · SEO · Campaigns",
-    icon: "performance"
-  },
-  {
-    title: "Websites",
-    description:
-      "Build a digital home that explains the offer clearly and turns visitors into enquiries.",
-    tags: "Web Design · Development · Landing Pages · Conversion Flow",
-    icon: "website"
+    icon: "performance",
+    imageSrc: "/capabilities/marketing-editorial.webp",
+    imageAlt: "Campaign director arranging content references and a visual storyboard"
   }
 ];
 
 export const serviceDetails = [
   {
-    title: "Consulting",
-    icon: "system",
-    positioning: "Find the gap before building more.",
+    title: "Branding",
+    icon: "brand",
+    positioning: "Find the gap, sharpen the direction, and build trust.",
     description:
-      "Before a brand does more content, ads, or redesigns, it needs to know what is actually holding it back. Consulting uncovers what feels unclear, what needs fixing, and what direction makes sense next.",
+      "Before a brand does more content, ads, or redesigns, it needs a clear direction and an identity people can understand. Branding brings diagnosis, positioning, messaging, and visual systems into one stronger foundation.",
     includes: [
       "Brand audits",
       "Digital presence review",
       "Positioning direction",
       "Messaging clarity",
       "Offer clarity",
-      "Growth planning",
-      "Campaign direction",
-      "Content and website recommendations"
-    ],
-    bestFor:
-      "Brands that know something is not working but need a clearer diagnosis before investing in more marketing, content, or website work.",
-    relatedServices: "Audits · Strategy · Positioning · Messaging · Growth Direction"
-  },
-  {
-    title: "Design",
-    icon: "brand",
-    positioning: "Make the brand easier to notice, understand, and trust.",
-    description:
-      "People judge a brand before they fully understand it. Design makes the first impression sharper, the message clearer, and every touchpoint feel more intentional.",
-    includes: [
       "Brand identity direction",
       "Visual systems",
       "Social media creatives",
       "Pitch decks",
-      "Campaign design",
-      "Content design",
-      "Brand refresh direction",
-      "Creative systems"
+      "Campaign design"
     ],
     bestFor:
-      "Brands that need a sharper visual presence, stronger consistency, and better creative communication.",
+      "Brands that need clearer positioning, stronger messaging, or a sharper and more consistent visual identity before building more activity.",
     relatedServices:
-      "Brand Identity · Social Creatives · Visual Systems · Pitch Decks · Campaign Design"
-  },
-  {
-    title: "Marketing",
-    icon: "performance",
-    positioning: "Move attention toward business outcomes.",
-    description:
-      "Attention only matters when it moves somewhere. Marketing connects content, campaigns, ads, SEO, and visibility to clearer business movement.",
-    includes: [
-      "Social media management",
-      "Performance marketing",
-      "Meta ads",
-      "Campaign planning",
-      "SEO basics",
-      "Content planning",
-      "Reels and shoot direction",
-      "Monthly marketing systems",
-      "Creative testing"
-    ],
-    bestFor:
-      "Brands that are ready to get more visible, generate enquiries, improve consistency, or create stronger marketing momentum.",
-    relatedServices: "Social Media · Performance Ads · SEO · Campaigns · Content Planning"
+      "Audits · Strategy · Positioning · Messaging · Brand Identity · Visual Systems"
   },
   {
     title: "Websites",
@@ -121,6 +81,27 @@ export const serviceDetails = [
       "Businesses that need a clearer digital home, stronger trust, and a website that supports enquiries, leads, or sales.",
     relatedServices:
       "Web Design · Development · Landing Pages · Conversion Flow · Portfolio Pages"
+  },
+  {
+    title: "Marketing",
+    icon: "performance",
+    positioning: "Move attention toward business outcomes.",
+    description:
+      "Attention only matters when it moves somewhere. Marketing connects content, campaigns, ads, SEO, and visibility to clearer business movement.",
+    includes: [
+      "Social media management",
+      "Performance marketing",
+      "Meta ads",
+      "Campaign planning",
+      "SEO basics",
+      "Content planning",
+      "Reels and shoot direction",
+      "Monthly marketing systems",
+      "Creative testing"
+    ],
+    bestFor:
+      "Brands that are ready to get more visible, generate enquiries, improve consistency, or create stronger marketing momentum.",
+    relatedServices: "Social Media · Performance Ads · SEO · Campaigns · Content Planning"
   }
 ];
 
@@ -135,7 +116,7 @@ export const serviceDecisionSteps = [
     number: "02",
     title: "Build the right system",
     description:
-      "The right mix of consulting, design, marketing, and website work is shaped around the actual problem."
+      "The right mix of branding, website, and marketing work is shaped around the actual problem."
   },
   {
     number: "03",
@@ -204,10 +185,9 @@ export const teamMembers = [
 ];
 
 export const contactNeeds = [
-  "Consulting",
-  "Design",
-  "Marketing",
+  "Branding",
   "Websites",
+  "Marketing",
   "Not sure yet"
 ];
 

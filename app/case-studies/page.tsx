@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import { CaseStudiesArchive } from "@/components/case-studies-archive";
 import { SectionShell } from "@/components/section-shell";
 import { createBreadcrumbJsonLd } from "@/components/seo/breadcrumbs";
@@ -8,14 +9,14 @@ import { portfolioProjects } from "@/data/case-studies";
 import { organizationId, siteUrl } from "@/data/schema";
 
 export const metadata: Metadata = {
-  title: "Case Studies | Orvyn",
+  title: "Work | Orvyn",
   description:
     "Explore Orvyn's work across brand identity, website builds, strategic direction, and digital systems.",
   alternates: {
     canonical: "/case-studies"
   },
   openGraph: {
-    title: "Case Studies | Orvyn",
+    title: "Work | Orvyn",
     description:
       "Explore Orvyn's work across brand identity, website builds, strategic direction, and digital systems.",
     url: "/case-studies",
@@ -27,13 +28,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Orvyn case studies"
+        alt: "Selected work by Orvyn"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Case Studies | Orvyn",
+    title: "Work | Orvyn",
     description:
       "Explore Orvyn's work across brand identity, website builds, strategic direction, and digital systems.",
     images: ["/og-image.png"]
@@ -68,25 +69,22 @@ export default function CaseStudiesPage() {
   return (
     <SiteFrame>
       <JsonLd
-        data={[createBreadcrumbJsonLd("Case Studies", "/case-studies"), caseStudiesJsonLd]}
+        data={[createBreadcrumbJsonLd("Work", "/case-studies"), caseStudiesJsonLd]}
       />
       <section className="px-5 pb-20 pt-32 sm:px-6 sm:pb-24 sm:pt-36 lg:px-8 lg:pt-40">
         <div className="mx-auto grid w-full max-w-7xl gap-10 border-b border-white/10 pb-12 lg:grid-cols-[0.9fr_0.72fr] lg:items-end lg:gap-20 lg:pb-16">
-          <div className="reveal-up">
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-gold-soft sm:text-sm">
-              Case Studies
-            </p>
-            <h1 className="mt-6 max-w-3xl text-balance text-4xl font-black leading-[0.98] text-white sm:text-5xl lg:text-6xl">
+          <div>
+            <h1 data-reveal="heading" className="max-w-3xl text-balance text-4xl font-black leading-[0.98] text-white sm:text-5xl lg:text-6xl">
               Work built with clarity and intent.
             </h1>
           </div>
-          <div className="reveal-up lg:justify-self-end" style={{ animationDelay: "90ms" }}>
+          <div data-reveal="body" className="lg:justify-self-end" style={{ "--reveal-delay": "90ms" } as CSSProperties}>
             <p className="max-w-xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
               A growing archive of brand identities, website builds, strategic
               directions, and digital systems shaped by Orvyn.
             </p>
             <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-semibold sm:text-base">
-              <p className="text-gold-soft">Consulting. Design. Marketing. Websites.</p>
+              <p className="text-gold-soft">Branding. Websites. Marketing.</p>
               <span className="hidden h-4 w-px bg-white/15 sm:block" aria-hidden="true" />
               <p className="uppercase tracking-[0.16em] text-white/56">07 Projects</p>
             </div>

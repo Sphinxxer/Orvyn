@@ -1,55 +1,67 @@
+import type { CSSProperties } from "react";
+import Image from "next/image";
 import { services } from "@/data/home";
 import { ButtonLink } from "./button-link";
-import { CapabilityIcon } from "./capability-icon";
 import { SectionShell } from "./section-shell";
 
 export function ServicesSection() {
   return (
     <SectionShell id="services" className="bg-white/[0.012]">
-      <div className="grid gap-12 lg:grid-cols-[0.36fr_1fr] lg:gap-20">
-        <div className="lg:sticky lg:top-28 lg:self-start">
-          <div className="mb-6 h-px w-16 bg-gold/70" aria-hidden="true" />
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
+      <div className="grid gap-8 lg:grid-cols-[0.7fr_1fr] lg:items-end lg:gap-20">
+        <div>
+          <div className="mb-6 h-px w-16 bg-gold/70" data-reveal="rule" aria-hidden="true" />
+          <p data-reveal="eyebrow" className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
             What Orvyn does
           </p>
-          <h2 className="mt-5 text-balance text-4xl font-bold leading-[1.04] text-white sm:text-5xl">
-            Consulting. Design. Marketing. Websites.
+          <h2 data-reveal="heading" className="mt-5 text-balance text-4xl font-bold leading-[1.04] text-white sm:text-5xl lg:text-6xl">
+            Branding. Websites. Marketing.
           </h2>
-          <p className="mt-6 max-w-sm text-base leading-7 text-white/72">
-            Four functions. One system for modern brand growth.
+        </div>
+        <div data-reveal="body" className="max-w-xl lg:justify-self-end">
+          <p className="text-xl font-semibold leading-8 text-white sm:text-2xl">
+            Three connected capabilities for modern brand growth.
           </p>
-          <p className="mt-4 max-w-sm text-base leading-7 text-white/72">
-            Brands do not always need more activity. Sometimes they need clearer
-            direction, sharper design, a better website, or marketing that finally
-            works together.
+          <p className="mt-4 text-base leading-7 text-white/70">
+            Clear positioning, a credible digital home, and marketing with a reason to move.
           </p>
           <ButtonLink href="/services" variant="secondary" className="mt-8">
             Explore Services
           </ButtonLink>
         </div>
+      </div>
 
-        <div className="rounded-[2.25rem] border border-white/10 bg-[#11100d]/70 px-4 py-2 sm:px-6">
-          {services.map((service) => (
+      <div className="mt-12 grid gap-5 lg:mt-16 lg:grid-cols-3">
+          {services.map((service, index) => (
             <article
               key={service.title}
+              data-reveal="card"
+              data-spotlight
               data-cursor="interactive"
-              className="group grid gap-5 border-b border-white/10 py-6 transition duration-200 last:border-b-0 hover:border-gold/35 sm:py-7 md:grid-cols-[auto_0.42fr_1fr] md:items-center md:gap-7"
+              style={{ "--reveal-delay": `${index * 90}ms` } as CSSProperties}
+              className="capability-panel group relative isolate min-h-[27rem] overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#0c0c0c] p-6 transition duration-300 hover:border-gold/30 sm:min-h-[30rem] sm:p-7"
             >
-              <div className="flex size-12 items-center justify-center rounded-full bg-gold/10 text-gold-soft transition duration-200 group-hover:bg-gold group-hover:text-ink">
-                <CapabilityIcon icon={service.icon} className="size-5 text-current" />
+              <div className="capability-panel__spotlight" aria-hidden="true" />
+              <div className="relative z-10 flex h-full flex-col">
+                <div className="capability-panel__image relative min-h-56 flex-1 overflow-hidden border-b border-white/10 bg-black">
+                  <Image
+                    src={service.imageSrc}
+                    alt={service.imageAlt}
+                    fill
+                    sizes="(min-width: 1024px) 31vw, (min-width: 640px) 88vw, 100vw"
+                    className="object-cover transition-[transform,filter] duration-300 ease-out group-hover:scale-[1.035]"
+                  />
+                  <div className="capability-panel__image-overlay absolute inset-0" aria-hidden="true" />
+                  <div className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-50 bg-gold/70 transition-transform duration-300 ease-out group-hover:scale-x-100" aria-hidden="true" />
+                </div>
+                <h3 className="mt-6 text-3xl font-semibold leading-tight text-white sm:text-4xl">
+                  {service.title}
+                </h3>
+                <p className="mt-4 max-w-md text-sm leading-6 text-white/66">
+                  {service.description}
+                </p>
               </div>
-              <h3 className="text-xl font-semibold leading-tight text-white sm:text-2xl">
-                {service.title}
-              </h3>
-              <p className="max-w-xl text-base leading-7 text-muted">
-                {service.description}
-              </p>
-              <p className="text-xs font-semibold uppercase leading-6 tracking-[0.16em] text-gold-soft/80 md:col-start-2 md:col-span-2">
-                {service.tags}
-              </p>
             </article>
           ))}
-        </div>
       </div>
     </SectionShell>
   );

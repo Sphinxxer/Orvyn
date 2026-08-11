@@ -79,6 +79,7 @@ export default async function CaseStudyProjectPage({ params }: ProjectPageProps)
     .filter((item) => item.slug !== project.slug)
     .slice(0, 3);
   const hasDeck = projectHasDeck(project.deckHref, project.deckStatus);
+  const showsDistinctCategory = project.category !== project.label;
   const projectPath = `/case-studies/${project.slug}`;
 
   const jsonLd = [
@@ -96,7 +97,7 @@ export default async function CaseStudyProjectPage({ params }: ProjectPageProps)
             className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft transition hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
           >
             <span aria-hidden="true">{"\u2190"}</span>
-            Back to Case Studies
+            Back to Work
           </Link>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[0.78fr_0.42fr] lg:items-end">
@@ -105,7 +106,9 @@ export default async function CaseStudyProjectPage({ params }: ProjectPageProps)
                 <span className="rounded-full bg-gold/10 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft">
                   {project.label}
                 </span>
-                <span className="text-sm font-medium text-muted">{project.category}</span>
+                {showsDistinctCategory ? (
+                  <span className="text-sm font-medium text-muted">{project.category}</span>
+                ) : null}
               </div>
               <h1 className="mt-6 max-w-4xl text-balance text-5xl font-black leading-[0.95] text-white sm:text-7xl lg:text-8xl">
                 {project.title}
@@ -168,17 +171,16 @@ export default async function CaseStudyProjectPage({ params }: ProjectPageProps)
           </div>
         </div>
 
-        <div className="mt-10 rounded-[2rem] border border-gold/25 bg-[linear-gradient(135deg,rgba(200,169,90,0.11),rgba(255,255,255,0.02))] p-5 sm:p-7 lg:flex lg:items-center lg:justify-between lg:gap-8">
-          <div>
-            <h2 className="text-3xl font-semibold leading-tight text-white">
-              Project deck
-            </h2>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-muted">
-              Open the deck to view the project direction in more detail.
-            </p>
-          </div>
-
-          {hasDeck && project.deckHref ? (
+        {hasDeck && project.deckHref ? (
+          <div className="mt-10 rounded-[2rem] border border-gold/25 bg-[linear-gradient(135deg,rgba(200,169,90,0.11),rgba(255,255,255,0.02))] p-5 sm:p-7 lg:flex lg:items-center lg:justify-between lg:gap-8">
+            <div>
+              <h2 className="text-3xl font-semibold leading-tight text-white">
+                Project deck
+              </h2>
+              <p className="mt-4 max-w-2xl text-sm leading-6 text-muted">
+                Open the deck to view the project direction in more detail.
+              </p>
+            </div>
             <a
               href={project.deckHref}
               target="_blank"
@@ -188,12 +190,8 @@ export default async function CaseStudyProjectPage({ params }: ProjectPageProps)
             >
               Open project deck
             </a>
-          ) : (
-            <span className="mt-7 inline-flex min-h-12 items-center justify-center rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-white/45 lg:mt-0">
-              Deck coming soon
-            </span>
-          )}
-        </div>
+          </div>
+        ) : null}
       </SectionShell>
 
       <SectionShell className="bg-white/[0.012]">
@@ -216,7 +214,7 @@ export default async function CaseStudyProjectPage({ params }: ProjectPageProps)
 
       <CTASection
         title="Have a brand that needs clearer direction?"
-        copy="Tell us what feels unclear. The next move might be consulting, design, marketing, websites, or a mix of all four."
+        copy="Tell us what feels unclear. The next move might be branding, websites, marketing, or a mix of all three."
         ctaLabel="Start a Project"
         ctaHref="/contact"
       />

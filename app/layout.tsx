@@ -4,6 +4,7 @@ import { AnalyticsEvents } from "@/components/analytics/AnalyticsEvents";
 import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { ExperienceMotion } from "@/components/ui/ExperienceMotion";
 import { globalSchema } from "@/data/schema";
 import "./globals.css";
 
@@ -16,7 +17,7 @@ const inter = Inter({
 const baseUrl = "https://orvyn.cc";
 
 const defaultDescription =
-  "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen consulting, design, marketing, websites, and digital presence.";
+  "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen branding, websites, marketing, and digital presence.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -32,7 +33,8 @@ export const metadata: Metadata = {
     "website development agency",
     "social media management agency",
     "digital marketing agency in Tirupur",
-    "brand consulting",
+    "brand strategy",
+    "brand identity",
     "website design",
     "SEO campaigns"
   ],
@@ -69,7 +71,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Orvyn | Brand Growth Agency in Tirupur",
     description:
-      "Orvyn helps brands sharpen their digital presence through consulting, design, marketing, and websites.",
+      "Orvyn helps brands sharpen their digital presence through branding, websites, and marketing.",
     images: ["/og-image.png"]
   }
 };
@@ -85,6 +87,7 @@ export default function RootLayout({
         {globalSchema.map((schema) => (
           <JsonLd key={String(schema["@id"])} data={schema} />
         ))}
+        <ExperienceMotion />
         <CustomCursor />
         {children}
         <MicrosoftClarity />

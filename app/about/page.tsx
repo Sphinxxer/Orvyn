@@ -32,12 +32,12 @@ const aboutFaqs = [
   {
     question: "What does Orvyn do?",
     answer:
-      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India. Orvyn helps brands fix, build, and market their digital presence through consulting, design, marketing, and websites."
+      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India. Orvyn helps brands sharpen their digital presence through branding, websites, and marketing."
   },
   {
     question: "Is Orvyn a garment manufacturing company?",
     answer:
-      "No. Orvyn is a brand growth agency and modern internet company based in Tirupur, India. Orvyn works across consulting, design, marketing, websites, and digital presence."
+      "No. Orvyn is a brand growth agency and modern internet company based in Tirupur, India. Orvyn works across branding, websites, marketing, and digital presence."
   },
   {
     question: "Where is Orvyn based?",
@@ -46,7 +46,7 @@ const aboutFaqs = [
   {
     question: "How does Orvyn work with brands?",
     answer:
-      "Orvyn first understands where the brand stands, what feels unclear, and what needs to improve. From there, the right mix of consulting, design, marketing, and website work is shaped around the brand's needs."
+      "Orvyn first understands where the brand stands, what feels unclear, and what needs to improve. From there, the right mix of branding, website, and marketing work is shaped around the brand's needs."
   },
   {
     question: "How many projects does Orvyn onboard?",
@@ -58,14 +58,14 @@ const aboutFaqs = [
 export const metadata: Metadata = {
   title: "About | Orvyn",
   description:
-    "Orvyn is a brand growth agency and modern internet company based in Tirupur, India. It helps brands fix, build, and market their digital presence through consulting, design, marketing, and websites.",
+    "Orvyn is a brand growth agency and modern internet company based in Tirupur, India. It helps brands sharpen their digital presence through branding, websites, and marketing.",
   alternates: {
     canonical: "/about"
   },
   openGraph: {
     title: "About | Orvyn",
     description:
-      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India. It helps brands fix, build, and market their digital presence through consulting, design, marketing, and websites.",
+      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India. It helps brands sharpen their digital presence through branding, websites, and marketing.",
     url: "/about",
     siteName: "Orvyn",
     type: "website",
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About | Orvyn",
     description:
-      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India. It helps brands fix, build, and market their digital presence through consulting, design, marketing, and websites.",
+      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India. It helps brands sharpen their digital presence through branding, websites, and marketing.",
     images: ["/og-image.png"]
   }
 };
@@ -94,11 +94,8 @@ export default function AboutPage() {
       <JsonLd data={[createBreadcrumbJsonLd("About", "/about"), createFaqSchema(aboutFaqs)]} />
       <section className="border-b border-white/10 px-5 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-36 lg:px-8 lg:pt-40">
         <div className="mx-auto max-w-7xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-gold-soft sm:text-sm">
-            About / Philosophy
-          </p>
-          <div className="mt-8 grid gap-10 lg:grid-cols-[0.72fr_1fr] lg:items-end">
-            <h1 className="text-balance text-5xl font-black leading-[0.94] text-white sm:text-7xl lg:text-8xl lg:leading-[0.92]">
+          <div className="grid gap-10 lg:grid-cols-[0.72fr_1fr] lg:items-end">
+            <h1 data-reveal="heading" className="text-balance text-5xl font-black leading-[0.94] text-white sm:text-7xl lg:text-8xl lg:leading-[0.92]">
               Fix first. <span className="block text-gold-soft">Then scale.</span>
             </h1>
             <div className="border-t border-white/10 pt-6 lg:border-l lg:border-t-0 lg:pl-6 lg:pt-0">

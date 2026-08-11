@@ -9,6 +9,7 @@ export const labelBase =
 type TextFieldProps = {
   label: string;
   className?: string;
+  error?: string;
 } & ComponentPropsWithoutRef<"input">;
 
 type SelectFieldProps = {
@@ -18,21 +19,31 @@ type SelectFieldProps = {
   className?: string;
   name: string;
   required?: boolean;
+  error?: string;
 };
 
 type TextAreaFieldProps = {
   label: string;
   className?: string;
+  error?: string;
 } & ComponentPropsWithoutRef<"textarea">;
 
-export function TextField({ label, className = "", ...props }: TextFieldProps) {
+export function TextField({ label, className = "", error, ...props }: TextFieldProps) {
+  const fieldId = props.id ?? props.name;
+
   return (
     <label className={`${labelBase} ${className}`}>
       <span className="inline-flex min-h-4 items-center gap-1 whitespace-nowrap max-[420px]:whitespace-normal">
         {label}
         {props.required ? <span className="text-gold-soft" aria-hidden="true">*</span> : null}
       </span>
-      <input className={fieldBase} {...props} />
+      <input
+        className={fieldBase}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error && fieldId ? `${fieldId}-error` : undefined}
+        {...props}
+      />
+      {error && fieldId ? <FieldError id={`${fieldId}-error`}>{error}</FieldError> : null}
     </label>
   );
 }
@@ -43,7 +54,8 @@ export function SelectField({
   placeholder,
   className = "",
   name,
-  required = false
+  required = false,
+  error
 }: SelectFieldProps) {
   return (
     <label className={`${labelBase} ${className}`}>
@@ -51,7 +63,14 @@ export function SelectField({
         <span>{label}</span>
         {required ? <span className="shrink-0 text-gold-soft" aria-hidden="true">*</span> : null}
       </span>
-      <select className={fieldBase} name={name} defaultValue="" required={required}>
+      <select
+        className={fieldBase}
+        name={name}
+        defaultValue=""
+        required={required}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? `${name}-error` : undefined}
+      >
         <option value="" disabled>
           {placeholder}
         </option>
@@ -61,18 +80,38 @@ export function SelectField({
           </option>
         ))}
       </select>
+      {error ? <FieldError id={`${name}-error`}>{error}</FieldError> : null}
     </label>
   );
 }
 
-export function TextAreaField({ label, className = "", ...props }: TextAreaFieldProps) {
+export function TextAreaField({ label, className = "", error, ...props }: TextAreaFieldProps) {
+  const fieldId = props.id ?? props.name;
+
   return (
     <label className={`${labelBase} ${className}`}>
       <span className="inline-flex min-h-4 items-center gap-1 whitespace-nowrap max-[420px]:whitespace-normal">
         {label}
         {props.required ? <span className="text-gold-soft" aria-hidden="true">*</span> : null}
       </span>
-      <textarea className={`${fieldBase} min-h-40 resize-y`} {...props} />
+      <textarea
+        className={`${fieldBase} min-h-40 resize-y`}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error && fieldId ? `${fieldId}-error` : undefined}
+        {...props}
+      />
+      {error && fieldId ? <FieldError id={`${fieldId}-error`}>{error}</FieldError> : null}
     </label>
+  );
+}
+
+function FieldError({ id, children }: { id: string; children: string }) {
+  return (
+    <span
+      id={id}
+      className="mt-2 block text-sm font-normal normal-case leading-6 tracking-normal text-red-200"
+    >
+      {children}
+    </span>
   );
 }

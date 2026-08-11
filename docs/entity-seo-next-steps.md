@@ -20,4 +20,4 @@ Use this checklist when the official Orvyn entity profiles are final.
 
 - Keep Orvyn described as a brand growth agency and modern internet company.
 - Do not describe Orvyn as a manufacturing, apparel production, stitching, textile, or clothing production business.
-- Keep services framed around consulting, design, marketing, websites, and digital presence.
+- Keep services framed around branding, websites, marketing, and digital presence.

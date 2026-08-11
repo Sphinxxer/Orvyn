@@ -4,6 +4,8 @@ export type ProjectDestination =
   | "internalCaseStudy"
   | "comingSoon";
 
+export type ServiceWing = "Branding" | "Websites" | "Marketing";
+
 export type PortfolioProject = {
   id: string;
   slug: string;
@@ -18,7 +20,7 @@ export type PortfolioProject = {
   ctaLabel: string;
   ariaLabel: string;
   label: string;
-  serviceWing: string;
+  serviceWing: ServiceWing;
   status: string;
   deckHref?: string;
   deckStatus?: "available" | "coming-soon";
@@ -44,7 +46,7 @@ export const portfolioProjects = ([
     ctaLabel: "View Project",
     ariaLabel: "View the FLYIR project",
     label: "Complete Brand Identity",
-    serviceWing: "Design",
+    serviceWing: "Branding",
     status: "Complete brand identity",
     deckHref: "/case-studies/flyir-brand-identity.pdf",
     deckStatus: "available",
@@ -82,14 +84,14 @@ export const portfolioProjects = ([
     description:
       "A complete brand identity system designed for a premium children's innerwear company.",
     services: ["Brand Identity", "Brand Guidelines", "Visual Identity System"],
-    previewImage: "/case-studies/previews/biomode-main-icon.jpg",
+    previewImage: "/case-studies/previews/biomode-main-icon.webp",
     previewAlt: "BIOMODE brand identity preview",
     destinationType: "pdf",
     destinationUrl: "/case-studies/biomode.pdf",
     ctaLabel: "View Project",
     ariaLabel: "View the BIOMODE project",
     label: "Brand Identity",
-    serviceWing: "Design",
+    serviceWing: "Branding",
     status: "Brand guidelines PDF",
     deckHref: "/case-studies/biomode.pdf",
     deckStatus: "available",
@@ -108,9 +110,10 @@ export const portfolioProjects = ([
     services: ["Strategy", "Content", "Marketing"],
     previewImage: "/case-studies/previews/grandeur-associates.jpg",
     previewAlt: "Grandeur Associates client direction preview",
-    destinationType: "comingSoon",
-    ctaLabel: "Case study coming soon",
-    ariaLabel: "Grandeur Associates case study coming soon",
+    destinationType: "internalCaseStudy",
+    destinationUrl: "/case-studies/grandeur-associates",
+    ctaLabel: "View Case Study",
+    ariaLabel: "View the Grandeur Associates case study",
     label: "Client Direction",
     serviceWing: "Marketing",
     status: "Strategic direction",
@@ -129,9 +132,10 @@ export const portfolioProjects = ([
     services: ["Websites", "Strategy", "Local Trust"],
     previewImage: "/case-studies/previews/tric-academy.jpg",
     previewAlt: "TRIC Academy website build preview",
-    destinationType: "comingSoon",
-    ctaLabel: "Case study coming soon",
-    ariaLabel: "TRIC Academy case study coming soon",
+    destinationType: "internalCaseStudy",
+    destinationUrl: "/case-studies/tric-academy",
+    ctaLabel: "View Case Study",
+    ariaLabel: "View the TRIC Academy case study",
     label: "Website Build",
     serviceWing: "Websites",
     status: "Website build",
@@ -150,11 +154,12 @@ export const portfolioProjects = ([
     services: ["Brand Direction", "Strategy", "Trust"],
     previewImage: "/case-studies/previews/sra-financial-planning.jpg",
     previewAlt: "SRA Financial Planning brand identity preview",
-    destinationType: "comingSoon",
-    ctaLabel: "Case study coming soon",
-    ariaLabel: "SRA Financial Planning case study coming soon",
+    destinationType: "internalCaseStudy",
+    destinationUrl: "/case-studies/sra-financial-planning",
+    ctaLabel: "View Case Study",
+    ariaLabel: "View the SRA Financial Planning case study",
     label: "Brand Direction",
-    serviceWing: "Design",
+    serviceWing: "Branding",
     status: "Brand direction",
     deckHref: "/case-studies/sra-financial-planning.pdf",
     deckStatus: "coming-soon",
@@ -171,9 +176,10 @@ export const portfolioProjects = ([
     services: ["Websites", "Strategy", "Export"],
     previewImage: "/case-studies/previews/cameo-garments.jpg",
     previewAlt: "Cameo Garments website concept preview",
-    destinationType: "comingSoon",
-    ctaLabel: "Case study coming soon",
-    ariaLabel: "Cameo Garments case study coming soon",
+    destinationType: "internalCaseStudy",
+    destinationUrl: "/case-studies/cameo-garments",
+    ctaLabel: "View Case Study",
+    ariaLabel: "View the Cameo Garments case study",
     label: "Website Concept",
     serviceWing: "Websites",
     status: "Website concept",

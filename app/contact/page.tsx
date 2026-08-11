@@ -8,14 +8,14 @@ import { SiteFrame } from "@/components/site-frame";
 export const metadata: Metadata = {
   title: "Contact | Orvyn",
   description:
-    "Start a project with Orvyn and build a sharper digital presence through consulting, design, marketing, and websites.",
+    "Start a project with Orvyn and build a sharper digital presence through branding, websites, and marketing.",
   alternates: {
     canonical: "/contact"
   },
   openGraph: {
     title: "Contact | Orvyn",
     description:
-      "Start a project with Orvyn and build a sharper digital presence through consulting, design, marketing, and websites.",
+      "Start a project with Orvyn and build a sharper digital presence through branding, websites, and marketing.",
     url: "/contact",
     siteName: "Orvyn",
     type: "website",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact | Orvyn",
     description:
-      "Start a project with Orvyn and build a sharper digital presence through consulting, design, marketing, and websites.",
+      "Start a project with Orvyn and build a sharper digital presence through branding, websites, and marketing.",
     images: ["/og-image.png"]
   }
 };
@@ -46,10 +46,7 @@ export default function ContactPage() {
         <div className="grid gap-12 lg:grid-cols-[0.62fr_1.38fr] lg:gap-20">
           <aside className="space-y-6">
             <div className="border-t border-gold pt-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.26em] text-gold-soft sm:text-sm">
-                Contact / Start a Project
-              </p>
-              <h1 className="mt-6 text-balance text-4xl font-black leading-[1.02] text-white sm:text-5xl lg:text-6xl">
+              <h1 data-reveal="heading" className="text-balance text-4xl font-black leading-[1.02] text-white sm:text-5xl lg:text-6xl">
                 Tell us what you are trying to build.
               </h1>
               <p className="mt-5 max-w-md text-base leading-7 text-muted">

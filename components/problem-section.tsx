@@ -5,17 +5,14 @@ export function ProblemSection() {
     <SectionShell className="bg-ink">
       <div className="grid gap-10 lg:grid-cols-[0.32fr_1fr] lg:gap-20">
         <aside className="max-w-xs">
-          <div className="mb-6 h-px w-16 bg-gold/70" aria-hidden="true" />
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
-            Belief
-          </p>
-          <p className="mt-7 text-2xl font-semibold leading-tight text-white sm:text-3xl">
+          <div className="mb-6 h-px w-16 bg-gold/70" data-reveal="rule" aria-hidden="true" />
+          <p className="text-2xl font-semibold leading-tight text-white sm:text-3xl">
             Fix first. Then scale.
           </p>
         </aside>
 
-        <div className="relative max-w-4xl rounded-[2rem] bg-white/[0.025] px-6 py-8 sm:px-8 sm:py-10 lg:px-10">
-          <h2 className="text-balance text-3xl font-semibold leading-[1.12] text-white sm:text-5xl lg:text-[3.75rem] lg:leading-[1.05]">
+        <div data-reveal="card" className="relative max-w-4xl rounded-[2rem] bg-white/[0.025] px-6 py-8 sm:px-8 sm:py-10 lg:px-10">
+          <h2 data-reveal="heading" className="text-balance text-3xl font-semibold leading-[1.12] text-white sm:text-5xl lg:text-[3.75rem] lg:leading-[1.05]">
             <span className="block">Most brands don’t need more marketing.</span>{" "}
             <span className="mt-2 block text-gold-soft">
               They need a clearer reason to be chosen.

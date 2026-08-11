@@ -9,6 +9,8 @@ type CaseStudyCardProps = {
 };
 
 export function CaseStudyCard({ project }: CaseStudyCardProps) {
+  const showsDistinctCategory = project.category !== project.label;
+
   return (
     <Link
       href={`/case-studies/${project.slug}`}
@@ -23,7 +25,9 @@ export function CaseStudyCard({ project }: CaseStudyCardProps) {
           <span className="rounded-full bg-gold/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-gold-soft">
             {project.label}
           </span>
-          <span className="text-xs font-medium text-muted">{project.category}</span>
+          {showsDistinctCategory ? (
+            <span className="text-xs font-medium text-muted">{project.category}</span>
+          ) : null}
         </div>
 
         <div className="mt-6 flex flex-1 items-end justify-between gap-5">
@@ -81,19 +85,6 @@ export function ProjectPreviewPanel({
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/12 to-transparent" />
       <div className="absolute inset-x-6 top-6 h-px bg-gold/45" aria-hidden="true" />
-      <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
-            {project.label}
-          </p>
-          <p className="mt-2 max-w-sm text-sm font-medium leading-5 text-white/70">
-            {project.category}
-          </p>
-        </div>
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/38">
-          Project
-        </p>
-      </div>
     </div>
   );
 }

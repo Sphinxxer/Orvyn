@@ -54,7 +54,7 @@ Do not add fake metrics, fake testimonials, or inflated results.
 
 Create content that answers the questions clients actually ask:
 
-- How to know if your brand needs consulting before marketing
+- How to know if your brand needs stronger positioning before marketing
 - What should a business website actually do
 - Why social media looks active but does not create trust
 - How to structure an Instagram portfolio for premium brands

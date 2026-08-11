@@ -11,16 +11,17 @@ export const logoUrl = `${siteUrl}/orvyn-search-icon.png`;
 export const officialSameAs: string[] = [];
 
 const coreDescription =
-  "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen their digital presence through consulting, design, marketing, and websites.";
+  "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen their digital presence through branding, websites, and marketing.";
 
 const areaServed = ["India", "Tamil Nadu", "Tirupur"];
 
 const knowsAbout = [
   "Brand Growth",
-  "Consulting",
-  "Design",
-  "Marketing",
+  "Branding",
+  "Brand Strategy",
+  "Brand Identity",
   "Websites",
+  "Marketing",
   "Brand Development",
   "Website Development",
   "Social Media Management",
@@ -97,28 +98,31 @@ export const globalSchema = [organizationSchema, localBusinessSchema, websiteSch
 
 const serviceSchemaItems = [
   {
-    name: "Consulting",
+    name: "Branding",
     description:
-      "Consulting helps identify what feels unclear, what needs fixing, and what direction the brand should take next.",
-    serviceType: ["Brand Audits", "Strategy", "Positioning", "Messaging"]
-  },
-  {
-    name: "Design",
-    description:
-      "Design shapes how the brand looks, feels, and communicates across digital touchpoints.",
-    serviceType: ["Brand Identity", "Visual Systems", "Social Media Creatives", "Campaign Design"]
-  },
-  {
-    name: "Marketing",
-    description:
-      "Marketing connects attention, content, campaigns, SEO, and performance systems to clearer business movement.",
-    serviceType: ["Social Media Management", "Performance Marketing", "SEO", "Campaigns"]
+      "Branding identifies what feels unclear, sharpens the strategic direction, and shapes how a brand looks and communicates.",
+    serviceType: [
+      "Brand Audits",
+      "Brand Strategy",
+      "Positioning",
+      "Messaging",
+      "Brand Identity",
+      "Visual Systems",
+      "Social Media Creatives",
+      "Campaign Design"
+    ]
   },
   {
     name: "Websites",
     description:
       "Websites build digital homes that explain the offer clearly, create trust, and support enquiries or sales.",
     serviceType: ["Website Design", "Website Development", "Landing Pages", "Conversion Flow"]
+  },
+  {
+    name: "Marketing",
+    description:
+      "Marketing connects attention, content, campaigns, SEO, and performance systems to clearer business movement.",
+    serviceType: ["Social Media Management", "Performance Marketing", "SEO", "Campaigns"]
   }
 ];
 
