@@ -1,4 +1,5 @@
 import type { caseStudyDetails } from "./case-studies";
+import { homeDescription, homeTitle, studioDescription } from "./site-metadata";
 
 export const siteUrl = "https://orvyn.cc";
 export const siteName = "Orvyn";
@@ -10,25 +11,23 @@ export const logoUrl = `${siteUrl}/orvyn-search-icon.png`;
 // TODO: Add only final official Orvyn profile URLs after they are verified.
 export const officialSameAs: string[] = [];
 
-const coreDescription =
-  "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen their digital presence through branding, websites, and marketing.";
-
 const areaServed = ["India", "Tamil Nadu", "Tirupur"];
 
 const knowsAbout = [
-  "Brand Growth",
   "Branding",
   "Brand Strategy",
   "Brand Identity",
   "Websites",
   "Marketing",
-  "Brand Development",
+  "Visual Identity",
+  "Visual Systems",
+  "Website Design",
   "Website Development",
-  "Social Media Management",
-  "Performance Marketing",
-  "Content Direction",
-  "SEO",
-  "Campaigns"
+  "Ecommerce",
+  "Shopify Ecommerce",
+  "Social Media Content",
+  "Content Creation",
+  "Campaign Design"
 ];
 
 export const organizationSchema = {
@@ -39,7 +38,15 @@ export const organizationSchema = {
   alternateName: "Orvyn.cc",
   url: siteUrl,
   logo: logoUrl,
-  description: coreDescription,
+  description: studioDescription,
+  email: "hello@orvyn.cc",
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "Project enquiries",
+    email: "hello@orvyn.cc",
+    url: `${siteUrl}/contact`,
+    areaServed: "India"
+  },
   founder: {
     "@type": "Person",
     name: "Bharath Kesav"
@@ -68,8 +75,8 @@ export const localBusinessSchema = {
   url: siteUrl,
   image: logoUrl,
   logo: logoUrl,
-  description:
-    "Orvyn is a brand growth agency and modern internet company based in Tirupur, India.",
+  description: studioDescription,
+  email: "hello@orvyn.cc",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Tirupur",
@@ -85,12 +92,25 @@ export const websiteSchema = {
   "@type": "WebSite",
   "@id": websiteId,
   name: siteName,
+  alternateName: "Orvyn.cc",
   url: siteUrl,
   publisher: {
     "@id": organizationId
   },
-  description:
-    "Orvyn is a brand growth agency and modern internet company based in Tirupur, India.",
+  description: homeDescription,
+  about: { "@id": organizationId },
+  inLanguage: "en-IN"
+};
+
+export const homePageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${siteUrl}/#webpage`,
+  url: `${siteUrl}/`,
+  name: homeTitle,
+  description: homeDescription,
+  isPartOf: { "@id": websiteId },
+  mainEntity: { "@id": organizationId },
   inLanguage: "en-IN"
 };
 
@@ -100,29 +120,24 @@ const serviceSchemaItems = [
   {
     name: "Branding",
     description:
-      "Branding identifies what feels unclear, sharpens the strategic direction, and shapes how a brand looks and communicates.",
+      "Find the gap, sharpen the direction, and build a brand people can understand and trust.",
     serviceType: [
-      "Brand Audits",
       "Brand Strategy",
-      "Positioning",
-      "Messaging",
       "Brand Identity",
-      "Visual Systems",
-      "Social Media Creatives",
-      "Campaign Design"
+      "Visual Systems"
     ]
   },
   {
     name: "Websites",
     description:
-      "Websites build digital homes that explain the offer clearly, create trust, and support enquiries or sales.",
-    serviceType: ["Website Design", "Website Development", "Landing Pages", "Conversion Flow"]
+      "Create a digital home that explains your offer, builds trust, and makes the next step easy.",
+    serviceType: ["Website Design", "Website Development", "Ecommerce", "Shopify Ecommerce"]
   },
   {
     name: "Marketing",
     description:
-      "Marketing connects attention, content, campaigns, SEO, and performance systems to clearer business movement.",
-    serviceType: ["Social Media Management", "Performance Marketing", "SEO", "Campaigns"]
+      "Turn attention into a consistent presence through content, campaigns and considered creative.",
+    serviceType: ["Social Media", "Content", "Campaigns"]
   }
 ];
 
@@ -130,15 +145,16 @@ export function createServicesItemListSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "@id": `${siteUrl}/services#services`,
+    "@id": `${siteUrl}/#services`,
     name: "Orvyn services",
     itemListElement: serviceSchemaItems.map((service, index) => ({
       "@type": "ListItem",
       position: index + 1,
       item: {
         "@type": "Service",
-        "@id": `${siteUrl}/services#${service.name.toLowerCase()}`,
+        "@id": `${siteUrl}/#${service.name.toLowerCase()}`,
         name: service.name,
+        url: `${siteUrl}/#services`,
         description: service.description,
         provider: {
           "@id": organizationId

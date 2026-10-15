@@ -1,6 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { MinusIcon } from "@phosphor-icons/react/dist/csr/Minus";
+import { PlusIcon } from "@phosphor-icons/react/dist/csr/Plus";
+import { trackClarityEvent } from "./analytics/track-event";
 import {
   useEffect,
   useRef,
@@ -25,7 +28,7 @@ type PdfJsModule = typeof import("pdfjs-dist/legacy/build/pdf.mjs");
 let pdfJsPromise: Promise<PdfJsModule> | null = null;
 const documentPromises = new Map<string, Promise<PDFDocumentProxy>>();
 const MIN_ZOOM = 1;
-const MAX_ZOOM = 2.5;
+const MAX_ZOOM = 4;
 const ZOOM_STEP = 0.25;
 
 function clampZoom(value: number) {
@@ -105,7 +108,7 @@ export function ProjectPdfViewer({
     return (
       <div className="grid min-h-[52dvh] place-items-center px-6 text-center sm:min-h-[64dvh]">
         <p className="max-w-sm text-sm leading-6 text-white/70">
-          The deck preview could not load. Close the viewer and try again.
+          The deck preview could not load. <a className="pdf-fallback" href={pdfUrl} target="_blank" rel="noopener noreferrer">Open PDF in a new tab</a> to view the original.
         </p>
       </div>
     );
@@ -117,6 +120,7 @@ export function ProjectPdfViewer({
     const normalizedZoom = clampZoom(nextZoom);
     pendingZoomRef.current = normalizedZoom;
     setZoom(normalizedZoom);
+    trackClarityEvent("project_pdf_zoom_changed");
   };
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
@@ -162,6 +166,7 @@ export function ProjectPdfViewer({
 
     if (pinchStartRef.current && pointersRef.current.size < 2) {
       const committedZoom = pendingZoomRef.current;
+      trackClarityEvent("project_pdf_touch_zoomed");
       pinchStartRef.current = null;
       setZoom(committedZoom);
       window.requestAnimationFrame(() => {
@@ -173,48 +178,41 @@ export function ProjectPdfViewer({
   };
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col bg-[#111]" data-cursor="interactive">
-      <div className="flex min-h-11 items-center justify-between gap-3 border-b border-white/10 px-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/45 sm:px-5">
-        <div className="flex min-w-0 items-center gap-3">
-          <span className="hidden sm:inline">
-            {documentProxy ? "Scroll to explore" : "Preparing preview"}
-          </span>
-          <span aria-live="polite">
+    <div className="flex min-h-0 flex-1 flex-col bg-[#111]">
+      <div className="pdf-tools">
+          <span className="pdf-page-count" aria-live="polite">
             {pageCount ? `${pageCount} ${pageCount === 1 ? "page" : "pages"}` : "Loading"}
           </span>
-        </div>
-        <div className="flex shrink-0 items-center gap-1" aria-label="Project deck zoom controls">
+        <div className="pdf-zoom-controls" aria-label="Project deck zoom controls">
           <button
             type="button"
             aria-label="Zoom out"
             disabled={zoom <= MIN_ZOOM}
             onClick={() => updateZoom(zoom - ZOOM_STEP)}
-            className="grid size-8 place-items-center rounded-full border border-white/12 text-base text-white/72 transition hover:border-gold/50 hover:text-gold-soft focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 disabled:opacity-30"
+            className="pdf-zoom-button"
           >
-            <span aria-hidden="true">−</span>
+            <MinusIcon size={18} aria-hidden="true" />
           </button>
-          <button
-            type="button"
-            aria-label="Reset zoom"
-            onClick={() => updateZoom(1)}
-            className="min-w-12 rounded-full px-2 py-2 text-[10px] text-white/58 transition hover:text-gold-soft focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70"
-          >
+          <output className="pdf-zoom-value" aria-label="Current zoom" aria-live="polite">
             {Math.round(zoom * 100)}%
-          </button>
+          </output>
           <button
             type="button"
             aria-label="Zoom in"
             disabled={zoom >= MAX_ZOOM}
             onClick={() => updateZoom(zoom + ZOOM_STEP)}
-            className="grid size-8 place-items-center rounded-full border border-white/12 text-base text-white/72 transition hover:border-gold/50 hover:text-gold-soft focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 disabled:opacity-30"
+            className="pdf-zoom-button"
           >
-            <span aria-hidden="true">+</span>
+            <PlusIcon size={18} aria-hidden="true" />
           </button>
         </div>
+        <div className="pdf-zoom-presets"><button type="button" onClick={() => updateZoom(1)}>Fit width</button><button type="button" onClick={() => updateZoom(2)} aria-label="Zoom to 200 percent">200%</button></div>
+        <p className="pdf-reading-hint">Zoom to read details. Drag or scroll to explore.</p>
       </div>
 
       <div
         ref={scrollRef}
+        onScroll={() => { if (documentProxy && !scrollRef.current?.dataset.readingTracked) { if (scrollRef.current) scrollRef.current.dataset.readingTracked = "true"; trackClarityEvent("project_pdf_reading_started"); } }}
         className="min-h-0 flex-1 overflow-auto p-3 sm:p-5"
         style={{ touchAction: "pan-x pan-y" }}
         onPointerDown={handlePointerDown}
@@ -338,12 +336,14 @@ function PdfPage({
           return;
         }
 
+        setIsRendered(false);
+
         const baseViewport = page.getViewport({ scale: 1 });
         setPageRatio(baseViewport.width / baseViewport.height);
 
         const scale = renderWidth / baseViewport.width;
         const viewport = page.getViewport({ scale });
-        const outputScale = Math.min(window.devicePixelRatio || 1, 1.5);
+        const outputScale = Math.min(window.devicePixelRatio || 1, 1.5, Math.sqrt(12_000_000 / (viewport.width * viewport.height)), 16384 / Math.max(viewport.width, viewport.height));
         const canvas = canvasRef.current;
         const context = canvas.getContext("2d", { alpha: false });
 

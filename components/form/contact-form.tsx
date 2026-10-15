@@ -1,9 +1,10 @@
-﻿"use client";
+"use client";
 
 import type { FormEvent, ReactNode } from "react";
 import { useState } from "react";
 import { budgetRanges, contactNeeds } from "@/data/home";
 import { trackClarityEvent } from "@/components/analytics/track-event";
+import { useServiceSelection } from "@/components/ui/use-service-selection";
 import { fieldBase, labelBase, SelectField, TextAreaField, TextField } from "./contact-field";
 import {
   COUNTRY_CODES,
@@ -23,11 +24,13 @@ type FieldErrors = Partial<
   Record<"name" | "email" | "phone" | "link" | "need" | "message", string>
 >;
 
-export function ContactForm() {
+export function ContactForm({ submitLabel = "Request an intro call" }: { submitLabel?: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<FormStatus>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [selectedPhoneCountry, setSelectedPhoneCountry] = useState(COUNTRY_CODES[0]);
+  const { service } = useServiceSelection();
+  const [selectedNeed, setSelectedNeed] = useState<string | null>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -57,7 +60,7 @@ export function ContactForm() {
         String(formData.get("email") ?? "").trim() && emailInput?.validity.valid
           ? undefined
           : "Please enter a valid email address.",
-      phone: phoneValidation.isValid ? undefined : phoneValidation.message,
+      phone: !phoneInput.trim() || phoneValidation.isValid ? undefined : phoneValidation.message,
       link: isValidLink ? undefined : "Please enter a valid website, Instagram link, or handle.",
       need: String(formData.get("need") ?? "").trim()
         ? undefined
@@ -77,7 +80,10 @@ export function ContactForm() {
         message: "Please review the highlighted fields before sending your inquiry."
       });
       window.requestAnimationFrame(() => {
-        form.querySelector<HTMLElement>(`[name="${firstInvalidField}"]`)?.focus();
+        const field = form.querySelector<HTMLElement>(`[name="${firstInvalidField === "phone" ? "phoneRaw" : firstInvalidField}"]`);
+        const optionalDetails = field?.closest("details");
+        if (optionalDetails) optionalDetails.open = true;
+        field?.focus();
       });
       return;
     }
@@ -101,7 +107,7 @@ export function ContactForm() {
       }
 
       if (field === "phone") {
-        payload.set(field, normalizePhoneNumber(countryCode, phoneInput));
+        payload.set(field, phoneInput.trim() ? normalizePhoneNumber(countryCode, phoneInput) : "");
         return;
       }
 
@@ -116,7 +122,6 @@ export function ContactForm() {
     const hasMissingRequiredField =
       !payload.get("name") ||
       !payload.get("email") ||
-      !payload.get("phone") ||
       !payload.get("need") ||
       !payload.get("message");
 
@@ -129,30 +134,26 @@ export function ContactForm() {
       return;
     }
 
-    const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL;
-
-    if (!scriptUrl) {
-      trackClarityEvent("contact_form_submission_failed");
-      setStatus({
-        type: "error",
-        message: "Something went wrong. Please try again or contact us directly."
-      });
-      return;
-    }
-
     setIsSubmitting(true);
 
     try {
-      await fetch(scriptUrl, {
+      const response = await fetch("/api/inquiry", {
         method: "POST",
-        mode: "no-cors",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
         },
         body: payload.toString()
       });
 
+      const confirmation = await response.json();
+      if (!response.ok || confirmation.result !== "success") {
+        throw new Error("The enquiry was not confirmed.");
+      }
+
       form.reset();
+      setSelectedNeed("");
+      const optionalDetails = form.querySelector("details");
+      if (optionalDetails) optionalDetails.open = false;
       setSelectedPhoneCountry(COUNTRY_CODES[0]);
       setStatus({
         type: "success",
@@ -175,7 +176,7 @@ export function ContactForm() {
       onSubmit={handleSubmit}
       noValidate
       data-analytics-form="contact"
-      className="rounded-[2.25rem] border border-white/10 bg-[#11100d]/95 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.18)] sm:p-7 lg:p-9"
+      className="contact-form"
       aria-label="Project inquiry form"
     >
       <input
@@ -204,44 +205,23 @@ export function ContactForm() {
           required
           error={fieldErrors.email}
         />
-        <PhoneField
-          error={fieldErrors.phone}
-          selectedCountry={selectedPhoneCountry}
-          onCountryChange={(countryId) => {
-            setSelectedPhoneCountry(getCountryById(countryId));
-          }}
-        />
-      </FormGroup>
-
-      <FormGroup title="Brand context" className="mt-10">
-        <TextField
-          label="Business / Brand Name"
-          name="brand"
-          type="text"
-          autoComplete="organization"
-        />
-        <WebsiteField
-          error={fieldErrors.link}
-        />
+        <PhoneField error={fieldErrors.phone} selectedCountry={selectedPhoneCountry} onCountryChange={(countryId) => setSelectedPhoneCountry(getCountryById(countryId))} />
       </FormGroup>
 
       <FormGroup title="Project needs" className="mt-10">
         <SelectField
           label="What do you need help with?"
           name="need"
+          value={selectedNeed ?? service ?? ""}
+          onChange={(event) => setSelectedNeed(event.target.value)}
           options={contactNeeds}
           placeholder="Select a service"
           required
           error={fieldErrors.need}
         />
-        <SelectField
-          label="Budget range (INR)"
-          name="budget"
-          options={budgetRanges}
-          placeholder="Select a range"
-        />
         <TextAreaField
           label="Message"
+          placeholder="What are you building, and what would you like help with?"
           name="message"
           className="md:col-span-2"
           required
@@ -249,21 +229,26 @@ export function ContactForm() {
         />
       </FormGroup>
 
+      <details className="optional-context">
+        <summary>Additional project details <span>Optional</span></summary>
+        <FormGroup title="Brand context">
+          <TextField label="Business / Brand Name" name="brand" type="text" autoComplete="organization" />
+          <SelectField label="Budget range (INR)" name="budget" options={budgetRanges} placeholder="Select a range" />
+          <WebsiteField error={fieldErrors.link} />
+        </FormGroup>
+      </details>
+
       <button
         type="submit"
         disabled={isSubmitting}
-          className="mt-10 inline-flex min-h-12 w-full items-center justify-center rounded-full border border-gold bg-gold px-6 py-3 text-sm font-semibold text-ink shadow-[0_18px_48px_rgba(200,169,90,0.13)] transition duration-200 hover:-translate-y-0.5 hover:border-gold-soft hover:bg-gold-soft hover:shadow-[0_22px_56px_rgba(200,169,90,0.16)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink active:translate-y-0 disabled:cursor-not-allowed disabled:border-white/15 disabled:bg-white/12 disabled:text-muted disabled:shadow-none disabled:hover:translate-y-0 sm:w-fit"
+          className="button button--primary form-submit"
       >
-        {isSubmitting ? "Sending..." : "Send Inquiry"}
+        {isSubmitting ? "Sending..." : submitLabel}
       </button>
 
       {status ? (
         <p
-          className={`mt-5 rounded-2xl border px-4 py-3 text-sm leading-6 ${
-            status.type === "success"
-              ? "border-gold/35 bg-gold/10 text-gold-soft"
-              : "border-red-400/30 bg-red-500/10 text-red-200"
-          }`}
+          className={`form-status form-status--${status.type}`}
           role={status.type === "error" ? "alert" : "status"}
         >
           {status.message}
@@ -295,7 +280,7 @@ function WebsiteField({ error }: { error?: string }) {
       {error ? (
         <span
           id="link-error"
-          className="mt-2 block text-sm font-normal normal-case leading-6 tracking-normal text-red-200"
+          className="mt-2 block text-sm font-normal normal-case leading-6 tracking-normal text-red-800"
         >
           {error}
         </span>
@@ -317,9 +302,9 @@ function PhoneField({
     <div className={`${labelBase} md:col-span-2`}>
       <span className="inline-flex min-h-4 items-center gap-1 whitespace-nowrap max-[420px]:whitespace-normal">
         Phone / WhatsApp
-        <span className="text-gold-soft" aria-hidden="true">*</span>
+        <span className="phone-optional">(optional)</span>
       </span>
-      <div className="mt-3 grid gap-3 sm:grid-cols-[minmax(12rem,0.48fr)_1fr]">
+      <div className="phone-controls mt-3 grid gap-3 sm:grid-cols-[minmax(12rem,0.48fr)_1fr]">
         <select
           className={`${fieldBase} mt-0`}
           name="phoneCountry"
@@ -336,6 +321,7 @@ function PhoneField({
         <input
           className={`${fieldBase} mt-0`}
           name="phoneRaw"
+          aria-label="Phone / WhatsApp"
           type="tel"
           inputMode="tel"
           autoComplete="tel"
@@ -345,7 +331,7 @@ function PhoneField({
         />
       </div>
       {error ? (
-        <p id="phone-error" className="mt-3 text-sm font-normal normal-case leading-6 tracking-normal text-red-200">
+        <p id="phone-error" className="mt-3 text-sm font-normal normal-case leading-6 tracking-normal text-red-800">
           {error}
         </p>
       ) : null}
@@ -364,10 +350,11 @@ function FormGroup({
 }) {
   return (
     <fieldset className={`border-t border-white/10 pt-7 first:border-t-0 first:pt-0 ${className}`}>
-      <legend className="mb-6 text-xs font-semibold uppercase tracking-[0.22em] text-gold-soft">
+      <legend className="mb-6 text-xs font-semibold uppercase tracking-[0.22em] text-[#946327]">
         {title}
       </legend>
       <div className="grid gap-6 md:grid-cols-2 md:gap-x-6 md:gap-y-7">{children}</div>
     </fieldset>
   );
 }
+

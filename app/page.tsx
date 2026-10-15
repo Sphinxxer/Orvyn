@@ -3,64 +3,52 @@ import { AboutPreview } from "@/components/about-preview";
 import { CaseStudiesPreview } from "@/components/case-studies-preview";
 import { FinalCta } from "@/components/final-cta";
 import { HeroSection } from "@/components/hero-section";
-import { ProblemSection } from "@/components/problem-section";
 import { ServicesSection } from "@/components/services-section";
 import { SiteFrame } from "@/components/site-frame";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { createServicesItemListSchema, homePageSchema } from "@/data/schema";
+import { homeDescription, homeTitle } from "@/data/site-metadata";
 
 export const metadata: Metadata = {
-  title: "Orvyn | Brand Growth Agency in Tirupur",
-  description:
-    "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen branding, websites, marketing, and digital presence.",
+  title: homeTitle,
+  description: homeDescription,
   alternates: {
     canonical: "/"
   },
   openGraph: {
-    title: "Orvyn | Brand Growth Agency in Tirupur",
-    description:
-      "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen branding, websites, marketing, and digital presence.",
+    title: homeTitle,
+    description: homeDescription,
     url: "/",
     siteName: "Orvyn",
     type: "website",
     locale: "en_IN",
     images: [
       {
-        url: "/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Orvyn brand growth agency"
+        alt: "Orvyn — Branding, websites and marketing"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Orvyn | Brand Growth Agency in Tirupur",
-    description:
-      "Orvyn helps brands sharpen their digital presence through branding, websites, and marketing.",
-    images: ["/og-image.png"]
+    title: homeTitle,
+    description: homeDescription,
+    images: ["/opengraph-image"]
   }
 };
 
 export default function Home() {
   return (
     <SiteFrame>
+      <JsonLd data={[homePageSchema, createServicesItemListSchema()]} />
       <HeroSection />
-      <div className="flex flex-col">
-        <div className="order-2 lg:order-1">
-          <ProblemSection />
-        </div>
-        <div className="order-1 lg:order-2">
-          <ServicesSection />
-        </div>
-        <div className="order-3">
-          <CaseStudiesPreview />
-        </div>
-        <div className="order-4">
-          <AboutPreview />
-        </div>
-        <div className="order-5">
-          <FinalCta />
-        </div>
-      </div>
+      <CaseStudiesPreview />
+      <ServicesSection />
+      <AboutPreview />
+      <FinalCta />
     </SiteFrame>
   );
 }
+

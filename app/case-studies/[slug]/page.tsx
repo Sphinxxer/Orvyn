@@ -1,281 +1,39 @@
-import { existsSync } from "node:fs";
-import path from "node:path";
 import type { Metadata } from "next";
-import Link from "next/link";
+import Image from "next/image";
+import { BackToWorkLink } from "@/components/back-to-work-link";
 import { notFound } from "next/navigation";
-import { CaseStudyCard, ProjectPreviewPanel } from "@/components/case-study-card";
-import { CTASection } from "@/components/cta-section";
-import { SectionShell } from "@/components/section-shell";
-import { createProjectBreadcrumbJsonLd } from "@/components/seo/breadcrumbs";
-import { JsonLd } from "@/components/seo/JsonLd";
+import { ArrowUpRightIcon } from "@phosphor-icons/react/dist/ssr/ArrowUpRight";
 import { SiteFrame } from "@/components/site-frame";
-import { caseStudyDetails } from "@/data/case-studies";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { createProjectBreadcrumbJsonLd } from "@/components/seo/breadcrumbs";
+import { FinalCta } from "@/components/final-cta";
+import { PdfDeckButton } from "@/components/pdf-deck-button";
+import { ProjectTile } from "@/components/project-tile";
+import { caseStudyDetails, clientProjects, getLiveWebsite } from "@/data/case-studies";
 import { createCreativeWorkSchema } from "@/data/schema";
-
-type ProjectPageProps = {
-  params: Promise<{
-    slug: string;
-  }>;
-};
-
-export function generateStaticParams() {
-  return caseStudyDetails.map((project) => ({
-    slug: project.slug
-  }));
-}
-
-export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
+import { projectImageSizes } from "@/data/project-images";
+type Props = { params: Promise<{ slug: string }> };
+export function generateStaticParams() { return caseStudyDetails.map((project) => ({ slug: project.slug })); }
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProject(slug);
-
-  if (!project) {
-    return {};
-  }
-
-  const title = `${project.title} Case Study | Orvyn`;
-  const description = getProjectMetaDescription(project.slug);
-  const canonical = `/case-studies/${project.slug}`;
-
-  return {
-    title,
-    description,
-    alternates: {
-      canonical
-    },
-    openGraph: {
-      title,
-      description,
-      url: canonical,
-      siteName: "Orvyn",
-      type: "article",
-      locale: "en_IN",
-      images: [
-        {
-          url: "/og-image.png",
-          width: 1200,
-          height: 630,
-          alt: `${project.title} case study by Orvyn`
-        }
-      ]
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: ["/og-image.png"]
-    }
-  };
+  const project = caseStudyDetails.find((item) => item.slug === slug);
+  if (!project) return {};
+  return { title: project.client + " | Orvyn Work", description: project.description, alternates: { canonical: "/case-studies/" + slug }, openGraph: { title: project.client + " — Orvyn", description: project.description, url: "/case-studies/" + slug, type: "article", images: ["/opengraph-image"] }, twitter: { card: "summary_large_image", title: project.client + " — Orvyn", description: project.description, images: ["/opengraph-image"] } };
 }
-
-export default async function CaseStudyProjectPage({ params }: ProjectPageProps) {
+export default async function ProjectPage({ params }: Props) {
   const { slug } = await params;
-  const project = getProject(slug);
-
-  if (!project) {
-    notFound();
-  }
-
-  const relatedProjects = caseStudyDetails
-    .filter((item) => item.slug !== project.slug)
-    .slice(0, 3);
-  const hasDeck = projectHasDeck(project.deckHref, project.deckStatus);
-  const showsDistinctCategory = project.category !== project.label;
-  const projectPath = `/case-studies/${project.slug}`;
-
-  const jsonLd = [
-    createProjectBreadcrumbJsonLd(project.title, projectPath),
-    createCreativeWorkSchema(project, getProjectMetaDescription(project.slug))
-  ];
-
-  return (
-    <SiteFrame>
-      <JsonLd data={jsonLd} />
-      <section className="border-b border-white/10 px-5 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-36 lg:px-8 lg:pt-44">
-        <div className="mx-auto max-w-7xl">
-          <Link
-            href="/case-studies"
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-gold-soft transition hover:text-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
-          >
-            <span aria-hidden="true">{"\u2190"}</span>
-            Back to Work
-          </Link>
-
-          <div className="mt-10 grid gap-10 lg:grid-cols-[0.78fr_0.42fr] lg:items-end">
-            <div>
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="rounded-full bg-gold/10 px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-gold-soft">
-                  {project.label}
-                </span>
-                {showsDistinctCategory ? (
-                  <span className="text-sm font-medium text-muted">{project.category}</span>
-                ) : null}
-              </div>
-              <h1 className="mt-6 max-w-4xl text-balance text-5xl font-black leading-[0.95] text-white sm:text-7xl lg:text-8xl">
-                {project.title}
-              </h1>
-            </div>
-            <p className="border-t border-gold pt-6 text-base leading-7 text-white/75 sm:text-lg sm:leading-8">
-              {project.description}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <SectionShell className="pt-0">
-        <div className="grid gap-8 lg:grid-cols-[0.72fr_0.28fr] lg:gap-10">
-          <ProjectPreviewPanel project={project} priority />
-
-          <aside className="rounded-[2rem] border border-white/10 bg-coal/65 p-5 sm:p-6 lg:self-start">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-soft">
-              Project meta
-            </p>
-            <dl className="mt-6 space-y-5">
-              <MetaItem label="Client / Project" value={project.title} />
-              <MetaItem label="Category" value={project.category} />
-              <MetaItem label="Service wing" value={project.serviceWing} />
-              <MetaItem label="Status" value={project.status} />
-            </dl>
-          </aside>
-        </div>
-
-        <div className="mt-10 grid gap-8 lg:grid-cols-[0.45fr_0.55fr] lg:gap-12">
-          <div className="rounded-[2rem] border border-white/10 bg-coal/55 p-5 sm:p-7">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-soft">
-              What this solves
-            </p>
-            <h2 className="mt-5 text-3xl font-semibold leading-tight text-white sm:text-4xl">
-              What this project solves
-            </h2>
-            <p className="mt-5 text-base leading-7 text-muted">
-              {getProjectSolveCopy(project.slug)}
-            </p>
-            <p className="mt-5 border-t border-white/10 pt-5 text-sm leading-6 text-white/58">
-              {project.whatThisShows}
-            </p>
-          </div>
-
-          <div className="rounded-[2rem] border border-white/10 bg-coal/55 p-5 sm:p-7">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold-soft">
-              Focus areas
-            </p>
-            <div className="mt-5 flex flex-wrap gap-2.5">
-              {project.focusAreas.map((area) => (
-                <span
-                  key={area}
-                  className="rounded-full border border-white/10 bg-white/[0.02] px-3.5 py-2 text-sm leading-5 text-white/72"
-                >
-                  {area}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {hasDeck && project.deckHref ? (
-          <div className="mt-10 rounded-[2rem] border border-gold/25 bg-[linear-gradient(135deg,rgba(200,169,90,0.11),rgba(255,255,255,0.02))] p-5 sm:p-7 lg:flex lg:items-center lg:justify-between lg:gap-8">
-            <div>
-              <h2 className="text-3xl font-semibold leading-tight text-white">
-                Project deck
-              </h2>
-              <p className="mt-4 max-w-2xl text-sm leading-6 text-muted">
-                Open the deck to view the project direction in more detail.
-              </p>
-            </div>
-            <a
-              href={project.deckHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Open ${project.title} project deck`}
-              className="mt-7 inline-flex min-h-12 items-center justify-center rounded-full bg-gold px-6 py-3 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-gold-soft focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink lg:mt-0"
-            >
-              Open project deck
-            </a>
-          </div>
-        ) : null}
-      </SectionShell>
-
-      <SectionShell className="bg-white/[0.012]">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
-              Related projects
-            </p>
-            <h2 className="mt-4 text-3xl font-bold leading-[1.04] text-white sm:text-5xl">
-              More from the archive.
-            </h2>
-          </div>
-        </div>
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {relatedProjects.map((item) => (
-            <CaseStudyCard key={item.slug} project={item} />
-          ))}
-        </div>
-      </SectionShell>
-
-      <CTASection
-        title="Have a brand that needs clearer direction?"
-        copy="Tell us what feels unclear. The next move might be branding, websites, marketing, or a mix of all three."
-        ctaLabel="Start a Project"
-        ctaHref="/contact"
-      />
-    </SiteFrame>
-  );
+  const project = caseStudyDetails.find((item) => item.slug === slug);
+  if (!project) notFound();
+  const liveUrl = getLiveWebsite(project);
+  const gallery = project.gallery ?? (project.previewImage ? [{ src: project.previewImage, alt: project.previewAlt, caption: project.label }] : []);
+  const related = clientProjects.filter((item) => item.slug !== slug).slice(0, 2);
+  return <SiteFrame><JsonLd data={[createProjectBreadcrumbJsonLd(project.client, "/case-studies/" + slug), createCreativeWorkSchema(project, project.description)]} /><article className="project-page container"><BackToWorkLink /><header className="project-intro"><div><p className="eyebrow">{project.projectKind === "direction" ? "Direction & concept" : "Client project"}</p><h1>{project.client}</h1><p className="project-lead">{project.brief ?? project.description}</p></div><dl className="project-facts"><div><dt>Our contribution</dt><dd>{project.services.join(" / ")}</dd></div><div><dt>Status</dt><dd>{project.storeStatus === "prelaunch" ? "Prelaunch · store launching soon" : project.status}</dd></div></dl></header>
+    <section className="project-story" aria-label="Project overview"><h2>{project.storyTitle ?? "The direction"}</h2><div><p>{project.contribution ?? project.whatThisShows}</p><div className="project-actions">{liveUrl ? <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="button button--primary" data-analytics-event={project.id + "_website_visited"}>{project.slug === "iniya-fiber" ? "Visit website" : "Visit store"}<ArrowUpRightIcon size={17} aria-hidden="true" /><span className="sr-only"> (opens in a new tab)</span></a> : null}{project.deckStatus === "available" && project.deckHref ? <PdfDeckButton href={project.deckHref} name={project.client} preview={project.previewImage} /> : null}</div></div></section>
+    {project.designNotes?.length ? <section className="project-decisions" aria-label="Design details">{project.designNotes.map((note) => <div key={note.title}><h3>{note.title}</h3><p>{note.copy}</p></div>)}</section> : null}
+    {project.storeStatus === "prelaunch" ? <aside className="prelaunch-note"><span className="status-label">Prelaunch</span><p>The store is preparing for launch. Orvyn’s work covers brand identity, ecommerce and social media. The public storefront link will be available after launch.</p></aside> : null}
+    <div className={"project-gallery" + (gallery.length > 2 ? " project-gallery--paired" : "")}>{gallery.map((item, index) => <figure key={item.src}><Image src={item.src} alt={item.alt} {...(projectImageSizes[item.src] ?? { width: 1440, height: 960 })} sizes={gallery.length > 2 && index > 0 ? "(max-width: 640px) calc(100vw - 40px), (max-width: 1360px) 45vw, 620px" : "(max-width: 1360px) calc(100vw - 48px), 1248px"} className="project-gallery__image" loading={index === 0 ? "eager" : "lazy"} /><figcaption>{item.caption}</figcaption></figure>)}</div>
+    <section className="project-deliverables"><h2>{project.projectKind === "direction" ? "Focus areas" : "What we worked on"}</h2><ul>{project.focusAreas.map((item) => <li key={item}>{item}</li>)}</ul></section>
+    <section className="related-work" aria-labelledby="related-title"><div className="section-heading"><h2 id="related-title">More from the studio</h2><span className="heading-rule" /></div><div className="featured-grid">{related.map((item) => <ProjectTile project={item} key={item.id} />)}</div></section></article><FinalCta /></SiteFrame>;
 }
 
-function getProject(slug: string) {
-  return caseStudyDetails.find((project) => project.slug === slug);
-}
 
-function getProjectMetaDescription(slug: string) {
-  if (slug === "grandeur-associates") {
-    return "A content and presentation direction for a premium architecture, construction, and interiors brand by Orvyn.";
-  }
-
-  if (slug === "tric-academy") {
-    return "A website direction for a Tirupur-based sports academy built around programs, facilities, trust, and application flow.";
-  }
-
-  if (slug === "cameo-garments") {
-    return "A modern website direction for a Tirupur-based export business with an outdated digital presence.";
-  }
-
-  return "A clean brand identity and digital presentation direction for a financial planning and advisory firm.";
-}
-
-function getProjectSolveCopy(slug: string) {
-  if (slug === "grandeur-associates") {
-    return "A premium construction and interiors brand needs its Instagram to work like a portfolio \u2014 not just a posting page. This direction shows how project presentation, visual rhythm, and content structure can create stronger trust.";
-  }
-
-  if (slug === "tric-academy") {
-    return "A sports academy website needs to do more than look good. It has to explain programs, show facilities clearly, build parent trust, and make applications easier.";
-  }
-
-  if (slug === "cameo-garments") {
-    return "An export business with an outdated website needs a clearer digital presence. This concept shows how structure, positioning, and homepage flow can make the company feel sharper and more credible online.";
-  }
-
-  return "A financial planning brand needs to feel clear, credible, and calm. This direction shows how identity, communication, and visual consistency can support trust-led decision making.";
-}
-
-function projectHasDeck(
-  deckHref?: string,
-  deckStatus?: "available" | "coming-soon"
-) {
-  if (!deckHref || deckStatus !== "available") {
-    return false;
-  }
-
-  return existsSync(path.join(process.cwd(), "public", deckHref.replace(/^\/+/, "")));
-}
-
-function MetaItem({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <dt className="text-xs font-semibold uppercase tracking-[0.2em] text-white/38">
-        {label}
-      </dt>
-      <dd className="mt-2 text-sm font-medium leading-6 text-white/78">{value}</dd>
-    </div>
-  );
-}

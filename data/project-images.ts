@@ -1,0 +1,20 @@
+// Intrinsic dimensions of the supplied portfolio assets.
+export const projectImageSizes: Record<string, { width: number; height: number }> = {
+  "/case-studies/previews/flyir-guidelines-full.webp": { width: 1352, height: 2200 },
+  "/case-studies/previews/signal-gravity-prelaunch.webp": { width: 1440, height: 875 },
+  "/case-studies/previews/biomode-banner.webp": { width: 1254, height: 1254 },
+  "/case-studies/previews/biomode-brand-guidelines.jpg": { width: 1200, height: 900 },
+  "/case-studies/previews/biomode-guidelines-clean.webp": { width: 1600, height: 900 },
+  "/case-studies/previews/biomode-main-icon.webp": { width: 1400, height: 1400 },
+  "/case-studies/previews/biomode-store.webp": { width: 1440, height: 900 },
+  "/case-studies/previews/biomode.jpg": { width: 1200, height: 900 },
+  "/case-studies/previews/cameo-garments.jpg": { width: 1200, height: 900 },
+  "/case-studies/previews/flyir-brand-identity-cover.webp": { width: 1400, height: 1333 },
+  "/case-studies/previews/flyir-campaign.webp": { width: 1200, height: 722 },
+  "/case-studies/previews/grandeur-associates.jpg": { width: 1200, height: 900 },
+  "/case-studies/previews/iniya-fiber-live.webp": { width: 1440, height: 900 },
+  "/case-studies/previews/iniya-fiber-website.webp": { width: 1400, height: 1335 },
+  "/case-studies/previews/sra-financial-planning.jpg": { width: 1200, height: 900 },
+  "/case-studies/previews/tiny-thagaimai-store.webp": { width: 1440, height: 900 },
+  "/case-studies/previews/tric-academy.jpg": { width: 1200, height: 900 },
+};
