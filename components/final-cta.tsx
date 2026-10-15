@@ -1,37 +1,7 @@
-import { ButtonLink } from "./button-link";
-import { OrvynHalo } from "./orvyn-halo";
-import { SectionShell } from "./section-shell";
-
-export function FinalCta() {
-  return (
-    <SectionShell className="pb-20 pt-8 lg:pb-32 lg:pt-16">
-      <div className="relative overflow-hidden rounded-[2.25rem] bg-coal px-6 py-12 sm:px-8 lg:px-12 lg:py-20">
-        <OrvynHalo variant="cta" className="absolute inset-0" />
-        <div className="absolute inset-x-10 top-0 h-px bg-gold/45" aria-hidden="true" />
-        <div className="relative z-10 grid gap-10 lg:grid-cols-[1fr_0.34fr] lg:items-end">
-          <div className="max-w-5xl">
-            <p data-reveal="eyebrow" className="mb-6 text-xs font-semibold uppercase tracking-[0.26em] text-gold-soft sm:text-sm">
-              Next Step
-            </p>
-            <h2 data-reveal="heading" className="max-w-5xl text-balance text-4xl font-black leading-[1.16] text-white sm:text-6xl sm:leading-[0.98] lg:text-8xl lg:leading-[0.92]">
-              Ready to become impossible to ignore?
-            </h2>
-            <p data-reveal="body" className="mt-7 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-              Let&apos;s build a sharper digital presence for your brand - one that
-              looks clearer, earns trust faster, and grows with intent.
-            </p>
-            <p data-reveal="body" className="mt-5 max-w-2xl text-sm leading-6 text-gold-soft/85">
-              Orvyn onboards up to three new projects each month so every build
-              gets focused direction and execution.
-            </p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-start">
-            <ButtonLink href="/contact" className="w-full sm:w-auto">
-              Start a Project
-            </ButtonLink>
-          </div>
-        </div>
-      </div>
-    </SectionShell>
-  );
+import Image from "next/image";
+import { BookingLink } from "./booking-link";
+import type { SelectedService } from "@/data/service-filter";
+export function FinalCta({ service }: { service?: SelectedService } = {}) {
+  return <section className="contact-invitation" aria-labelledby="contact-invitation-title"><div className="container contact-invitation__inner"><div><p className="eyebrow">Your next chapter</p><h2 id="contact-invitation-title">Tell us what comes next.</h2><p className="invitation-copy">Share your project. We’ll arrange a conversation.</p></div><BookingLink service={service} /><Image src="/mascot/orvyn-welcome.webp" alt="Orvyn welcoming you to a conversation" width={180} height={180} sizes="(max-width: 640px) 105px, 180px" className="welcome-mascot" /></div></section>;
 }
+

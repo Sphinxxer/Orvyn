@@ -1,37 +1,6 @@
-import type { CSSProperties } from "react";
-import { ButtonLink } from "./button-link";
-import { SectionShell } from "./section-shell";
-
+import Image from "next/image";
+const steps = [{ title: "Understand", copy: "Understand your brief and current presence." }, { title: "Sharpen", copy: "Establish a clear direction for the work." }, { title: "Build", copy: "Develop the agreed identity, website or content." }, { title: "Refine", copy: "Review the details and prepare for handover." }];
 export function AboutPreview() {
-  return (
-    <SectionShell className="bg-ink">
-      <div className="rounded-[2rem] bg-white/[0.025] px-6 py-10 sm:px-8 lg:px-12 lg:py-14">
-        <div className="grid gap-10 lg:grid-cols-[0.44fr_1fr] lg:items-end lg:gap-16">
-          <div>
-            <div className="mb-6 h-px w-16 bg-gold/70" data-reveal="rule" aria-hidden="true" />
-            <p data-reveal="eyebrow" className="text-sm font-semibold uppercase tracking-[0.28em] text-gold-soft">
-              Orvyn Philosophy
-            </p>
-            <h2 className="mt-5 text-balance text-4xl font-black leading-[1] text-white sm:text-6xl">
-              <span data-reveal="heading">Fix first.</span>{" "}
-              <span data-reveal="heading" className="block text-gold-soft" style={{ "--reveal-delay": "200ms" } as CSSProperties}>Then scale.</span>
-            </h2>
-          </div>
-
-          <div className="max-w-3xl" data-reveal="body">
-            <p className="text-2xl font-semibold leading-snug text-white sm:text-3xl">
-              Growth gets easier when the brand is clear.
-            </p>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">
-              Orvyn starts by finding what needs to be fixed before building
-              what should be scaled.
-            </p>
-            <ButtonLink href="/about" variant="secondary" className="mt-8">
-              About Orvyn
-            </ButtonLink>
-          </div>
-        </div>
-      </div>
-    </SectionShell>
-  );
+  return <section id="studio" className="approach-surface" aria-labelledby="approach-title"><div className="section approach container"><div className="approach-intro" data-reveal><div><p className="eyebrow">Our approach</p><h2 id="approach-title">Fix first. Then scale.</h2><p>We understand what needs to change, then bring the right pieces together.</p></div><Image src="/mascot/orvyn-presenting.webp" alt="Orvyn introducing our studio's approach" width={210} height={210} sizes="(max-width: 640px) 95px, 180px" className="approach-mascot" /></div><ol className="approach-steps">{steps.map((step, index) => <li key={step.title} data-reveal><span className="step-number">0{index + 1}</span><div><h3>{step.title}</h3><p>{step.copy}</p></div></li>)}</ol></div></section>;
 }
+

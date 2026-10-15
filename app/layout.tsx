@@ -1,42 +1,38 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { AnalyticsEvents } from "@/components/analytics/AnalyticsEvents";
 import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 import { ExperienceMotion } from "@/components/ui/ExperienceMotion";
 import { globalSchema } from "@/data/schema";
+import { homeDescription, homeTitle } from "@/data/site-metadata";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
+const sans = localFont({
+  src: "./fonts/dm-sans-latin.woff2",
+  weight: "400 700",
+  variable: "--font-sans",
   display: "swap"
 });
+const display = localFont({ src: "./fonts/cormorant-garamond-latin.woff2", weight: "500 600", variable: "--font-display", display: "swap", adjustFontFallback: "Times New Roman" });
 
 const baseUrl = "https://orvyn.cc";
 
-const defaultDescription =
-  "Orvyn is a brand growth agency and modern internet company based in Tirupur, India, helping brands sharpen branding, websites, marketing, and digital presence.";
-
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
-  title: "Orvyn | Brand Growth Agency in Tirupur",
-  description: defaultDescription,
+  title: homeTitle,
+  description: homeDescription,
   keywords: [
-    "brand growth agency",
-    "modern internet company",
-    "marketing agency in Tirupur",
-    "brand growth agency India",
-    "content creation agency",
-    "performance marketing agency",
-    "website development agency",
-    "social media management agency",
-    "digital marketing agency in Tirupur",
+    "branding studio India",
+    "branding agency Tirupur",
     "brand strategy",
     "brand identity",
+    "visual identity",
     "website design",
-    "SEO campaigns"
+    "website development",
+    "Shopify ecommerce",
+    "social media content",
+    "campaign design"
   ],
   alternates: {
     canonical: "/"
@@ -52,27 +48,26 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png"
   },
   openGraph: {
-    title: "Orvyn | Brand Growth Agency in Tirupur",
-    description: defaultDescription,
+    title: homeTitle,
+    description: homeDescription,
     siteName: "Orvyn",
     type: "website",
     locale: "en_IN",
     url: "/",
     images: [
       {
-        url: "/og-image.png",
+        url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Orvyn brand growth agency"
+        alt: "Orvyn — Branding, websites and marketing"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Orvyn | Brand Growth Agency in Tirupur",
-    description:
-      "Orvyn helps brands sharpen their digital presence through branding, websites, and marketing.",
-    images: ["/og-image.png"]
+    title: homeTitle,
+    description: homeDescription,
+    images: ["/opengraph-image"]
   }
 };
 
@@ -82,13 +77,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} bg-ink font-sans text-white antialiased`}>
+    <html lang="en" data-scroll-behavior="smooth">
+      <body className={`${sans.variable} ${display.variable}`}>
         {globalSchema.map((schema) => (
           <JsonLd key={String(schema["@id"])} data={schema} />
         ))}
         <ExperienceMotion />
-        <CustomCursor />
         {children}
         <MicrosoftClarity />
         <AnalyticsEvents />
@@ -96,3 +90,4 @@ export default function RootLayout({
     </html>
   );
 }
+

@@ -1,57 +1,63 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ProjectTile } from "@/components/case-studies-archive";
-import { portfolioProjects } from "@/data/case-studies";
-import { SectionShell } from "./section-shell";
+import { ArrowRightIcon } from "@phosphor-icons/react/dist/ssr/ArrowRight";
+import { publishedProjects } from "@/data/case-studies";
+import { ProjectAction, ProjectActions } from "./project-action";
 
-const homeProjects = portfolioProjects
-  .filter((project) => project.featuredOnHome)
-  .slice(0, 3);
+const selectedWork = [
+  { slug: "biomode", scope: "Brand identity / Shopify ecommerce", summary: "A complete brand system, carried into an online store." },
+  { slug: "signal-gravity", scope: "Brand identity / Ecommerce / Social media", summary: "Identity, ecommerce and social media, built for launch." },
+  { slug: "flyir", scope: "Brand identity", summary: "A visual system for an Indian athleisure brand." },
+  { slug: "iniya-fiber", scope: "Website design / Development", summary: "A clearer digital home for an export-focused textile business." }
+] as const;
+
+const imageSizes = "(max-width: 640px) calc(100vw - 40px), (max-width: 1100px) calc((100vw - 96px) / 2), (max-width: 1216px) calc((100vw - 128px) / 2), 544px";
 
 export function CaseStudiesPreview() {
   return (
-    <SectionShell className="bg-coal">
-      <div className="grid gap-10 lg:grid-cols-[0.32fr_1fr] lg:gap-16">
-        <div className="lg:sticky lg:top-28 lg:self-start">
-          <div className="mb-6 h-px w-16 bg-gold/70" data-reveal="rule" aria-hidden="true" />
-          <p data-reveal="eyebrow" className="text-xs font-semibold uppercase tracking-[0.26em] text-gold-soft sm:text-sm">
-            Built With Clarity
-          </p>
-          <h2 data-reveal="heading" className="mt-5 max-w-sm text-3xl font-bold leading-[1.04] text-white sm:text-4xl">
-            Directions shaped with intent.
-          </h2>
-          <p className="mt-5 max-w-sm text-base leading-7 text-white/74">
-            Selected work across brand identity, websites, and strategic direction.
-          </p>
-          <Link
-            href="/case-studies"
-            data-cursor="interactive"
-            data-magnetic
-            data-portfolio-cursor="true"
-            data-analytics-event="view_all_case_studies_clicked"
-            className="group mt-8 inline-flex items-center text-sm font-semibold text-gold-soft underline-offset-4 transition duration-300 hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
-          >
-            View All Work
-            <span
-              className="inline-block pl-2 transition duration-300 group-hover:translate-x-1"
-              aria-hidden="true"
-            >
-              {"\u2192"}
-            </span>
-          </Link>
+    <section className="section selected-work container" aria-labelledby="selected-work-title">
+      <div className="selected-work__header">
+        <div>
+          <p className="eyebrow">Selected work</p>
+          <h2 id="selected-work-title">Built with intent.</h2>
+          <p className="selected-work__intro">A closer look at the brands, stores and websites we’ve brought together.</p>
         </div>
-
-        <div className="grid gap-8 md:grid-cols-3">
-          {homeProjects.map((project, index) => (
-            <ProjectTile
-              key={project.slug}
-              project={project}
-              index={index}
-              compact
-              openInternalInNewTab
-            />
-          ))}
-        </div>
+        <Link href="/case-studies" prefetch={false} className="text-link">
+          View all work<ArrowRightIcon size={17} weight="light" aria-hidden="true" />
+        </Link>
       </div>
-    </SectionShell>
+      <div className="selected-work__grid">
+        {selectedWork.map((entry) => {
+          const project = publishedProjects.find((item) => item.slug === entry.slug);
+          if (!project) return null;
+          const src = project.workPreviewImage ?? project.previewImage;
+          const isPrelaunch = project.storeStatus === "prelaunch";
+
+          return (
+            <article className="selected-project" key={project.id}>
+              <ProjectAction project={project} className={"selected-project__visual" + (project.slug === "biomode" ? " selected-project__visual--biomode" : project.slug === "flyir" ? " selected-project__visual--flyir" : "") + (isPrelaunch ? " selected-project__visual--prelaunch" : "")}>
+                <Image
+                  src={src}
+                  alt={project.workPreviewAlt ?? project.previewAlt}
+                  fill
+                  loading="lazy"
+                  sizes={imageSizes}
+                  className="selected-project__image"
+                />
+                {isPrelaunch ? <span className="selected-project__preview-label">Prelaunch preview</span> : null}
+              </ProjectAction>
+              <div className="selected-project__copy">
+                <h3>{project.client}</h3>
+                <p className="selected-project__scope">{entry.scope}</p>
+                <p className="selected-project__summary">{project.previewSummary ?? entry.summary}</p>
+                <ProjectActions project={project} />
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
   );
 }
+
+

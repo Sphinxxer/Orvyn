@@ -1,29 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-
-type LogoProps = {
-  href?: string;
-  className?: string;
-};
-
-export function Logo({ href = "/", className = "" }: LogoProps) {
-  return (
-    <Link
-      href={href}
-      className={`group inline-flex items-center gap-3.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gold/70 focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${className}`}
-      aria-label="Orvyn home"
-    >
-      <Image
-        src="/orvyn-icon.svg"
-        alt="Orvyn logo"
-        width={36}
-        height={36}
-        priority
-        className="size-8 shrink-0 transition duration-200 group-hover:opacity-90 sm:size-9"
-      />
-      <span className="text-base font-semibold uppercase tracking-[0.24em] text-white sm:text-lg">
-        ORVYN
-      </span>
-    </Link>
-  );
+export function Logo({ href = "/", className = "" }: { href?: string; className?: string }) {
+  return <Link href={href} className={"brand-logo " + className} aria-label="Orvyn home"><Image src="/orvyn-icon.svg" alt="" width={36} height={36} className="brand-logo__mark" /><span>ORVYN</span></Link>;
 }
+
