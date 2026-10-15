@@ -20,9 +20,9 @@ h1,h2 { font-family:var(--font-display),Georgia,serif; font-weight:600; letter-s
 .skip-link { position:fixed; left:20px; top:-80px; z-index:200; padding:12px 20px; color:var(--paper); background:var(--ink); }
 .skip-link:focus { top:16px; }
 .eyebrow { font-size:10px; line-height:1.6; letter-spacing:.21em; text-transform:uppercase; font-weight:500; }
-.brand-logo { display:inline-flex; gap:10px; align-items:center; flex-shrink:0; }
-.brand-logo span { font-size:17px; font-weight:650; letter-spacing:.18em; }
-.brand-logo__mark { width:34px; height:34px; filter:brightness(0); }
+.brand-logo { display:inline-flex; align-items:center; flex-shrink:0; min-height:44px; }
+/* Use the supplied artwork's alpha unchanged; the colour break falls in the gap before its gold dot. */
+.brand-logo__wordmark { display:block; width:154px; aspect-ratio:1862 / 442; background:linear-gradient(to right,var(--ink) 0 95%,#c9aa5b 95% 100%); -webkit-mask:url("/orvyn-wordmark.png") center / contain no-repeat; mask:url("/orvyn-wordmark.png") center / contain no-repeat; }
 .site-header { position:relative; z-index:40; border-bottom:1px solid var(--line); background:var(--paper); }
 .site-header--home { background:transparent; border-bottom:0; }
 .site-header__inner { display:flex; height:88px; justify-content:space-between; align-items:center; }
@@ -146,8 +146,7 @@ h1,h2 { font-family:var(--font-display),Georgia,serif; font-weight:600; letter-s
 .site-footer { background:var(--paper); padding-block:23px; }
 .footer-inner { display:flex; flex-wrap:wrap; gap:20px 25px; align-items:center; font-size:14px; color:var(--muted); }
 .footer-inner .brand-logo { color:var(--ink); }
-.footer-inner .brand-logo__mark { width:24px; height:24px; }
-.footer-inner .brand-logo span { font-size:12px; }
+.footer-inner .brand-logo__wordmark { width:140px; }
 .footer-location { display:grid; gap:2px; border-left:1px solid var(--line); padding-left:24px; font-size:12px; line-height:1.5; }
 .footer-social { display:flex; gap:20px; }
 .footer-social a { min-height:44px; display:flex; align-items:center; }
@@ -289,8 +288,7 @@ h1,h2 { font-family:var(--font-display),Georgia,serif; font-weight:600; letter-s
   .site-header[data-header-hiding="true"] { transition:none; }
   .site-header[data-menu-open="true"] { transform:translateY(0); }
   .site-header[data-header-scrolled="true"] { background:var(--paper-light); }
-  .brand-logo__mark { width:28px; height:28px; }
-  .brand-logo span { font-size:14px; }
+  .brand-logo__wordmark { width:124px; }
   .desktop-nav { display:none; }
   .mobile-menu-toggle { display:flex; }
   .mobile-nav { display:block; }
@@ -364,9 +362,7 @@ h1,h2 { font-family:var(--font-display),Georgia,serif; font-weight:600; letter-s
   .welcome-mascot { right:-15px; width:113px; bottom:6px; }
   .site-footer { padding-block:19px; }
   .footer-inner { flex-wrap:wrap; gap:8px 19px; font-size:13px; }
-  .footer-inner .brand-logo { gap:6px; }
-  .footer-inner .brand-logo__mark { width:23px; height:23px; }
-  .footer-inner .brand-logo span { font-size:11px; }
+  .footer-inner .brand-logo__wordmark { width:124px; }
   .footer-location { padding-left:14px; }
   .footer-social { gap:16px; }
   .footer-inner>p { margin-left:0; width:100%; padding-top:3px; font-size:12px; }

@@ -1,6 +1,6 @@
 # Orvyn v3
 
-Current Orvyn website source, prepared for GitHub and Vercel on 15 October 2026. This compact package has 98 files, including the latest mobile mascot framing, service-filter return links, Contact field contrast and metadata updates.
+Current Orvyn website source, prepared for GitHub and Vercel on 15 October 2026. This compact package has 99 files, including the approved charcoal-and-gold wordmark in the shared header and footer, mobile mascot framing, service-filter return links, Contact field contrast and metadata updates. The ring symbol remains in favicons and existing brand metadata.
 
 ## Upload to GitHub
 
@@ -65,6 +65,6 @@ The compact package retains the active application code, current images, PDFs, f
 
 Every retained application, configuration, lockfile, test and asset file matches the verified working source by SHA-256; packaging documentation and ignore rules are the only modified files. The package contains no real environment files, build caches or dependencies. No GitHub upload, Vercel deployment or live enquiry submission has been performed.
 
-Compact-package verification passed: a fresh `npm ci`, lint, all 9 tests and a production build. Generated main-page markup for Home, Work, Contact, FLYIR and BIOMODE is identical to the original build. Both `/about` and `/services` still produce their existing permanent redirects.
+The compact base passed a fresh `npm ci`, lint, all 9 tests and a production build, with identical main-page markup to the working source. After the approved wordmark update, the matching working source again passed lint, all 9 tests and a production build. The new wordmark uses the supplied transparent artwork without changing its letter shapes. Header/footer sizing and logo navigation were checked on desktop and mobile; the protected capabilities section is unchanged. Both `/about` and `/services` retain their existing permanent redirects.
 
 Official references: [Next.js on Vercel](https://vercel.com/docs/frameworks/full-stack/nextjs), [supported Node.js versions](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions), [environment variables](https://vercel.com/docs/environment-variables).
