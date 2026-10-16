@@ -1,6 +1,6 @@
 # Orvyn v3
 
-Current Orvyn website source, prepared for GitHub and Vercel on 15 October 2026. This compact package has 99 files, including the approved charcoal-and-gold wordmark in the shared header and footer, mobile mascot framing, service-filter return links, Contact field contrast and metadata updates. The ring symbol remains in favicons and existing brand metadata.
+Current Orvyn website source, updated for GitHub and Vercel on 16 October 2026. This compact package has 99 files, including the approved charcoal-and-gold wordmark, required phone and optional Message fields, the Send enquiry form action, corrected phone validation, mobile mascot framing, service-filter return links and metadata updates. The ring symbol remains in favicons and existing brand metadata.
 
 ## Upload to GitHub
 
@@ -63,8 +63,10 @@ Keep all assets in `public/` and fonts in `app/fonts/`. Also retain `docs/revamp
 
 The compact package retains the active application code, current images, PDFs, fonts and font licences. The obsolete `/about` and `/services` page implementations and their exclusive components and imagery are omitted; the same permanent redirects remain in `next.config.ts`. Unused preview variants, unused icon variants and separate setup guides are also omitted. The full pre-compaction package is recoverable in the separate Orvyn v3 Backup folder.
 
-Every retained application, configuration, lockfile, test and asset file matches the verified working source by SHA-256; packaging documentation and ignore rules are the only modified files. The package contains no real environment files, build caches or dependencies. No GitHub upload, Vercel deployment or live enquiry submission has been performed.
+The package contains no real environment files, build caches or dependencies. The current form fix passes lint, all 12 tests and the production build. UI validation confirms phone is required, Message is optional, entered details survive validation, and the form action is Send enquiry. The compact base previously passed a fresh install and production build; all current changed files are synchronised from the verified working source.
 
-The compact base passed a fresh `npm ci`, lint, all 9 tests and a production build, with identical main-page markup to the working source. After the approved wordmark update, the matching working source again passed lint, all 9 tests and a production build. The new wordmark uses the supplied transparent artwork without changing its letter shapes. Header/footer sizing and logo navigation were checked on desktop and mobile; the protected capabilities section is unchanged. Both `/about` and `/services` retain their existing permanent redirects.
+The original form sent a space between the dialling code and number while the API accepted only an unspaced number. The client now sends canonical international numbers; the API also accepts the previous formatted numbers and normalises them before delivery. Empty Message values are passed through as empty sheet fields, and a blank server-only endpoint setting no longer blocks the legacy endpoint fallback.
+
+The authorised production test on 16 October reproduced the existing failure. GitHub denied branch creation with 403 (Resource not accessible by integration), so this fix has not been pushed or deployed. Upload the five files from the separate Orvyn Contact Fix - GitHub Upload folder to the same paths in the main branch of Sphinxxer/Orvyn, or provide repository write access through the GitHub connection. After Vercel finishes the deployment, verify the new required/optional labels and test confirmed enquiry delivery. If sending still fails, check GOOGLE_SCRIPT_URL in the Vercel Production environment and redeploy after correcting it; do not put the private endpoint in GitHub. The original ring favicons, protected capabilities section and permanent redirects remain unchanged.
 
 Official references: [Next.js on Vercel](https://vercel.com/docs/frameworks/full-stack/nextjs), [supported Node.js versions](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions), [environment variables](https://vercel.com/docs/environment-variables).

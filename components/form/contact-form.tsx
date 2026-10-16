@@ -21,10 +21,10 @@ type FormStatus = {
 } | null;
 
 type FieldErrors = Partial<
-  Record<"name" | "email" | "phone" | "link" | "need" | "message", string>
+  Record<"name" | "email" | "phone" | "link" | "need", string>
 >;
 
-export function ContactForm({ submitLabel = "Request an intro call" }: { submitLabel?: string }) {
+export function ContactForm({ submitLabel = "Send enquiry" }: { submitLabel?: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<FormStatus>(null);
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
@@ -60,14 +60,11 @@ export function ContactForm({ submitLabel = "Request an intro call" }: { submitL
         String(formData.get("email") ?? "").trim() && emailInput?.validity.valid
           ? undefined
           : "Please enter a valid email address.",
-      phone: !phoneInput.trim() || phoneValidation.isValid ? undefined : phoneValidation.message,
+      phone: !phoneInput.trim() ? "Please enter your phone number." : phoneValidation.isValid ? undefined : phoneValidation.message,
       link: isValidLink ? undefined : "Please enter a valid website, Instagram link, or handle.",
       need: String(formData.get("need") ?? "").trim()
         ? undefined
-        : "Please select the capability you need help with.",
-      message: String(formData.get("message") ?? "").trim()
-        ? undefined
-        : "Please tell us what you are trying to build."
+        : "Please select the capability you need help with."
     };
 
     const firstInvalidField = Object.entries(nextFieldErrors).find(([, message]) => message)?.[0];
@@ -123,7 +120,7 @@ export function ContactForm({ submitLabel = "Request an intro call" }: { submitL
       !payload.get("name") ||
       !payload.get("email") ||
       !payload.get("need") ||
-      !payload.get("message");
+      !payload.get("phone");
 
     if (hasMissingRequiredField) {
       trackClarityEvent("contact_form_submission_failed");
@@ -145,8 +142,8 @@ export function ContactForm({ submitLabel = "Request an intro call" }: { submitL
         body: payload.toString()
       });
 
-      const confirmation = await response.json();
-      if (!response.ok || confirmation.result !== "success") {
+      const confirmation = await response.json().catch(() => null);
+      if (!response.ok || confirmation?.result !== "success") {
         throw new Error("The enquiry was not confirmed.");
       }
 
@@ -164,7 +161,7 @@ export function ContactForm({ submitLabel = "Request an intro call" }: { submitL
       trackClarityEvent("contact_form_submission_failed");
       setStatus({
         type: "error",
-        message: "Something went wrong. Please try again or contact us directly."
+        message: "Your enquiry couldn’t be sent. Please try again or email hello@orvyn.cc."
       });
     } finally {
       setIsSubmitting(false);
@@ -220,12 +217,10 @@ export function ContactForm({ submitLabel = "Request an intro call" }: { submitL
           error={fieldErrors.need}
         />
         <TextAreaField
-          label="Message"
+          label="Message (optional)"
           placeholder="What are you building, and what would you like help with?"
           name="message"
           className="md:col-span-2"
-          required
-          error={fieldErrors.message}
         />
       </FormGroup>
 
@@ -302,7 +297,7 @@ function PhoneField({
     <div className={`${labelBase} md:col-span-2`}>
       <span className="inline-flex min-h-4 items-center gap-1 whitespace-nowrap max-[420px]:whitespace-normal">
         Phone / WhatsApp
-        <span className="phone-optional">(optional)</span>
+        <span className="text-[#946327]" aria-hidden="true">*</span>
       </span>
       <div className="phone-controls mt-3 grid gap-3 sm:grid-cols-[minmax(12rem,0.48fr)_1fr]">
         <select
@@ -323,6 +318,7 @@ function PhoneField({
           name="phoneRaw"
           aria-label="Phone / WhatsApp"
           type="tel"
+          required
           inputMode="tel"
           autoComplete="tel"
           placeholder={selectedCountry.placeholder}

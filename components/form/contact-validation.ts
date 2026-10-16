@@ -139,7 +139,7 @@ export function normalizePhoneNumber(countryCode: string, phoneNumber: string) {
   const country = getCountryByCode(countryCode);
   const digits = cleanPhoneNumber(country.code, phoneNumber);
 
-  return `${country.code} ${digits}`;
+  return `${country.code}${digits}`;
 }
 
 export function validateWebsiteOrInstagram(value: string) {
