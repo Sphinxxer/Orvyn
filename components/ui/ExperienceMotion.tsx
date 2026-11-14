@@ -1,7 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { useWorkHistory } from "./work-history";
+import { useWorkHistory } from "@/components/ui/work-navigation";
 export function ExperienceMotion() {
   const pathname = usePathname();
   useWorkHistory(pathname);

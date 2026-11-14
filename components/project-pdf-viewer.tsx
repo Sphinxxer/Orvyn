@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { MinusIcon } from "@phosphor-icons/react/dist/csr/Minus";
 import { PlusIcon } from "@phosphor-icons/react/dist/csr/Plus";
-import { trackClarityEvent } from "./analytics/track-event";
+import { trackClarityEvent } from "@/components/analytics/AnalyticsEvents";
 import {
   useEffect,
   useRef,

@@ -4,7 +4,7 @@ import { ArrowRightIcon } from "@phosphor-icons/react/dist/ssr/ArrowRight";
 import { ArrowUpRightIcon } from "@phosphor-icons/react/dist/ssr/ArrowUpRight";
 import { ArrowsOutSimpleIcon } from "@phosphor-icons/react/dist/ssr/ArrowsOutSimple";
 import type { PortfolioProject } from "@/data/case-studies";
-import { getWorkDestination } from "@/data/project-navigation";
+import { getWorkDestination } from "@/data/case-studies";
 import { serviceHref, type SelectedService } from "@/data/service-filter";
 import { PdfDeckButton } from "./pdf-deck-button";
 
@@ -16,7 +16,7 @@ type ProjectActionProps = {
 };
 
 export function ProjectAction({ project, className = "project-primary-action", children, service }: ProjectActionProps) {
-  const destination = getWorkDestination(project);
+  const destination = getWorkDestination(project, service);
   const Icon = destination.type === "pdf" ? ArrowsOutSimpleIcon : destination.type === "liveWebsite" ? ArrowUpRightIcon : ArrowRightIcon;
   const content = children ?? <>{destination.label}<Icon size={16} weight="light" aria-hidden="true" /></>;
   if (destination.type === "pdf") {
@@ -29,11 +29,11 @@ export function ProjectAction({ project, className = "project-primary-action", c
 }
 
 export function ProjectActions({ project, service }: { project: PortfolioProject; service?: SelectedService }) {
-  const destination = getWorkDestination(project);
+  const destination = getWorkDestination(project, service);
   return (
     <div className="project-action-row">
       <ProjectAction project={project} service={service} />
-      {destination.storyUrl ? <Link href={serviceHref(destination.storyUrl, service)} prefetch={false} className="project-story-link" aria-label={"Behind the " + project.client + " project"} data-analytics-event={project.id + "_project_viewed"}>Behind the project<ArrowRightIcon size={15} weight="light" aria-hidden="true" /></Link> : null}
+      {destination.storyUrl ? <Link href={serviceHref(destination.storyUrl, service)} prefetch={false} className="project-story-link" aria-label={project.client + " project details"} data-analytics-event={project.id + "_project_viewed"}>Project details<ArrowRightIcon size={15} weight="light" aria-hidden="true" /></Link> : null}
     </div>
   );
 }
