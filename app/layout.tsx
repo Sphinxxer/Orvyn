@@ -4,8 +4,8 @@ import { AnalyticsEvents } from "@/components/analytics/AnalyticsEvents";
 import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ExperienceMotion } from "@/components/ui/ExperienceMotion";
-import { globalSchema } from "@/data/schema";
-import { homeDescription, homeTitle } from "@/data/site-metadata";
+import { globalSchema } from "@/data/site";
+import { homeDescription, homeTitle } from "@/data/site";
 import "./globals.css";
 
 const sans = localFont({

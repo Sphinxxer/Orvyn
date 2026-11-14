@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ListIcon } from "@phosphor-icons/react/dist/csr/List";
 import { XIcon } from "@phosphor-icons/react/dist/csr/X";
+import { WhatsAppLink } from "./whatsapp-link";
 import { Logo } from "./layout/Logo";
 const links = [{ href: "/", label: "Home" }, { href: "/case-studies", label: "Work" }, { href: "/contact", label: "Contact" }];
 export function SiteHeader() {
@@ -100,9 +101,10 @@ export function SiteHeader() {
   return <header key={pathname} ref={header} className={"site-header " + (pathname === "/" ? "site-header--home" : "")} data-site-header data-menu-open={open} onFocusCapture={() => { if (header.current) header.current.dataset.headerHidden = "false"; }}>
     <div className="container site-header__inner"><Logo />
       <nav className="desktop-nav" aria-label="Primary navigation">{links.map((link) => <Link key={link.href} href={link.href} prefetch={false} className={active(link.href) ? "is-active" : ""} aria-current={active(link.href) ? "page" : undefined}>{link.label}</Link>)}</nav>
+      <WhatsAppLink placement="header" label="WhatsApp us" className="button button--primary header-whatsapp" />
       <button ref={toggle} className="mobile-menu-toggle" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} aria-controls="mobile-navigation" onClick={() => setOpen(!open)}>{open ? <XIcon size={25} weight="light" /> : <ListIcon size={27} weight="light" />}</button>
     </div>
-    {open ? <nav ref={menu} id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">{links.map((link) => <Link key={link.href} href={link.href} prefetch={false} aria-current={active(link.href) ? "page" : undefined} onClick={() => setOpen(false)}>{link.label}</Link>)}</nav> : null}
+    {open ? <nav ref={menu} id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">{links.map((link) => <Link key={link.href} href={link.href} prefetch={false} aria-current={active(link.href) ? "page" : undefined} onClick={() => setOpen(false)}>{link.label}</Link>)}<WhatsAppLink placement="mobile_menu" label="WhatsApp us" className="button button--primary mobile-whatsapp" /></nav> : null}
   </header>;
 }
 

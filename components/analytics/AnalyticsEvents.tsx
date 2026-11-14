@@ -1,7 +1,7 @@
 "use client";
+import { useEffect } from "react";
+import { useRef } from "react";
 
-import { useEffect, useRef } from "react";
-import { trackClarityEvent } from "./track-event";
 
 export function AnalyticsEvents() {
   const startedForms = useRef(new WeakSet<HTMLFormElement>());
@@ -17,6 +17,14 @@ export function AnalyticsEvents() {
 
       if (eventName) {
         trackClarityEvent(eventName);
+        // Clarity events do not accept per-event properties. Keep attribution as
+        // separate contextual click events, never as a submitted-lead event.
+        if (eventName === "whatsapp_enquiry_clicked" && target) {
+          const { analyticsPlacement, analyticsService, analyticsProject } = target.dataset;
+          if (analyticsPlacement) trackClarityEvent(`whatsapp_placement_${analyticsPlacement}_clicked`);
+          if (analyticsService) trackClarityEvent(`whatsapp_service_${analyticsService}_clicked`);
+          if (analyticsProject) trackClarityEvent(`whatsapp_project_${analyticsProject}_clicked`);
+        }
       }
     };
 
@@ -43,4 +51,20 @@ export function AnalyticsEvents() {
   }, []);
 
   return null;
+}
+
+
+declare global {
+  interface Window {
+    clarity?: (command: "event", eventName: string) => void;
+  }
+}
+
+
+export function trackClarityEvent(eventName: string) {
+  if (typeof window === "undefined" || typeof window.clarity !== "function") {
+    return;
+  }
+
+  window.clarity("event", eventName);
 }

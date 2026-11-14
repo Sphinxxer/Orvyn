@@ -1,72 +1,40 @@
-# Orvyn v3
+# Orvyn — compact GitHub package
 
-Current Orvyn website source, updated for GitHub and Vercel on 16 October 2026. This compact package has 99 files, including the approved charcoal-and-gold wordmark, required phone and optional Message fields, the Send enquiry form action, corrected phone validation, mobile mascot framing, service-filter return links and metadata updates. The ring symbol remains in favicons and existing brand metadata.
+Prepared 13 November 2026. This package contains 98 files for the approved local website. Upload its contents at the existing repository root, preserving the repository’s `.git` history.
 
-## Upload to GitHub
+## What is included
 
-Upload the contents of this folder to the repository root. `package.json`, `app/`, `components/`, `data/`, `public/` and `docs/` must sit at the root, without another enclosing folder.
+Home, Work, project-detail pages, Contact, the enquiry API, SEO metadata, the Open Graph image generator, required fonts and licences, client imagery and identity PDFs. The warm single-font Home hero, mascot, GSAP motion, continuous client strip, service cards, factual trust section and refined header/footer are included. Testimonial image mockups remain proposals.
 
-Include `.gitignore` and the blank `.env.example`. Real environment files, installed dependencies, build output and local review material are deliberately excluded. The existing website and older upload folder remain separate.
+## Compact packaging
 
-## Deploy on Vercel
+Unused components and redirected legacy page implementations, historical previews, sample portraits, draft documentation and duplicate font assets were removed. Related source modules were consolidated; the Home stylesheet reuses the fonts already loaded by the root layout. The existing about/services redirects remain configured. `docs/revamp/source-assets/orvyn-hero-source.png` is retained because the Open Graph image generator reads it at runtime.
 
-1. Import the GitHub repository into Vercel, or use it as the connected repository for your existing Orvyn project.
-2. Framework preset: **Next.js**. Root directory: **./**. Node.js version: **24.x**, matching the local verification environment.
-3. Keep the framework output-directory default. Build command: `npm run build`. Install command: `npm ci`.
-4. Configure the environment variables below before deployment. Keep any existing domain configuration; connect `orvyn.cc` to the intended project when ready.
-5. Deploy, then complete the checks below on the actual Vercel URL and production domain.
+Development tests and original source modules remain in the separate Working Project. This upload folder is the compact release copy; do not mix future Working Project files into it without refreshing the package and revalidating imports.
 
-No `vercel.json` or static export is needed. The Next.js server handles `/api/inquiry`; GitHub Pages/static-only hosting cannot provide that endpoint.
+## Local use
 
-## Environment variables
-
-| Name | Purpose | Required? |
-| --- | --- | --- |
-| `GOOGLE_SCRIPT_URL` | Your existing deployed Google Apps Script Web App URL, ending in `/exec`. Copy its value from the private local configuration into Vercel, never into GitHub. | Required for enquiry delivery. |
-| `NEXT_PUBLIC_CLARITY_PROJECT_ID` | Microsoft Clarity project ID only. | Optional; omit when unused. |
-| `NEXT_PUBLIC_BOOKING_URL` | Configured HTTPS Cal.com event URL. | Optional; omit until ready. The site keeps the request-an-intro-call form flow. |
-
-Set `GOOGLE_SCRIPT_URL` for Production. Configure Preview separately if preview enquiries should use the same endpoint or a dedicated test destination. `NEXT_PUBLIC_` values are public and are included at build time; redeploy after changing them. The older `NEXT_PUBLIC_GOOGLE_SCRIPT_URL` fallback remains supported in code, but use the server-only `GOOGLE_SCRIPT_URL` for this deployment.
-
-The existing Apps Script integration is retained. Use the deployed endpoint already configured in the private working website; its response must confirm `{"result":"success"}`. For Clarity, use the project ID from the project's setup screen, rather than the full script. A successful build does not prove enquiry delivery. Full integration guides remain in the original working folder and the backup.
-
-## Local development
-
-Use Node.js 24.x. Run:
+Use Node.js 24.x.
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Open `http://127.0.0.1:3001`. For local enquiry integration, copy `.env.example` to `.env.local` and configure the private endpoint there. Next.js generates `next-env.d.ts` automatically.
+Open http://127.0.0.1:3001. To validate this release, run `npm run lint` and `npm run build`.
 
-```sh
-npm run lint
-npm test
-npm run build
-```
+## GitHub and hosting
 
-## Assets to retain
+Use a clean checkout of https://github.com/Sphinxxer/Orvyn on a new branch. Copy this package’s contents into the root, retaining `.git`. Review the diff and remove obsolete files absent from this compact package. Do not force-push or replace Git history. Uploading the ZIP itself does not install a website: extract it first. Pushing a deployment-connected branch can automatically deploy.
 
-Keep all assets in `public/` and fonts in `app/fonts/`. Also retain `docs/revamp/source-assets/orvyn-hero-source.png`: the Open Graph image generator reads it during the build. PDFs and the PDF worker are included in the public assets.
+Hosting: Next.js with Node.js 24.x, `npm ci`, `npm run build`, standard Next.js output. The enquiry API needs server hosting and does not work on GitHub Pages.
 
-## After deployment
+Only blank `.env.example` is included. Configure the existing private `GOOGLE_SCRIPT_URL` in the hosting environment for form delivery. Never commit its value. `NEXT_PUBLIC_CLARITY_PROJECT_ID` and `NEXT_PUBLIC_BOOKING_URL` are optional. Keep existing hosting environment settings.
 
-- Check Home, Work, Contact, project stories, PDF controls, filters, return links and mobile navigation.
-- Check `/robots.txt`, `/sitemap.xml`, `/opengraph-image`, canonicals and permanent redirects from `/about` and `/services`.
-- Verify configured analytics and any booking URL. Keep booking-link clicks separate from confirmed bookings.
-- Run the actual enquiry-delivery test once explicitly authorised, and confirm the provider received it. Automated enquiry tests mock the provider.
-- Review mobile performance on the deployed site. Submit `https://orvyn.cc/sitemap.xml` to Google Search Console and Bing Webmaster Tools after verifying domain ownership, and check crawl access on the production host. Metadata cannot guarantee rankings or AI recommendations.
+## Release limitations
 
-## Verification for this package
+The dependency install reports security issues, including high and critical findings, and Next.js reports a known vulnerability. Resolve those before public deployment. Production enquiry delivery remains unverified; no real enquiry or WhatsApp message was sent during packaging. This package preserves the reviewed functionality and does not change dependency versions.
 
-The compact package retains the active application code, current images, PDFs, fonts and font licences. The obsolete `/about` and `/services` page implementations and their exclusive components and imagery are omitted; the same permanent redirects remain in `next.config.ts`. Unused preview variants, unused icon variants and separate setup guides are also omitted. The full pre-compaction package is recoverable in the separate Orvyn v3 Backup folder.
+## Compact package validation
 
-The package contains no real environment files, build caches or dependencies. The current form fix passes lint, all 12 tests and the production build. UI validation confirms phone is required, Message is optional, entered details survive validation, and the form action is Send enquiry. The compact base previously passed a fresh install and production build; all current changed files are synchronised from the verified working source.
-
-The original form sent a space between the dialling code and number while the API accepted only an unspaced number. The client now sends canonical international numbers; the API also accepts the previous formatted numbers and normalises them before delivery. Empty Message values are passed through as empty sheet fields, and a blank server-only endpoint setting no longer blocks the legacy endpoint fallback.
-
-The authorised production test on 16 October reproduced the existing failure. GitHub denied branch creation with 403 (Resource not accessible by integration), so this fix has not been pushed or deployed. Upload the five files from the separate Orvyn Contact Fix - GitHub Upload folder to the same paths in the main branch of Sphinxxer/Orvyn, or provide repository write access through the GitHub connection. After Vercel finishes the deployment, verify the new required/optional labels and test confirmed enquiry delivery. If sending still fails, check GOOGLE_SCRIPT_URL in the Vercel Production environment and redeploy after correcting it; do not put the private endpoint in GitHub. The original ring favicons, protected capabilities section and permanent redirects remain unchanged.
-
-Official references: [Next.js on Vercel](https://vercel.com/docs/frameworks/full-stack/nextjs), [supported Node.js versions](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions), [environment variables](https://vercel.com/docs/environment-variables).
+Fresh dependency install, lint and production build passed in an isolated copy. Lint retains the existing unused-disable warning; the build succeeded on retry after the existing Next.js security advisory. Browser checks confirmed Home rendering, service filtering, a rendered BIOMODE PDF with 21 pages, and Contact validation of empty fields. Open Graph image, robots, sitemap and representative project-detail routes returned HTTP 200. An empty API payload was rejected with HTTP 400; no real enquiry was sent. Home markup matches Working Project exactly; font loading reuses the root layout’s existing fonts. No claim of security clearance is made.

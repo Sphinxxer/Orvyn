@@ -1,28 +1,26 @@
 "use client";
-
-import type { FormEvent, ReactNode } from "react";
+import type { FormEvent } from "react";
+import type { ReactNode } from "react";
 import { useState } from "react";
-import { budgetRanges, contactNeeds } from "@/data/home";
-import { trackClarityEvent } from "@/components/analytics/track-event";
-import { useServiceSelection } from "@/components/ui/use-service-selection";
-import { fieldBase, labelBase, SelectField, TextAreaField, TextField } from "./contact-field";
-import {
-  COUNTRY_CODES,
-  getCountryById,
-  normalizePhoneNumber,
-  normalizeWebsiteOrInstagram,
-  validatePhoneNumber,
-  validateWebsiteOrInstagram
-} from "./contact-validation";
+import { budgetRanges } from "@/data/site";
+import { contactNeeds } from "@/data/site";
+import { trackClarityEvent } from "@/components/analytics/AnalyticsEvents";
+import { useServiceSelection } from "@/components/ui/work-navigation";
+import type { ComponentPropsWithoutRef } from "react";
+import type { ChangeEventHandler } from "react";
+import { WhatsAppLink } from "@/components/whatsapp-link";
+
 
 type FormStatus = {
   type: "success" | "error";
   message: string;
 } | null;
 
+
 type FieldErrors = Partial<
   Record<"name" | "email" | "phone" | "link" | "need", string>
 >;
+
 
 export function ContactForm({ submitLabel = "Send enquiry" }: { submitLabel?: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -253,6 +251,7 @@ export function ContactForm({ submitLabel = "Send enquiry" }: { submitLabel?: st
   );
 }
 
+
 function WebsiteField({ error }: { error?: string }) {
   return (
     <label className={`${labelBase} md:col-span-2`}>
@@ -283,6 +282,7 @@ function WebsiteField({ error }: { error?: string }) {
     </label>
   );
 }
+
 
 function PhoneField({
   error,
@@ -335,6 +335,7 @@ function PhoneField({
   );
 }
 
+
 function FormGroup({
   title,
   className = "",
@@ -354,3 +355,329 @@ function FormGroup({
   );
 }
 
+
+export const fieldBase =
+  "form-input";
+
+
+export const labelBase =
+  "form-label";
+
+
+type TextFieldProps = {
+  label: string;
+  className?: string;
+  error?: string;
+} & ComponentPropsWithoutRef<"input">;
+
+
+type SelectFieldProps = {
+  value?: string;
+  onChange?: ChangeEventHandler<HTMLSelectElement>;
+  label: string;
+  options: string[];
+  placeholder: string;
+  className?: string;
+  name: string;
+  required?: boolean;
+  error?: string;
+};
+
+
+type TextAreaFieldProps = {
+  label: string;
+  className?: string;
+  error?: string;
+} & ComponentPropsWithoutRef<"textarea">;
+
+
+export function TextField({ label, className = "", error, ...props }: TextFieldProps) {
+  const fieldId = props.id ?? props.name;
+
+  return (
+    <label className={`${labelBase} ${className}`}>
+      <span className="inline-flex min-h-4 items-center gap-1 whitespace-nowrap max-[420px]:whitespace-normal">
+        {label}
+        {props.required ? <span className="text-[#946327]" aria-hidden="true">*</span> : null}
+      </span>
+      <input
+        className={fieldBase}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error && fieldId ? `${fieldId}-error` : undefined}
+        {...props}
+      />
+      {error && fieldId ? <FieldError id={`${fieldId}-error`}>{error}</FieldError> : null}
+    </label>
+  );
+}
+
+
+export function SelectField({
+  value,
+  onChange,
+  label,
+  options,
+  placeholder,
+  className = "",
+  name,
+  required = false,
+  error
+}: SelectFieldProps) {
+  return (
+    <label className={`${labelBase} ${className}`}>
+      <span className="flex min-h-4 items-center gap-1 whitespace-nowrap text-[11px] leading-4 tracking-[0.13em]">
+        <span>{label}</span>
+        {required ? <span className="shrink-0 text-[#946327]" aria-hidden="true">*</span> : null}
+      </span>
+      <select
+        className={fieldBase}
+        name={name}
+        defaultValue={value === undefined ? "" : undefined}
+        value={value}
+        onChange={onChange}
+        required={required}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? `${name}-error` : undefined}
+      >
+        <option value="" disabled>
+          {placeholder}
+        </option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+      {error ? <FieldError id={`${name}-error`}>{error}</FieldError> : null}
+    </label>
+  );
+}
+
+
+export function TextAreaField({ label, className = "", error, ...props }: TextAreaFieldProps) {
+  const fieldId = props.id ?? props.name;
+
+  return (
+    <label className={`${labelBase} ${className}`}>
+      <span className="inline-flex min-h-4 items-center gap-1 whitespace-nowrap max-[420px]:whitespace-normal">
+        {label}
+        {props.required ? <span className="text-[#946327]" aria-hidden="true">*</span> : null}
+      </span>
+      <textarea
+        className={`${fieldBase} min-h-40 resize-y`}
+        aria-invalid={Boolean(error)}
+        aria-describedby={error && fieldId ? `${fieldId}-error` : undefined}
+        {...props}
+      />
+      {error && fieldId ? <FieldError id={`${fieldId}-error`}>{error}</FieldError> : null}
+    </label>
+  );
+}
+
+
+function FieldError({ id, children }: { id: string; children: string }) {
+  return (
+    <span
+      id={id}
+      className="mt-2 block text-sm font-normal normal-case leading-6 tracking-normal text-red-800"
+    >
+      {children}
+    </span>
+  );
+}
+export type CountryCodeOption = {
+  id: string;
+  name: string;
+  code: string;
+  placeholder: string;
+  minLength: number;
+  maxLength: number;
+  startsWith?: string[];
+};
+
+
+export const COUNTRY_CODES: CountryCodeOption[] = [
+  {
+    id: "india",
+    name: "India",
+    code: "+91",
+    placeholder: "98765 43210",
+    minLength: 10,
+    maxLength: 10,
+    startsWith: ["6", "7", "8", "9"]
+  },
+  {
+    id: "united-states",
+    name: "United States",
+    code: "+1",
+    placeholder: "(415) 555-1234",
+    minLength: 10,
+    maxLength: 10
+  },
+  {
+    id: "united-kingdom",
+    name: "United Kingdom",
+    code: "+44",
+    placeholder: "7911 123456",
+    minLength: 10,
+    maxLength: 10
+  },
+  {
+    id: "united-arab-emirates",
+    name: "United Arab Emirates",
+    code: "+971",
+    placeholder: "50 123 4567",
+    minLength: 9,
+    maxLength: 9
+  },
+  {
+    id: "singapore",
+    name: "Singapore",
+    code: "+65",
+    placeholder: "8123 4567",
+    minLength: 8,
+    maxLength: 8
+  },
+  {
+    id: "australia",
+    name: "Australia",
+    code: "+61",
+    placeholder: "412 345 678",
+    minLength: 9,
+    maxLength: 9
+  },
+  {
+    id: "canada",
+    name: "Canada",
+    code: "+1",
+    placeholder: "(416) 555-1234",
+    minLength: 10,
+    maxLength: 10
+  },
+  {
+    id: "saudi-arabia",
+    name: "Saudi Arabia",
+    code: "+966",
+    placeholder: "50 123 4567",
+    minLength: 9,
+    maxLength: 9
+  },
+  { id: "qatar", name: "Qatar", code: "+974", placeholder: "3312 3456", minLength: 8, maxLength: 8 },
+  { id: "oman", name: "Oman", code: "+968", placeholder: "9123 4567", minLength: 8, maxLength: 8 },
+  { id: "kuwait", name: "Kuwait", code: "+965", placeholder: "5001 2345", minLength: 8, maxLength: 8 },
+  { id: "bahrain", name: "Bahrain", code: "+973", placeholder: "3600 1234", minLength: 8, maxLength: 8 }
+];
+
+
+const phoneFormattingPattern = /^[\d\s()+\-.]+$/;
+
+const instagramHandlePattern = /^@[A-Za-z0-9._]{1,30}$/;
+
+
+export function getCountryByCode(countryCode: string) {
+  return COUNTRY_CODES.find((country) => country.code === countryCode) ?? COUNTRY_CODES[0];
+}
+
+
+export function getCountryById(countryId: string) {
+  return COUNTRY_CODES.find((country) => country.id === countryId) ?? COUNTRY_CODES[0];
+}
+
+
+export function cleanPhoneNumber(countryCode: string, phoneNumber: string) {
+  const country = getCountryByCode(countryCode);
+  const countryDigits = country.code.replace(/\D/g, "");
+  const digits = phoneNumber.replace(/\D/g, "");
+
+  if (digits.startsWith(countryDigits) && digits.length > country.maxLength) {
+    return digits.slice(countryDigits.length);
+  }
+
+  return digits;
+}
+
+
+export function validatePhoneNumber(countryCode: string, phoneNumber: string) {
+  const country = getCountryByCode(countryCode);
+  const trimmedPhone = phoneNumber.trim();
+
+  if (!trimmedPhone || !phoneFormattingPattern.test(trimmedPhone)) {
+    return {
+      isValid: false,
+      message:
+        country.code === "+91"
+          ? "Please enter a valid 10-digit Indian mobile number."
+          : "Please enter a valid phone number."
+    };
+  }
+
+  const digits = cleanPhoneNumber(country.code, trimmedPhone);
+  const isAllZeroes = /^0+$/.test(digits);
+  const hasValidLength = digits.length >= country.minLength && digits.length <= country.maxLength;
+  const hasValidPrefix = country.startsWith ? country.startsWith.includes(digits[0]) : true;
+
+  if (!digits || isAllZeroes || !hasValidLength || !hasValidPrefix) {
+    return {
+      isValid: false,
+      message:
+        country.code === "+91"
+          ? "Please enter a valid 10-digit Indian mobile number."
+          : "Please enter a valid phone number."
+    };
+  }
+
+  return { isValid: true, message: "" };
+}
+
+
+export function normalizePhoneNumber(countryCode: string, phoneNumber: string) {
+  const country = getCountryByCode(countryCode);
+  const digits = cleanPhoneNumber(country.code, phoneNumber);
+
+  return `${country.code}${digits}`;
+}
+
+
+export function validateWebsiteOrInstagram(value: string) {
+  const trimmedValue = value.trim();
+
+  if (!trimmedValue) {
+    return true;
+  }
+
+  if (instagramHandlePattern.test(trimmedValue)) {
+    return true;
+  }
+
+  if (/\s/.test(trimmedValue)) {
+    return false;
+  }
+
+  try {
+    const valueWithProtocol = /^https?:\/\//i.test(trimmedValue)
+      ? trimmedValue
+      : `https://${trimmedValue}`;
+    const url = new URL(valueWithProtocol);
+
+    return Boolean(url.hostname.includes(".") && url.hostname.length > 3);
+  } catch {
+    return false;
+  }
+}
+
+
+export function normalizeWebsiteOrInstagram(value: string) {
+  const trimmedValue = value.trim();
+
+  if (!trimmedValue || trimmedValue.startsWith("@") || /^https?:\/\//i.test(trimmedValue)) {
+    return trimmedValue;
+  }
+
+  return `https://${trimmedValue}`;
+}
+
+
+export function ContactWhatsAppLink() {
+  const { service } = useServiceSelection();
+  return <WhatsAppLink placement="contact" service={service} />;
+}

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { WorkGallery } from "@/components/work-gallery";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { createBreadcrumbJsonLd } from "@/components/seo/breadcrumbs";
+import { createBreadcrumbJsonLd } from "@/data/site";
 import { SiteFrame } from "@/components/site-frame";
 import { workProjects } from "@/data/case-studies";
-import { organizationId, siteUrl } from "@/data/schema";
+import { organizationId, siteUrl } from "@/data/site";
 const workTitle = "Selected Work | Orvyn";
 const workDescription = "Brand identities, Shopify ecommerce, websites and social media. Explore the work and Orvyn's contribution to each project.";
 export const metadata: Metadata = {

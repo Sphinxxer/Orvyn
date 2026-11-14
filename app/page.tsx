@@ -1,14 +1,9 @@
-import type { Metadata } from "next";
-import { AboutPreview } from "@/components/about-preview";
-import { CaseStudiesPreview } from "@/components/case-studies-preview";
-import { FinalCta } from "@/components/final-cta";
-import { HeroSection } from "@/components/hero-section";
-import { ServicesSection } from "@/components/services-section";
-import { SiteFrame } from "@/components/site-frame";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { createServicesItemListSchema, homePageSchema } from "@/data/schema";
-import { homeDescription, homeTitle } from "@/data/site-metadata";
-
+import { homePageSchema } from "@/data/site";
+import type { Metadata } from "next";
+import { ApprovedHome } from "@/components/approved-home";
+import { homeDescription, homeTitle } from "@/data/site";
+import "./approved-home.css";
 export const metadata: Metadata = {
   title: homeTitle,
   description: homeDescription,
@@ -39,16 +34,4 @@ export const metadata: Metadata = {
   }
 };
 
-export default function Home() {
-  return (
-    <SiteFrame>
-      <JsonLd data={[homePageSchema, createServicesItemListSchema()]} />
-      <HeroSection />
-      <CaseStudiesPreview />
-      <ServicesSection />
-      <AboutPreview />
-      <FinalCta />
-    </SiteFrame>
-  );
-}
-
+export default function Home(){return <><JsonLd data={homePageSchema}/><ApprovedHome/></>;}

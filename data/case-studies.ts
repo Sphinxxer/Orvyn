@@ -1,10 +1,13 @@
+import type { SelectedService } from "@/data/service-filter";
 export type ProjectDestination =
   | "pdf"
   | "liveWebsite"
   | "internalCaseStudy"
   | "comingSoon";
 
+
 export type ServiceWing = "Branding" | "Websites" | "Marketing";
+
 
 export type PortfolioProject = {
   id: string;
@@ -43,8 +46,11 @@ export type PortfolioProject = {
   storyTitle?: string;
   designNotes?: Array<{ title: string; copy: string }>;
   previewSummary?: string;
+  storefrontPreview?: { desktop: string; mobile: string };
   serviceSummaries?: Partial<Record<ServiceWing, string>>;
+  servicePreviews?: Partial<Record<ServiceWing, { src: string; alt: string }>>;
 };
+
 
 const existingProjects = ([
   {
@@ -64,7 +70,7 @@ const existingProjects = ([
     label: "Shopify Ecommerce & Social Media",
     serviceWing: "Websites",
     status: "Live online store",
-    featuredOnHome: false,
+    featuredOnHome: true,
     order: 0
   },
   {
@@ -233,11 +239,12 @@ const existingProjects = ([
   }
 ] satisfies PortfolioProject[]).sort((a, b) => a.order - b.order);
 
+
 const projectEditorial: Record<string, Partial<PortfolioProject>> = {
   "flyir": {
     serviceWings: ["Branding"], projectKind: "client", storeStatus: "none",
     workOrder: 0,
-    previewSummary: "A visual identity and guidelines for an Indian athleisure brand.",
+    previewSummary: "We developed FLYIR’s visual identity, applications and brand guidelines for the Indian athleisure market.",
     storyTitle: "An identity built for movement.",
     designNotes: [
       { title: "A recognisable mark", copy: "The identity includes a primary logo, icon, submark and badge, with clear-space and minimum-size rules for consistent use." },
@@ -251,9 +258,10 @@ const projectEditorial: Record<string, Partial<PortfolioProject>> = {
     ]
   },
   "biomode": {
+    servicePreviews: { Branding: { src: "/case-studies/previews/biomode-guidelines-clean.webp", alt: "BIOMODE brand guidelines cover" } },
     serviceWings: ["Branding", "Websites"], projectKind: "client", storeStatus: "live",
     workOrder: 1, status: "Identity delivered · online store live",
-    previewSummary: "A complete brand system, carried into an online store.",
+    previewSummary: "We developed the visual identity, brand guidelines and Shopify store as one connected brand experience.",
     serviceSummaries: { Branding: "A visual identity system and guidelines for a children's innerwear brand.", Websites: "A Shopify store carrying the brand identity into its shopping experience." },
     storyTitle: "Care, carried through the identity.",
     designNotes: [
@@ -269,7 +277,7 @@ const projectEditorial: Record<string, Partial<PortfolioProject>> = {
     ]
   },
   "iniya-fiber": {
-    previewSummary: "A clearer digital home for an export-focused textile business.",
+    previewSummary: "We designed and developed a website to introduce the business and present its textile products and capabilities.",
     serviceWings: ["Websites"], projectKind: "client", storeStatus: "live",
     workOrder: 2, storyTitle: "Making the capabilities clear.",
     designNotes: [{ title: "Products before complexity", copy: "The homepage introduces the fibre and yarn offering, groups product capabilities and keeps the enquiry action visible alongside the business information." }],
@@ -278,7 +286,7 @@ const projectEditorial: Record<string, Partial<PortfolioProject>> = {
     gallery: [{ src: "/case-studies/previews/iniya-fiber-live.webp", alt: "Iniya Fiber's website showing its textile products and capabilities", caption: "A clearer digital home for the business" }]
   },
   "tiny-thagaimai": {
-    previewSummary: "An online store and social presence for a children's clothing brand.",
+    previewSummary: "We worked on TinyThagaimai’s Shopify store and social media. The storefront is shown here.",
     serviceSummaries: { Websites: "A Shopify store organised around children's clothing and collections.", Marketing: "Social media support alongside the brand's Shopify store. Storefront preview shown." },
     serviceWings: ["Websites", "Marketing"], projectKind: "client", storeStatus: "live",
     workOrder: 3, storyTitle: "A store organised around tiny days.",
@@ -289,59 +297,98 @@ const projectEditorial: Record<string, Partial<PortfolioProject>> = {
   }
 };
 
+
 const signalGravity: PortfolioProject = {
-  previewSummary: "Identity, ecommerce and social media, built for launch.",
-  serviceSummaries: { Branding: "A brand identity carried into the launch-page presentation.", Websites: "An ecommerce experience preparing for launch. Public launch-page preview shown.", Marketing: "Social media as part of the brand launch. Launch-page preview shown." },
+  previewSummary: "We worked across the identity, ecommerce and social media. The live clothing store is shown here.",
+  serviceSummaries: { Branding: "The Signal Gravity identity across its live ecommerce storefront.", Websites: "A live clothing store, open for shopping.", Marketing: "Social media as part of the wider brand presence. Storefront preview shown." },
   id: "signal-gravity", slug: "signal-gravity", client: "Signal Gravity",
   category: "Brand Identity, Ecommerce & Social Media",
-  description: "Brand identity, ecommerce and social media for Signal Gravity. The store is preparing for launch.",
+  description: "Brand identity, ecommerce and social media for Signal Gravity, now live as an online clothing store.",
   services: ["Brand Identity", "Ecommerce", "Social Media"],
-  previewImage: "/case-studies/previews/signal-gravity-prelaunch.webp",
-  previewAlt: "Signal Gravity’s monochrome prelaunch landing page with its launch countdown",
-  workPreviewImage: "/case-studies/previews/signal-gravity-prelaunch.webp",
-  workPreviewAlt: "Captured preview of Signal Gravity’s prelaunch website and countdown",
+  previewImage: "/case-studies/previews/signal-gravity-live-store.png",
+  previewAlt: "Signal Gravity live clothing store homepage featuring its Foundation collection",
+  workPreviewImage: "/case-studies/previews/signal-gravity-live-store.png",
+  workPreviewAlt: "Signal Gravity live clothing store homepage with its Foundation collection",
   destinationType: "internalCaseStudy",
   destinationUrl: "/case-studies/signal-gravity", ctaLabel: "View Project",
   ariaLabel: "View the Signal Gravity project", label: "Brand Identity, Ecommerce & Social Media",
   serviceWing: "Branding", serviceWings: ["Branding", "Websites", "Marketing"],
-  publicationStatus: "published", projectKind: "client", storeStatus: "prelaunch",
-  websiteUrl: "https://signalgravity.in/", status: "Prelaunch", featuredOnHome: true, order: 3.5,
+  publicationStatus: "published", projectKind: "client", storeStatus: "live",
+  websiteUrl: "https://signalgravity.in/", status: "Live online store", featuredOnHome: true, order: 3.5,
   workOrder: 4, storyTitle: "One brand, across three disciplines.",
   brief: "A connected brand identity, ecommerce experience and social media presence for Signal Gravity.",
-  contribution: "Orvyn worked across the brand identity, ecommerce and social media. The storefront is in prelaunch, so a public store visit will be available after launch.",
-  gallery: [{ src: "/case-studies/previews/signal-gravity-prelaunch.webp", alt: "Signal Gravity’s prelaunch website showing the brand identity and launch countdown", caption: "Prelaunch landing page — the countdown is shown in this captured preview." }]
+  contribution: "Orvyn worked across the brand identity, ecommerce and social media. Signal Gravity’s clothing store is now live.",
+  gallery: [{ src: "/case-studies/previews/signal-gravity-live-store.png", alt: "Signal Gravity’s live clothing store homepage, featuring its Foundation collection", caption: "The live Signal Gravity storefront." }]
 };
 
-export const portfolioProjects: PortfolioProject[] = [...existingProjects, signalGravity]
+
+const teralta: PortfolioProject = {
+  id: "teralta", slug: "teralta", client: "Teralta",
+  category: "Shopify Ecommerce", services: ["Shopify Store Development"],
+  description: "A Shopify store developed by Orvyn for Teralta, a children's clothing brand.",
+  previewSummary: "We developed Teralta’s Shopify store for its children’s clothing collections.",
+  previewImage: "/case-studies/previews/teralta-store-desktop.webp",
+  previewAlt: "Teralta Shopify storefront showing coordinated children's clothing sets",
+  destinationType: "liveWebsite", destinationUrl: "https://teralta.in/",
+  websiteUrl: "https://teralta.in/", ctaLabel: "Visit store",
+  ariaLabel: "Visit the Teralta online store", label: "Shopify store development",
+  serviceWing: "Websites", serviceWings: ["Websites"],
+  publicationStatus: "published", projectKind: "client", storeStatus: "live",
+  status: "Live online store", featuredOnHome: true, order: 3.6, workOrder: 1.5,
+  brief: "Shopify store development for Teralta’s children’s clothing collections.",
+  contribution: "Orvyn developed the Shopify store for Teralta. The live storefront presents its coordinated clothing sets and shopping collections.",
+  storyTitle: "A Shopify home for Teralta.",
+  gallery: [{ src: "/case-studies/previews/teralta-store-desktop.webp", alt: "Teralta's live desktop storefront", caption: "Teralta's live Shopify store." }, { src: "/case-studies/previews/teralta-store-mobile.webp", alt: "Teralta's live mobile storefront", caption: "The mobile shopping experience." }]
+};
+
+
+const storefrontPreviews: Record<string, PortfolioProject["storefrontPreview"]> = Object.fromEntries(
+  ["teralta", "biomode", "signal-gravity", "tiny-thagaimai"].map(id => [id, {
+    desktop: `/case-studies/previews/${id}-store-desktop.webp`,
+    mobile: `/case-studies/previews/${id}-store-mobile.webp`
+  }])
+);
+
+
+export const portfolioProjects: PortfolioProject[] = [...existingProjects, signalGravity, teralta]
   .map((project: PortfolioProject): PortfolioProject => ({
     ...project,
     publicationStatus: project.publicationStatus ?? "published", projectKind: project.projectKind ?? "direction", storeStatus: project.storeStatus ?? "none",
     serviceWings: project.serviceWings ?? [project.serviceWing],
     ...projectEditorial[project.slug],
+    storefrontPreview: storefrontPreviews[project.slug],
     ...(project.slug === "signal-gravity" ? signalGravity : {})
   }))
   .sort((a, b) => a.order - b.order);
 
+
 export const publishedProjects = portfolioProjects.filter((project) => project.publicationStatus === "published");
+
 export const clientProjects = publishedProjects.filter((project) => project.projectKind === "client");
+
 export const directionProjects = publishedProjects.filter((project) => project.projectKind === "direction");
+
 
 export function getLiveWebsite(project: PortfolioProject) {
   if (project.storeStatus !== "live") return undefined;
   return project.websiteUrl ?? (project.destinationType === "liveWebsite" ? project.destinationUrl : undefined);
 }
 
+
 export const workProjects: PortfolioProject[] = [...portfolioProjects].sort(
   (a: PortfolioProject, b: PortfolioProject) =>
     (a.workOrder ?? a.order) - (b.workOrder ?? b.order)
 );
 
-export { getWorkDestination } from "./project-navigation";
+
+
+
 
 type CaseStudyNarrative = {
   whatThisShows: string;
   focusAreas: string[];
 };
+
 
 const caseStudyNarratives: Record<string, CaseStudyNarrative> = {
   "grandeur-associates": {
@@ -391,11 +438,13 @@ const caseStudyNarratives: Record<string, CaseStudyNarrative> = {
   }
 };
 
+
 export type CaseStudyDetail = PortfolioProject &
   CaseStudyNarrative & {
     title: string;
     tags: string[];
   };
+
 
 export const caseStudyDetails: CaseStudyDetail[] = publishedProjects.map((project) => {
   const narrative = caseStudyNarratives[project.slug];
@@ -408,3 +457,81 @@ export const caseStudyDetails: CaseStudyDetail[] = publishedProjects.map((projec
       focusAreas: narrative?.focusAreas ?? project.services
     };
 });
+
+
+export type WorkDestination = {
+  type: "liveWebsite" | "pdf" | "internalCaseStudy";
+  url: string;
+  label: string;
+  ariaLabel: string;
+  analyticsEvent: string;
+  storyUrl?: string;
+};
+
+
+export function getWorkDestination(project: PortfolioProject, service?: SelectedService): WorkDestination {
+  const storyUrl = `/case-studies/${project.slug}`;
+  const fallback: WorkDestination = {
+    type: "internalCaseStudy", url: storyUrl, label: "View project",
+    ariaLabel: `View the ${project.client} project`,
+    analyticsEvent: `${project.id}_project_viewed`
+  };
+  if (project.projectKind !== "client") return fallback;
+  const optionalStory = project.slug === "biomode" || project.slug === "flyir" ? storyUrl : undefined;
+  if (service === "Branding" && project.deckStatus === "available" && project.deckHref) {
+    return {
+      type: "pdf", url: project.deckHref, label: "View identity PDF",
+      ariaLabel: `View the ${project.client} identity PDF`,
+      analyticsEvent: `${project.id}_identity_viewed`, storyUrl: optionalStory
+    };
+  }
+  if (project.storeStatus === "prelaunch" && project.websiteUrl) {
+    return {
+      type: "liveWebsite", url: project.websiteUrl, label: "View launch page",
+      ariaLabel: `View the ${project.client} launch page`,
+      analyticsEvent: `${project.id}_launch_page_visited`
+    };
+  }
+  const website = project.storeStatus === "live"
+    ? project.websiteUrl ?? (project.destinationType === "liveWebsite" ? project.destinationUrl : undefined)
+    : undefined;
+  if (website) {
+    const isWebsite = project.category === "Websites";
+    return {
+      type: "liveWebsite", url: website, label: isWebsite ? "Visit website" : "Visit store",
+      ariaLabel: `Visit the ${project.client} ${isWebsite ? "website" : "store"}`,
+      analyticsEvent: `${project.id}_website_visited`, storyUrl: optionalStory
+    };
+  }
+  if (project.deckStatus === "available" && project.deckHref) {
+    return {
+      type: "pdf", url: project.deckHref, label: "View identity PDF",
+      ariaLabel: `View the ${project.client} identity PDF`,
+      analyticsEvent: `${project.id}_identity_viewed`, storyUrl: optionalStory
+    };
+  }
+  return fallback;
+}
+// Intrinsic dimensions of the supplied portfolio assets.
+export const projectImageSizes: Record<string, { width: number; height: number }> = {
+  "/case-studies/previews/teralta-store-desktop.webp": { width: 1440, height: 1000 },
+  "/case-studies/previews/teralta-store-mobile.webp": { width: 390, height: 844 },
+  "/case-studies/previews/flyir-guidelines-full.webp": { width: 1352, height: 2200 },
+  "/case-studies/previews/signal-gravity-prelaunch.webp": { width: 1440, height: 875 },
+  "/case-studies/previews/signal-gravity-live-store.png": { width: 1440, height: 1100 },
+  "/case-studies/previews/biomode-banner.webp": { width: 1254, height: 1254 },
+  "/case-studies/previews/biomode-brand-guidelines.jpg": { width: 1200, height: 900 },
+  "/case-studies/previews/biomode-guidelines-clean.webp": { width: 1600, height: 900 },
+  "/case-studies/previews/biomode-main-icon.webp": { width: 1400, height: 1400 },
+  "/case-studies/previews/biomode-store.webp": { width: 1440, height: 900 },
+  "/case-studies/previews/biomode.jpg": { width: 1200, height: 900 },
+  "/case-studies/previews/cameo-garments.jpg": { width: 1200, height: 900 },
+  "/case-studies/previews/flyir-brand-identity-cover.webp": { width: 1400, height: 1333 },
+  "/case-studies/previews/flyir-campaign.webp": { width: 1200, height: 722 },
+  "/case-studies/previews/grandeur-associates.jpg": { width: 1200, height: 900 },
+  "/case-studies/previews/iniya-fiber-live.webp": { width: 1440, height: 900 },
+  "/case-studies/previews/iniya-fiber-website.webp": { width: 1400, height: 1335 },
+  "/case-studies/previews/sra-financial-planning.jpg": { width: 1200, height: 900 },
+  "/case-studies/previews/tiny-thagaimai-store.webp": { width: 1440, height: 900 },
+  "/case-studies/previews/tric-academy.jpg": { width: 1200, height: 900 },
+};
